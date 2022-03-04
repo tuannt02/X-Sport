@@ -1,0 +1,39 @@
+{
+  "name": "webbanhang_dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss --output src/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuannt02/webBanHang_dev.git"
+  },
+  "keywords": [
+    "webbanhang",
+    "commercial",
+    "projSV"
+  ],
+  "author": "tuannt02",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuannt02/webBanHang_dev/issues"
+  },
+  "homepage": "https://github.com/tuannt02/webBanHang_dev#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.2",
+    "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  }
+}

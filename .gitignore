@@ -1,0 +1,9 @@
+
+#bỏ file .vscode
+.vscode
+
+# Bỏ đi mục css vì đoạn code đã render ra file css
+src/public/css/
+
+# Bỏ đi thư mục node module
+node_modules/
