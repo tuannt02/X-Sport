@@ -12,3 +12,15 @@ body    {
 .card-course-item   {
     margin-top: 10px;
 }
+
+.wrapper    {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container  {
+    border: 1px solid #888;
+    width: 440px;
+    // height: calc(100% - 80px);
+}
