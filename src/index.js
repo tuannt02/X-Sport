@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
+var cookieParser = require('cookie-parser')
 const app = express();
 const port = 3001;
 
@@ -19,6 +20,8 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
+
+app.use(cookieParser());
 
 
 // HTTP logger
