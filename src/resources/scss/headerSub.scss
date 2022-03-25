@@ -1,0 +1,11 @@
+@import 'variables';
+
+.navbar {
+    background-color: $nav-col;
+
+    .brandName a {
+        color: $pri-col;
+        font-size: 35px;
+        font-family: "Faster One", cursive;
+    }
+}

@@ -8,7 +8,7 @@ class BuyerController    {
     
     // [GET] /login
     login(req,res) {
-        res.render('login', {layout: 'login'});
+        res.render('buyer/login', {layout: 'buyerLog'});
     }
 
     // [POST] /login -> authenticate
@@ -63,7 +63,7 @@ class BuyerController    {
 
     // [GET] /register
     register(req,res)   {
-        res.render('register');
+        res.render('buyer/register', {layout: 'buyerReg'});
     }
 
     // [GET] /
