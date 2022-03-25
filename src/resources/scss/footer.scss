@@ -1,0 +1,70 @@
+@import 'variables';
+
+footer {
+    border-top: 0.3rem solid $pri-col;
+    padding: 1.5rem 8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+  
+      h4 {
+        font-size: 14px;
+        padding-bottom: 20px;
+      }
+  
+      .certification {
+        margin-top: 25px;
+  
+        img {
+          max-width: 160px;
+          margin: -10px 0 0 6px;
+        }
+      }
+      .payment-icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+  
+        i {
+          font-size: 25px;
+        }
+  
+        span {
+          font-size: 13px;
+          margin-left: 6px;
+        }
+  
+        &:hover {
+          color: $pri-col;
+        }
+      }
+    }
+  
+    p {
+      font-size: 13px;
+      margin: 0 0 8px 0;
+    }
+  
+    a {
+      text-decoration: none;
+      color: #222;
+      font-size: 13px;
+      margin-bottom: 10px;
+  
+      &:hover {
+        color: $pri-col;
+      }
+    }
+  
+    .copyright {
+      text-align: center;
+      width: 100%;
+    }
+  }
+

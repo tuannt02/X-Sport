@@ -1,0 +1,46 @@
+@import 'variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-size: 1.6rem;
+    background-color: $white-col;
+    font-family: 'Roboto', sans-serif;
+    color: $black;
+    font-weight: 400;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $black;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  p {
+    line-height: 3rem;
+  }

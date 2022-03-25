@@ -1,4 +1,6 @@
-const Course = require('../models/Course');
+const Category = require('../models/Category');
+const Banner = require('../models/Banner');
+
 const { mutipleMongooseToObject } = require('../../util/mongoose')
 
 
@@ -16,15 +18,23 @@ class SiteController    {
         //     res.status(400).json({error: 'Vui long lien he quan tri vien'});
         // })
 
-        Course.find({})
-            .then(courses => {
+        var bannerss;
+        Banner.find({})
+        .then(banners => {
+            bannerss = mutipleMongooseToObject(banners);
+        })
+        .catch(next);
+        
+        Category.find({})
+            .then(categories => {
                 res.render('home', { 
-                    courses: mutipleMongooseToObject(courses) })
+                    categories: mutipleMongooseToObject(categories),
+                    banners: bannerss,
+                 })
             })
             .catch(next);
 
         
-        // res.render('home');
     }
 
     // [GET] /search
