@@ -5,6 +5,8 @@ const apiController = require('../app/controllers/ApiController');
 
 router.get('/login', apiController.getBanner);
 
+router.get('/daily_discover', apiController.show);
+
 
 
 
