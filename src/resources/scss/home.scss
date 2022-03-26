@@ -43,6 +43,16 @@
       flex-shrink: 0;
         object-fit: contain;
       
+      .carousel-item  {
+        height: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
       .slick-next {
         right: 2rem;
       }
@@ -75,6 +85,19 @@
       display: flex;
       flex-wrap: wrap;
   
+      .carousel-item  {
+        width: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+        img {
+          border-radius: 4px;
+          width: 100%;
+          height: 12.35rem;
+          object-fit: cover;
+          object-position: left top;
+        }
+      }
+
       img:first-child {
         margin-bottom: 0.5rem;
       }
