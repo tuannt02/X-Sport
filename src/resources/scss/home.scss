@@ -224,7 +224,6 @@
     .products-for-you-list {
       padding: 1.2rem 0rem 1.2rem;
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
   
       .product-for-you-item {
@@ -232,7 +231,7 @@
         border-radius: 1rem;
         padding: 1.2rem;
         margin: 0 1rem 2rem 1rem;
-        width: calc(100% / 6 - 2rem);
+        width: calc(100% / 5 - 2rem);
         height: 32rem;
         display: flex;
         flex-direction: column;

@@ -1,0 +1,323 @@
+@import 'variables';
+
+
+// Product-detail.html
+/* Product-details */
+#product-details {
+    display: flex;
+    // flex-wrap: wrap;
+    margin: 1.5rem 8rem;
+  
+    .single-product-img {
+      width: 28%;
+      #MainImg {
+        border: 1px solid $pri-col;
+      }
+
+  
+      .small-img-group {
+        display: flex;
+        justify-content: space-between;
+  
+        .small-img-column {
+          flex-basis: 24%; /* giống như set width cho phần tử */
+          border: 1px solid $pri-col;
+          cursor: pointer;
+        }
+      }
+    }
+  
+    .product-notes {
+      padding: 1.3rem;
+      background-color: $white-col;
+      width: 22%;
+  
+      .free-shipping {
+        display: flex;
+        align-items: center;
+        padding-bottom: 1.3rem;
+        border-bottom: 0.1rem dashed #e0e0e0;
+  
+        span {
+          color: #53c305;
+          font-size: 1.4rem;
+          margin-left: 0.8rem;
+        }
+      }
+  
+      .policy,
+      .other-service {
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 1.2rem;
+          margin-top: 1.8rem;
+        }
+  
+        i {
+          color: $pri-col;
+          font-size: 2.2rem;
+          margin-right: 0.8rem;
+        }
+  
+        span {
+          font-size: 1.5rem;
+        }
+      }
+  
+      .policy {
+        .policy-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.8rem;
+        }
+      }
+  
+      .other-service {
+        .other-service-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.8rem;
+        }
+      }
+    }
+  
+    .single-product-details {
+      width: 50%;
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 0 1.6rem 0 0;
+      background-color: $white-col;
+  
+      .quantity-input {
+        width: 4.2rem;
+        height: 2.8rem;
+        font-size: 1.5rem;
+        text-align: center;
+        border: 0.1rem solid rgb(236, 236, 236);
+      }
+  
+      .below-title {
+        display: flex;
+        align-items: center;
+  
+        .quantity_sold {
+          margin-left: 1rem;
+          margin-bottom: 0.15rem;
+          font-size: 1.5rem;
+          color: rgb(120, 120, 120);
+          border-left: 0.1rem solid rgb(199, 199, 199);
+          padding-left: 1rem;
+        }
+  
+        .product-star {
+          i {
+            color: rgb(243, 181, 25);
+          }
+        }
+      }
+  
+      h2 {
+        color: $pri-col;
+        font-size: 2.6rem;
+        margin-top: 1rem;
+  
+        span {
+          text-decoration-line: underline;
+        }
+      }
+  
+      .old-price {
+        font-size: 1.5rem;
+        text-decoration: line-through;
+        color: rgb(130, 134, 158);
+  
+        span {
+          text-decoration-line: underline;
+        }
+      }
+  
+      h4 {
+        font-size: 2.4rem;
+        padding: 0 0 1rem 0;
+      }
+  
+      .remaining-products {
+        font-size: 1.4rem;
+        color: rgb(247, 130, 18);
+        margin-left: 2rem;
+      }
+  
+      .amount-wrapper,
+      .product-options {
+        margin: 1.5rem 0;
+        display: flex;
+        align-items: center;
+  
+        span {
+          font-size: 1.5rem;
+          color: #787878;
+          margin-right: 2.5rem;
+        }
+  
+        div {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+  
+          .option {
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+          }
+        }
+      }
+  
+      .amount-wrapper {
+        margin: 1.5rem 0;
+      }
+  
+      .product-options {
+        span {
+          margin-right: 5.5rem;
+        }
+  
+        .option {
+          padding: 1rem 2.2rem;
+          border: 0.1rem solid rgba(0, 0, 0, 0.09);
+          color: rgba(0, 0, 0, 0.8);
+          background-color: $white-col;
+          margin-right: 1rem;
+  
+          &:focus {
+            color: $pri-col;
+            border: 0.1rem solid $pri-col;
+          }
+        }
+      }
+  
+      .buy-now-button,
+      .add-to-cart-button {
+        border: none;
+        cursor: pointer;
+        text-transform: capitalize;
+        outline: none;
+        font-size: 1.7rem;
+      }
+  
+      .buy-now-button {
+        background-color: $pri-col;
+        color: $white-col;
+        padding: 1rem 2rem;
+  
+        &:hover {
+          background-color: #42a7ff;
+        }
+      }
+  
+      .add-to-cart-button {
+        color: $pri-col;
+        background-color: $white-col;
+        margin-right: 1rem;
+        padding: 0.8rem 2rem 0.9rem 2rem;
+        border: 0.1rem solid $pri-col;
+  
+        &:hover {
+          background-color: #f8fcff;
+        }
+      }
+  
+      .decrease,
+      .increase {
+        padding: 0.53rem;
+        color: #959595;
+        background-color: #fff;
+        outline: none;
+        border: 0.1rem solid #ececec;
+        cursor: pointer;
+      }
+  
+      span {
+        line-height: 2.5rem;
+      }
+  
+      .guarantee {
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+  
+        span {
+          display: flex;
+          align-items: center;
+          i {
+            color: $pri-col;
+            font-size: 2rem;
+            margin-right: 0.4rem;
+          }
+        }
+  
+        p {
+          margin-left: 0.5rem;
+          color: rgba(0, 0, 0, 0.54);
+          margin-bottom: 0.03rem;
+        }
+      }
+    }
+  }
+  
+  #more-specific {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 8rem 2.5rem 8rem;
+    background-color: $white-col;
+    padding: 1.5rem;
+  
+    .product-description {
+      width: 100%;
+  
+      h2 {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 2rem;
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.02);
+        margin-bottom: 1.9rem;
+      }
+  
+      span {
+        width: 95%;
+        font-size: 1.5rem;
+        margin-left: 1.6rem;
+        display: block;
+      }
+    }
+  
+    .product-detail-table {
+      width: 100%;
+  
+      h2 {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 2rem;
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.02);
+        margin-bottom: 1rem;
+      }
+  
+      .detail-table {
+        border-collapse: collapse;
+        width: 25%;
+        font-size: 1.35rem;
+        margin-left: 0.8rem;
+        margin-bottom: 2rem;
+      }
+  
+      .detail-table td {
+        cursor: default;
+        padding: 0.8rem;
+      }
+  
+      .detail-table tr:nth-child(even) {
+        background-color: #f6f6f6;
+      }
+  
+      .detail-table tr:hover {
+        background-color: #ddd;
+      }
+    }
+  }

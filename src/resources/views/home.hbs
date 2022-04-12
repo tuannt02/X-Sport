@@ -28,12 +28,14 @@
 
         {{#each trendingProd}}
         <div class="trending-product-item">
-          <img
-            src="{{this.img.[1]}}"
-            alt="{{this.name}}"
-            class="product-image"
-          />
-          <span class="product-name">{{this.name}}</span>
+          <a href="/products/{{this.slug}}">
+            <img src="{{this.img.[0]}}" alt="{{this.name}}" class="product-image"/>
+          </a>
+
+          <a href="/products/{{this.slug}}">
+            <span class="product-name">{{this.name}}</span>
+          </a>
+
           <div class="product-price-wrapper">
             <p class="product-price"> {{this.price}} <span>đ</span></p>
             {{#if this.freeship}}

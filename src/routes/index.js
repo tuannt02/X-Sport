@@ -3,6 +3,7 @@ const siteRouter = require('./site');
 const adminRouter = require('./admin');
 const buyerRouter = require('./buyer');
 const sellerRouter = require('./seller');
+const productsRouter = require('./products');
 const APIsRouter = require('./api');
 
 function route(app) {
@@ -13,6 +14,8 @@ function route(app) {
     app.use('/buyer', buyerRouter);
 
     app.use('/seller', sellerRouter);
+
+    app.use('/products', productsRouter);
 
     app.use('/api', APIsRouter);
 
