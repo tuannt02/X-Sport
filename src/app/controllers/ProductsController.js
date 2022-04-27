@@ -15,6 +15,11 @@ class ProductsController   {
 
 
     }
+
+    // [GET] /courses/create
+    create(req, res, next)  {
+        res.send('Prod create');
+    }
 }
 
 

@@ -29,8 +29,25 @@ app.use(morgan('combined'));
 
 // Template engine
 // Convert .handlebars ext to .hbs ext 
-app.engine('.hbs', exphbs.engine({
-  extname: ".hbs",
+app.engine(
+  '.hbs', 
+  exphbs.engine({
+    extname: ".hbs",
+    helpers: {
+      print_price: function(price) {
+        var temp;
+    temp = price.toString();
+    var dot = ".";
+    var k=0;
+    for(var i = temp.length - 1; i >= 0; i--)   {
+        ++k;
+        if(k%3==0)  {
+            temp = [temp.slice(0,i), dot, temp.slice(i)].join('');
+        }
+    }
+    return temp;
+      }
+  }
 }));
 app.set('view engine', '.hbs');
 
