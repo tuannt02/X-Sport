@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+/* Contain */
+.contain    {
+    width: 100%;
+    height: calc(100% -40px);
+    margin: 20px;
+    background-color: white;
+    flex: 1;
+    position: relative;
+}
+
+/* Content header */
+.contain .contain__header   {
+    padding: 20px 32px;
+}
+
+.contain__header .sub_title {
+    font-size: 12px;
+    color: #A39494;
+    margin-bottom: 6px;
+}
+
+/* Content body */
+.contain__body  {
+    width: 100%;
+    height: fit-content;
+    padding: 10px 32px;
+    display: flex;
+
+}
+
+.contain__body .input_basic_info    {
+    flex: 65;
+    height: fit-content;
+}
+
+
+/* Content body - basic info */
+
+.form-group {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.form-group .form-label {
+    text-align: end;
+    display: inline-block;
+    width: 120px;
+    color: #A39494;
+    align-self: center;
+    padding-right: 20px;
+    font-size: 15px;
+}
+
+.form-group .form-label + input {
+    border: 1px solid #A39494;
+    border-radius: 2px;
+    flex-basis: 40%;
+}
+
+.form-group .form-label + input:focus   {
+    outline: #1A94FF auto 2px;
+}
+
+.form-group .form-control   {
+    font-size: 14px;
+    padding: 8px 10px;
+}
+
+.form-group #email_text {
+    padding: 0;
+    display: inline-block;
+}
+
+
+/* Contain input_pic */
+.contain__body .input_pic   {
+    flex: 35;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input_pic img  {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1.5px solid #1A94FF;
+}
+
+.input_pic .btn_edit {
+    width: fit-content;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1.5px solid #A39494;
+    transition: .5s;
+}
+
+.input_pic .btn_edit:hover  {
+    cursor: pointer;
+    opacity: 0.9;
+    border-color: #1A94FF;
+}
+
+
+.form-group .form-check+.form-check {
+    margin-left: 30px;
+}
+
+.form-group .form-select    {
+    padding: 8px 10px;
+}
+
+.form-select + .form-select {
+    margin-left: 20px;
+}
+
+.contain__body .btnSave {
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #1A94FF;
+    position: absolute;
+    bottom: 20px;
+    right: 32px;
+}
+
+.btnSave:hover  {
+    cursor: pointer;
+    opacity: 0.9;
+}
