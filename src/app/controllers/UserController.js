@@ -78,17 +78,29 @@ class UserController    {
 
         var slug = req.params.slug;
         if(slug == 'profile')   {
-            res.render('partials/user/account/profile', {layout: 'user_info'})
+            res.render('partials/user/account/profile', 
+            {
+                layout: 'user_info',
+                val: slug,
+            })
             return;
         }
 
         if(slug == 'address')   {
-            res.send(slug + ' page');
+            res.render('partials/user/account/address', 
+            {
+                layout: 'user_info',
+                val: slug,
+            });
             return;
         }
 
         if(slug == 'password')  {
-            res.send(slug + ' page');
+            res.render('partials/user/account/password', 
+            {
+                layout: 'user_info',
+                val: slug,
+            });
             return;
         }
 

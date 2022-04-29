@@ -16,16 +16,11 @@
     background-color: #000;
 }
 
-/* Sidebar - Info */
-// .header {
-//     background-color: #E3E6F3;
-//     width: 100%;
-//     height: 70px;
-// }
 
 .main   {
     width: 100%;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
+    height: 100%;
     background-color: #F6F6F6;
     display: flex;
 }

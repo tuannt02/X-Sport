@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+/* Contain */
+.contain    {
+    width: 100%;
+    height: calc(100%);
+    margin: 20px;
+    background-color: white;
+    flex: 1;
+    position: relative;
+}
+
+/* Content header */
+.contain .contain__header   {
+    padding: 20px 32px;
+}
+
+.contain__header .sub_title {
+    font-size: 12px;
+    color: #A39494;
+    margin-bottom: 6px;
+}
+
+.contain__header .btnAdd    {
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #1A94FF;
+    position: absolute;
+    top: 24px;
+    right: 32px;
+}
+
+.contain__header .btnAdd:hover  {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+/* Content body */
+/* addr item */
+.contain__body .address_item   {
+    padding: 10px 32px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.address_item .addr_item_field  {
+    display: flex;
+}
+
+.address_item.active .addr_item_btn_edit    {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.address_item.active .addr_item_field:first-child::after {
+    content: 'Địa chỉ giao hàng';
+    width: fit-content;
+    background-color: #46BE7D;
+    padding: 4px 15px;
+    font-size: 12px;
+    margin-left: 20px;
+    border-radius: 5px;
+    color: #fff;
+} 
+
+.addr_item_field {
+    margin-bottom: 10px;
+}
+
+.address_item .addr_item_lab    {
+    text-align: end;
+    width: 140px;
+    color: #A39494;
+    font-size: 15px;
+    padding-right: 20px;
+}
+
+.address_item .addr_item_val    {
+    display: inline-block;
+    flex-basis: 55%;
+    font-size: 15px;
+}
+
+.address_item .addr_item_field:first-child .addr_item_val  {
+    flex-basis: content;
+}
+
+.address_item .addr_item_edit_txt   {
+    color: #1A94FF;
+    position: absolute;
+    right: 32px;
+    top: calc(50% - 20px);
+}
+
+.addr_item_edit_txt:hover   {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.address_item .addr_item_btn_edit   {
+    width: fit-content;
+    background-color: #fff;
+    padding: 8px 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    position: absolute;
+    right: 32px;
+    bottom: 20px;
+}
+
+.addr_item_btn_edit:hover   {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.address_item .divider2 {
+    background-color: #A39494;
+}
