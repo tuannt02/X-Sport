@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import 'variables';
+
+.content  {
+    background-color: $pri-col;
+
+    .container  {
+        display: flex;
+        padding: 60px 0;
+        .content__title {
+            color: white;
+            min-width: 700px;
+            text-align: center;
+            align-self: center;
+            h2  {
+                font-family: "Faster One", cursive;
+                margin-bottom: 30px;
+            }
+        }
+        .content__form  {
+            flex: 1;
+            padding: 40px;
+            background-color: white;
+            border-radius: 4px;
+            position: relative;
+        }
+    }
+
+}
+
+.btn.btn-primary    {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    background-color: $pri-col;
+}
+
+.form-group.invalid .form-text    {
+    color: $red-col;
+}
+
+.form-group.invalid .form-control   {
+    border: 1px solid $red-col;
+}
+
+.unrmb  {
+    position: absolute;
+    right: 40px;
+    bottom: 155px;
+}
+
+.naviRes    {
+    text-align: center;
+}

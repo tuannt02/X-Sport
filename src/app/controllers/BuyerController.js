@@ -6,12 +6,12 @@ const jwt = require('jsonwebtoken');
 
 class BuyerController    {
     
-    // [GET] /login
-    login(req,res) {
-        res.render('buyer/login', {layout: 'buyerLog'});
+    // [GET] /sign_in
+    sign_in(req,res) {
+        res.render('buyer/sign_in', {layout: 'sign_in'});
     }
 
-    // [POST] /login -> authenticate
+    // [POST] /sign_in -> authenticate
     authenticate(req,res, next)   {
 
         const username = req.body.username;
@@ -61,9 +61,15 @@ class BuyerController    {
     }
 
 
-    // [GET] /register
-    register(req,res)   {
-        res.render('buyer/register', {layout: 'buyerReg'});
+    // [GET] /sign_up
+    sign_up(req,res)   {
+        res.render('buyer/sign_up', {layout: 'sign_up'});
+    }
+
+
+    // [GET] /forget_password
+    forget_password(req, res)   {
+        res.render('buyer/forget_password', {layout: 'forget_password'});
     }
 
     // [GET] /
