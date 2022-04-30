@@ -96,6 +96,10 @@
     font-size: 14px;
 }
 
+.tablist_i.collapse > ul    {
+    display: none;
+}
+
 .tablist_i > .tag   {
     display: inline-block;
     padding-top: 5px;

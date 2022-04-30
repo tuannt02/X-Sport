@@ -31,9 +31,11 @@ router.get('/account/:slug', userController.account);
 
 
 // Routing /user/purchase
-
+router.get('/purchase', userController.purchase);
 
 // Routing /user/notifications
+router.get('/notifications', userController.notifications);
+
 
 
 

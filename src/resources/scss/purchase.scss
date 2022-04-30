@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+/* Contain */
+.contain    {
+    width: 100%;
+    height: calc(100% -40px);
+    margin: 20px;
+    background-color: #F6F6F6;
+    flex: 1;
+    position: relative;
+}
+
+/* Content header */
+.contain .contain__header   {
+    background-color: #fff;
+    padding: 20px 32px;
+}
+
+.contain__header .sub_title {
+    font-size: 12px;
+    color: #A39494;
+    margin-bottom: 6px;
+}
+
+/* Content body */
+.contain__body  {
+    width: 100%;
+    height: fit-content;
+    /* padding: 10px 32px; */
+    /* margin-top: 20px; */
+}
+
+.contain__body .invoice_item    {
+    background-color: #fff;
+    padding: 10px 32px;
+    margin-top: 20px;
+}
+
+.invoice_item .invoice_info {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.invoice_info .txt_freeship {
+    background-color: #46BE7D;
+    padding: 4px 8px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.invoice_info .state_invoice    {
+    color: #46BE7D;
+}
+
+.invoice_info .divider2 {
+    position: absolute;
+    bottom: -8px;
+    height: 0.6px;
+}
+
+/* Product item */
+
+.product_item   {
+    display: flex;
+    padding: 28px 0;
+    position: relative;
+}
+
+/* Img */
+.product_item .img_item   {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #000;
+}
+
+
+/* Info */
+.product_item .info_item    {
+    margin-left: 32px;
+    flex-basis: 55%;
+    position: relative;
+}
+
+.info_item .name    {
+    font-size: 13.5px;
+    line-height: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info_item .field_color {
+    position: absolute;
+    top: 50%;
+}
+
+.info_item .field_quantity {
+    position: absolute;
+    bottom: 0;
+}
+
+.info_item .field   {
+    font-size: 12px;
+    color: #A39494;
+}
+
+.field .field_name  {
+    display: inline;
+}
+
+.field .field_val   {
+    margin-left: 5px;
+    display: inline;
+}
+
+/* Another info */
+.product_item .info_another_item    {
+    margin-left: 20px;
+    flex: 1;
+    position: relative;
+}
+
+.info_another_item .btn_review  {
+    background-color: #1A94FF;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 2px;
+    color: #fff;
+    position: absolute;
+    right: 0;
+}
+
+.btn_review:hover   {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.price  {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+}
+
+.price .regular_price   {
+    margin-right: 40px;
+    text-decoration: line-through;
+}
+
+.price .discount_price  {
+    color: #1A94FF;
+}
+
+.product_item .divider2 {
+    height: 0.6px;
+    background-color: #A39494;
+    position: absolute;
+    bottom: 0;
+}
+
+/* Date and total price */
+.date_total_price  {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.date_total_price .field    {
+    font-size: 12px;
+    color: #A39494;
+}
+
+.date_total_price .field_total_price    {
+    font-size: 16px;
+}
+
+.date_total_price .field_total_price .field_name    {
+    color: #000;
+}
+
+.date_total_price .field_total_price .field_val    {
+    color: #1A94FF;
+    font-weight: 500;
+}

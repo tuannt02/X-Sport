@@ -5,15 +5,27 @@ const listItem = $$('.tag');
 
 listItem.forEach(element => {
     element.onclick = function()    {
-        removeAllStateActive();
-        element.classList.add('active');
-        const parentCate = findParentTagA(element);
-        if(parentCate!=null) parentCate.classList.add('active');
+        changeState(element);
     }
 });
 
+function changeState(element)  {
+    removeAllStateActive();
+    element.classList.add('active');
+    const parentCate = findParentTagA(element);
+    if(parentCate!=null) parentCate.classList.add('active');
+    localStorage.setItem('stateSidebar', element.id);
+}
+
+window.onload = (event) =>  {
+    var stateSidebar = localStorage.getItem('stateSidebar');
+    const element = $('#' + stateSidebar);
+    changeState(element);
+}
+
 function removeAllStateActive()  {
     listItem.forEach(e => {
+        if(e.querySelector('#tag')) return;
         e.classList.remove('active');
     }); 
 }

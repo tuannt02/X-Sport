@@ -2,6 +2,7 @@ const Customer = require('../models/Customer');
 const { mongooseToObject } = require('../../util/mongoose');
 
 const jwt = require('jsonwebtoken');
+const res = require('express/lib/response');
 
 
 class UserController    {
@@ -106,6 +107,25 @@ class UserController    {
 
 
         next();
+    }
+
+
+    // [GET] /purchase  
+    purchase(req, res, next)  {
+        res.render('partials/user/purchase/purchase', 
+        {
+            layout: 'user_info',
+            val: 'purchase',
+        });
+    }
+
+    // [GET] /notifications
+    notifications(req, res, next) {
+        res.render('partials/user/notifications/notifications', 
+        {
+            layout: 'user_info',
+            val: 'notifications',
+        });
     }
 
 
