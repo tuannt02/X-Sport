@@ -11,16 +11,21 @@ router.get(
     );
 
 
-router.post(
-    '/sign_in', 
-    userController.authenticate,
-    (req,res) => {
-        res.redirect('http://localhost:3001/')
-    }
-);
+// router.post(
+//     '/sign_in', 
+//     userController.authenticate,
+//     (req,res) => {
+//         res.redirect('http://localhost:3001/')
+//     }
+// );
+
+// Routing /sign_out
+router.get('/sign_out', userController.sign_out);
 
 // Routing /sign_up
 router.get('/sign_up', userController.sign_up);
+
+router.post('/sign_up', userController.sign_up_post);
 
 
 // Routing /forget_password

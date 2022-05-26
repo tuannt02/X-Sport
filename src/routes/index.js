@@ -2,6 +2,7 @@ const siteRouter = require('./site');
 const userRouter = require('./user');
 const productsRouter = require('./products');
 const APIsRouter = require('./api');
+const UserController = require('../app/controllers/UserController');
 
 function route(app) {
     app.use('/user', userRouter);
@@ -11,8 +12,6 @@ function route(app) {
     app.use('/api', APIsRouter);
 
     app.use('/', siteRouter);
-    
-    
    
     
     

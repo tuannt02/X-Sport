@@ -24,9 +24,12 @@
   },
   "homepage": "https://github.com/tuannt02/webBanHang_dev#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.2",
-    "mongoose": "^6.2.3"
+    "firebase": "^9.8.1",
+    "mongoose": "^6.2.3",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.6",
