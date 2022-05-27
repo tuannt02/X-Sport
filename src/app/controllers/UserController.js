@@ -3,13 +3,23 @@ const User = require('../models/User');
 const { mongooseToObject } = require('../../util/mongoose');
 
 const jwt = require('jsonwebtoken');
-const res = require('express/lib/response');
 
 
 const handleErrors = (err) => {
     // console.log(err.message, err.code);
 
     let errors = { email: '', password: ''};
+
+    // incorrect email
+    if (err.message === 'incorrect email')  {
+        errors.email = 'Email này chưa được đăng ký';
+    }
+
+    // incorrect password
+    if (err.message === 'incorrect password')  {
+        errors.password = 'Mật khẩu vừa nhập không đúng';
+    }
+
 
     // duplicate error code
     if(err.code === 11000)  {
@@ -49,6 +59,27 @@ class UserController    {
     // [GET] /sign_in
     sign_in(req,res) {
         res.render('user/sign_in', {layout: 'sign_in'});
+    }
+
+    // [POST] /sign_in
+    async sign_in_post(req, res)  {
+        const { email, password} = req.body;
+
+        try {
+            const user = await User.login(email, password);
+            const token = createToken(user._id);
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.redirect('/');
+        }
+        catch(err)  {
+            const errors = handleErrors(err);
+
+            res.render('user/sign_in', 
+                {
+                    layout: 'sign_in',
+                    err: errors, 
+                })
+        }
     }
 
     // [POST] /sign_in -> authenticate
@@ -130,7 +161,6 @@ class UserController    {
         }
         catch(err)  {
             const errors = handleErrors(err);
-            console.log(errors);
             res.render('user/sign_up',
                 {
                     layout: 'sign_up',

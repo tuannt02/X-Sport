@@ -11,6 +11,9 @@ router.get(
     );
 
 
+// 
+router.post('/sign_in', userController.sign_in_post);
+
 // router.post(
 //     '/sign_in', 
 //     userController.authenticate,
@@ -45,6 +48,7 @@ router.get('/notifications', userController.notifications);
 
 
 
-router.get('/', userController.rerouting);
+router.get('/',
+    userController.rerouting);
 
 module.exports = router;

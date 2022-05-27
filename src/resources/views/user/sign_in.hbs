@@ -6,15 +6,31 @@
             <h4>Uy tín, chất lượng là thứ chúng tôi luôn theo đuổi</h4>
         </div>
         <form class="content__form form" method="POST" id="form-1">
+            {{#if err.email}}
+            <div class="form-group invalid">
+            {{else}}
             <div class="form-group">
-                <label for="username">Tài khoản</label>
-                <input type="text" class="form-control" id="username" placeholder="Nhập tài khoản" name="username">
+            {{/if}}
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" placeholder="Nhập email" name="email">
+                {{#if err.email}}
+                <small class="form-text">{{err.email}}</small>
+                {{else}}
                 <small class="form-text"></small>
+                {{/if}}
             </div>
+            {{#if err.password}}
+            <div class="form-group invalid">
+            {{else}}
             <div class="form-group">
+            {{/if}}
                 <label for="password">Mật khẩu</label>
                 <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password">
+                {{#if err.password}}
+                <small class="form-text">{{err.password}}</small>
+                {{else}}
                 <small class="form-text"></small>
+                {{/if}}
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
