@@ -11,7 +11,13 @@ class SiteController    {
     // [GET] / 
     index(req, res, next) {        
         
-
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
 
         var banner1;
         var banner2;
@@ -41,7 +47,7 @@ class SiteController    {
                     banners1: banner1,
                     banners2: banner2,
                     trendingProd: trendingProd,
-                    user: mongooseToObject(res.locals.user),
+                    user: user,
                  })
             })
             .catch(next);

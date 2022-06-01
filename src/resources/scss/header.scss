@@ -67,3 +67,27 @@
   }
 
 
+.header li  {
+  position: relative;
+}
+
+.subnav {
+  background-color: #fff;
+  position: absolute; 
+  border-radius: 4px;
+  li  {
+    padding: 8px 10px;
+
+    a {
+      color: #1a1a1a;
+    }
+    a:hover {
+      color: $pri-col;
+    }
+  }
+
+}
+
+.hide {
+  display: none;
+}
