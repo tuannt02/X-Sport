@@ -26,7 +26,9 @@
   "dependencies": {
     "express": "^4.17.3",
     "express-handlebars": "^6.0.2",
-    "mongoose": "^6.2.3"
+    "method-override": "^3.0.0",
+    "mongoose": "^6.2.3",
+    "mongoose-slug-generator": "^1.0.4"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.6",

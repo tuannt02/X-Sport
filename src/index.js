@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 var cookieParser = require('cookie-parser')
 const app = express();
@@ -17,9 +18,12 @@ db.connect();
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use(express.urlencoded({
+  limit:'50mb',
+  parameterLimit: 100000,
   extended: true
 }));
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(methodOverride('_method'));
 
 app.use(cookieParser());
 
