@@ -1,15 +1,85 @@
 const Customer = require('../models/Customer');
+const User = require('../models/User');
 const { mongooseToObject } = require('../../util/mongoose');
 
 const jwt = require('jsonwebtoken');
-const res = require('express/lib/response');
 
+
+const handleErrors = (err) => {
+    // console.log(err.message, err.code);
+
+    let errors = { email: '', password: ''};
+
+    // incorrect email
+    if (err.message === 'incorrect email')  {
+        errors.email = 'Email này chưa được đăng ký';
+    }
+
+    // incorrect password
+    if (err.message === 'incorrect password')  {
+        errors.password = 'Mật khẩu vừa nhập không đúng';
+    }
+
+
+    // duplicate error code
+    if(err.code === 11000)  {
+        errors.email = 'Email đã tồn tại';
+        return errors;
+    }
+
+
+    // validation error
+    if(err.message.includes('user validation failed'))  {
+        Object.values(err.errors).forEach(({properties}) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
+    return errors;
+}
+
+const maxAge = 3 * 24 * 60 * 60;
+
+const createToken = (id) => {
+    return jwt.sign({ id }, 'tuannt', {
+        expiresIn: maxAge,
+    })
+}
 
 class UserController    {
+
+
+
+    // [GET] /
+    sign_out(req,res)  {
+        res.clearCookie('token');
+        res.redirect('/user/sign_in');
+    }
     
     // [GET] /sign_in
     sign_in(req,res) {
         res.render('user/sign_in', {layout: 'sign_in'});
+    }
+
+    // [POST] /sign_in
+    async sign_in_post(req, res)  {
+        const { email, password} = req.body;
+
+        try {
+            const user = await User.login(email, password);
+            const token = createToken(user._id);
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.redirect('/');
+        }
+        catch(err)  {
+            const errors = handleErrors(err);
+
+            res.render('user/sign_in', 
+                {
+                    layout: 'sign_in',
+                    err: errors, 
+                })
+        }
     }
 
     // [POST] /sign_in -> authenticate
@@ -24,7 +94,7 @@ class UserController    {
         })
         .then(data => {
             if(!data)   {
-                return res.json('that bai');
+                return res.status(400).send("Wrong password");
             }
             else    {
                 const token =  jwt.sign({username: data.username}, 'tuannt', { expiresIn: '1h' })
@@ -34,7 +104,7 @@ class UserController    {
             }
         })
         .catch(err => {
-            res.status(500).json('loi server');
+            res.status(500).json('Lỗi server');
         }); 
         
 
@@ -46,7 +116,10 @@ class UserController    {
             const token = req.cookies.token;
             const parserToken = jwt.verify(token, 'tuannt');
 
+            console.log(token);
+
             if(parserToken) {
+                console.log(parserToken);
                 return res.redirect('http://localhost:3001/');
             }
             else    {
@@ -65,6 +138,39 @@ class UserController    {
     // [GET] /sign_up
     sign_up(req,res)   {
         res.render('user/sign_up', {layout: 'sign_up'});
+    }
+
+    // [POST /sign_up
+    async sign_up_post(req, res)   {
+        const { email, password} = req.body;
+
+        try{
+            const user = await User.create({
+                email,
+                password,
+            });
+            res.render('user/sign_up', 
+                {
+                    layout: 'sign_up',
+                    data:   {
+                        status: true,
+                        err: false,
+                        mes: 'Tạo tài khoản thành công, vui lòng đăng nhập',
+                    }  
+                });
+        }
+        catch(err)  {
+            const errors = handleErrors(err);
+            res.render('user/sign_up',
+                {
+                    layout: 'sign_up',
+                    data: {
+                        status: false,
+                        err: true,
+                        mes: errors,
+                    }
+                });
+        }
     }
 
 

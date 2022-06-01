@@ -2,7 +2,8 @@ const Category = require('../models/Category');
 const Banner = require('../models/Banner');
 const Product = require('../models/Product');
 
-const { mutipleMongooseToObject } = require('../../util/mongoose')
+const { mutipleMongooseToObject } = require('../../util/mongoose');
+const { mongooseToObject } = require('../../util/mongoose');
 
 
 class SiteController    {
@@ -11,13 +12,6 @@ class SiteController    {
     index(req, res, next) {        
         
 
-        // Course.find({}, function(err, courses)   {
-        //     if(!err)    {
-        //         res.json(courses);
-        //         return;
-        //     }
-        //     res.status(400).json({error: 'Vui long lien he quan tri vien'});
-        // })
 
         var banner1;
         var banner2;
@@ -47,6 +41,7 @@ class SiteController    {
                     banners1: banner1,
                     banners2: banner2,
                     trendingProd: trendingProd,
+                    user: mongooseToObject(res.locals.user),
                  })
             })
             .catch(next);
@@ -57,6 +52,12 @@ class SiteController    {
     // [GET] /search
     search(req,res)  {
         res.render('search');
+    }
+
+    // [GET] /search
+    logout(req, res)    {
+        res.cookie('jwt', '', { maxAge: 1 });
+        res.redirect('/');
     }
 }
 

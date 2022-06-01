@@ -17,4 +17,6 @@ router.get('/banner', apiController.getBanner);
 
 router.get('/category', apiController.getCategory);
 
+router.post('/sign_in', apiController.sign_in);
+
 module.exports = router;

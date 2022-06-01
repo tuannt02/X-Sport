@@ -1,8 +1,11 @@
 const Banner = require('../models/Banner');
 const Category = require('../models/Category');
 const Product = require('../models/Product');
+const Customer = require('../models/Customer');
+
 const { mongooseToObject } = require('../../util/mongoose');
 const PageSize = 2;
+const jwt = require('jsonwebtoken');
 
 
 class ApiController    {
@@ -64,6 +67,50 @@ class ApiController    {
                 res.status(500).json('loi server');
             })
         }
+    }
+
+
+
+
+    // [POST]
+    sign_in(req, res, next)   {
+        const username = req.body.username;
+        const password = req.body.password;
+
+
+
+        Customer.findOne({
+            username: username,
+            password: password
+        })
+        .then(data => {
+            if(!data)   {
+                return res.json({
+                    status: "fail",
+                    mes: "Tài khoản hoặc mật khẩu sai",
+                })
+            }
+            else    {
+                const token =  jwt.sign({username: data.username}, 'tuannt', { expiresIn: '1h' })
+
+                return res.json({
+                    status: "success",
+                    data: "token="+ token, 
+                })
+
+
+            }
+        })
+        .catch(err => {
+            res.status(500).json('Lỗi server');
+        }); 
+
+    }
+
+    log_out(res,req)    {
+        
+        res.cookie('token', '', {maxAge: 1});
+        res.redirect('/user/sign_in');
     }
 
     

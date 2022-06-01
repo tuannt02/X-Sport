@@ -7,25 +7,30 @@
         </div>
         <form class="content__form form" method="POST" id="form-1">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="Nhập email của bạn" name="email">
+                <label class="form-lable" for="email">Email</label>
+                <input type="text" class="form-control" required name="email">
+                {{#if data.mes.email}}
+                <small class="form-text">{{data.mes.email}}</small>
+                {{else}}
                 <small class="form-text"></small>
+                {{/if}}
             </div>
             <div class="form-group">
-                <label for="username">Tài khoản</label>
-                <input type="text" class="form-control" id="username" placeholder="Nhập tài khoản" name="username">
+                <label class="form-lable" for="password">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" required name="password">
+                {{#if data.mes.password}}
+                <small class="form-text">{{data.mes.password}}</small>
+                {{else}}
                 <small class="form-text"></small>
+                {{/if}}
             </div>
-            <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password">
-                <small class="form-text"></small>
-            </div>
-            <div class="form-group">
-                <label for="password-Confirm">Nhập lại mật khẩu</label>
-                <input type="password" class="form-control" id="password" placeholder="Nhập lại mật khẩu" name="password-Confirm">
-                <small class="form-text"></small>
-            </div>
+
+            {{#if data.status}}
+            <span class="notify__success">
+                {{data.mes}}
+            </span>
+            {{/if}}
+
             <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
             <p class="naviLog text-muted">Bạn đã có tài khoản?
                 <a href="/user/sign_in">Hãy đăng nhập</a>

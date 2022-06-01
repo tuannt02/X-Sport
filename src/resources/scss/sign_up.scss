@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
 @import 'variables';
+@import 'resetCSS.scss';
+
+
 
 .content  {
     background-color: $pri-col;
@@ -14,8 +17,12 @@
             text-align: center;
             align-self: center;
             h2  {
+                color: #fff;
                 font-family: "Faster One", cursive;
                 margin-bottom: 30px;
+            }
+            h4  {
+                color: #fff;
             }
         }
         .content__form  {
@@ -24,25 +31,61 @@
             background-color: white;
             border-radius: 4px;
             position: relative;
+            margin-right: 140px;
+
+            .form-group {
+                .form-lable {
+                    display: block;
+                    margin-bottom: 6px;
+                }
+
+                .form-control   {
+                    width: 100%;
+                    padding: 8px 6px;
+                    display: block;
+                }
+
+                .form-text  {
+                    color: red;
+                }
+
+                margin-bottom: 16px;
+            }
         }
     }
 
 }
 
 .btn.btn-primary    {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px 12px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
     margin-top: 30px;
     margin-bottom: 10px;
     background-color: $pri-col;
 }
 
+.btn.btn-primary:hover  {
+    opacity: 0.8;
+}
+
 .form-group.invalid .form-text    {
-    color: red-col;
+    color: red;
 }
 
 .form-group.invalid .form-control   {
-    border: 1px solid red-col;
+    border: 1px solid red;
 }
 
 .naviLog    {
     text-align: center;
+}
+
+.notify__success    {
+    color: green;
 }
