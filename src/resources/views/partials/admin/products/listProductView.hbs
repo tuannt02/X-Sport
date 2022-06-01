@@ -1,0 +1,57 @@
+<div class="wrap-product-view">
+    <div class="header-toggle">
+        <a href="#" class="product-view" style="color: #1A94FF;">Products view</a>
+        <a href="/admin/create-product" class="add-product">
+            <i class='bx bx-plus'></i>
+            Add product
+        </a>
+        <div class="separate"></div>
+    </div>
+
+    <div class="wrap">
+        <form id = "search-form" action="/admin/search-product" method="GET">
+            <div class="search-box">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="text" name="value" id="search-input" placeholder="Search for product ID,brand, categories or something...">
+            </div>
+        </form>
+        <div class="list-product">
+            {{#each products}}
+            <div class="product">
+                <img src= "{{this.img.[0]}}" alt="">
+                <div class="product-right">
+                    <div class="product-info">
+                        <div class="wrap-name">
+                            <h4 class="product-name">{{this.name}}
+                            </h4>
+                            <img src="https://vnscongnghe.com/wp-content/uploads/2018/07/free-ship.png" alt=""
+                                class="freeship">
+                        </div>
+                        <div class="product-price">
+                            <span class="new-price">{{this.price}} đ</span>
+                            <span class="old-price">1.900.000 đ</span>
+                        </div>
+                        <span class="product-total">Total: {{this.total}}</span>
+                        <div class="bottom-product-info">
+                            <span class="product-sold">Sold: {{this.sold}}</span>
+                            <span class="product-branch">Brand: {{this.brand}}</span>
+                            <span class="product-category">Category: {{this.category}}</span>
+                        </div>
+                    </div>
+                    <div class="product-edit">
+                        <a href="/admin/create-product/{{this.slug}}" class="button-update">Sửa</a>
+                        <a href="#" class="button-delete" onclick="deleteProduct('{{this._id}}')">Xóa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="line-separate"></div>
+            {{/each}}
+
+
+
+        </div>
+    </div>
+{{!-- Delete hidden form --}}
+<form id="delete-hidden-form" method="POST"></form>
+
+</div </html>
