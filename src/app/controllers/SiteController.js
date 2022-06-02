@@ -69,6 +69,25 @@ class SiteController    {
                     val: 'csbh'});
     }
 
+    category(req, res)  {
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
+
+        res.render(
+            'category',
+            {
+                layout: 'site2',
+                title: 'Danh mục',
+                val: 'category',
+                user: user,
+            });
+    }   
+
     // [GET] /search
     logout(req, res)    {
         res.cookie('jwt', '', { maxAge: 1 });
