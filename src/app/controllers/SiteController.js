@@ -60,6 +60,15 @@ class SiteController    {
         res.render('search');
     }
 
+    // [GET] /csbh
+    csbh(req, res)  {
+        res.render('csbh', 
+                {
+                    layout: 'site',
+                    title: 'Chính sách bảo hành',
+                    val: 'csbh'});
+    }
+
     // [GET] /search
     logout(req, res)    {
         res.cookie('jwt', '', { maxAge: 1 });
