@@ -18,43 +18,56 @@
     <div class="single-product-details">
         <h4>{{product.name}}</h4>
         <div class="below-title">
-        <div class="product-star">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-        </div>
-        <div class="quantity_sold">Đã bán <span>{{product.sold}}</span></div>
+            <div class="product-star">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bx-star"></i>
+            </div>
+            <div class="quantity_sold">
+                Đã bán
+                <span>{{product.sold}}</span>
+            </div>
         </div>
         <h2>{{print_price product.price}} <span>đ</span></h2>
         <p class="old-price">14.990.000 <span>đ</span></p>
 
-        <div class="product-options">
-        <span>Màu:</span>
-        <div>
-            {{#each product.color}}
-            <button class="option">{{this}}</button>
-            {{/each}}
+        <div class="product-color-options product-options">
+            <span>Màu:</span>
+            <div>
+                {{#each product.color}}
+                <button class="option">{{this}}</button>
+                {{/each}}
+            </div>
         </div>
+
+        <div class="product-size-options product-options">
+            <span>Size:</span>
+            <div>
+                {{#each product.color}}
+                <button class="option">{{this}}</button>
+                {{/each}}
+            </div>
         </div>
 
         <div class="amount-wrapper">
-        <span>Số lượng:</span>
-        <button class="decrease">
-            <i class="bx bx-minus"></i>
-        </button>
-        <input
-            class="quantity-input"
-            type="text"
-            role="spinbutton"
-            aria-valuenow="1"
-            value="1"
-        />
-        <button class="increase">
-            <i class="bx bx-plus"></i>
-        </button>
-        <div class="remaining-products">Chỉ còn 1219 sản phẩm</div>
+            <span>Số lượng:</span>
+            <button class="decrease">
+                <i class="bx bx-minus"></i>
+            </button>
+            <input
+                class="quantity-input"
+                type="text"
+                role="spinbutton"
+                value="1"
+                min="1"
+                readonly
+            />
+            <button class="increase">
+                <i class="bx bx-plus"></i>
+            </button>
+            <div class="remaining-products">Chỉ còn 1219 sản phẩm</div>
         </div>
 
         <div>
@@ -109,11 +122,11 @@
             </div>
             <div class="policy-item">
             <i class="bx bx-check-shield"></i>
-            <span>Cam kết hàng chính hãng 100%</span>
+            <span>Đổi trả trong vòng 15 ngày</span>
             </div>
             <div class="policy-item">
             <i class="bx bx-package"></i>
-            <span>Đổi trả trong vòng 10 ngày</span>
+            <span>Tặng kèm túi rút và tất</span>
             </div>
         </div>
         </div>
@@ -122,16 +135,13 @@
         <h2>Dịch vụ khác</h2>
         <div class="other-service-list">
             <div class="other-service-item">
-            <i class="bx bx-cog"></i>
-            <span>Sửa chữa đồng giá 150.000đ</span>
+                <i class="bx bx-cog"></i>
+                <span>Khâu đế thủ công giá 30.000 đ</span>
             </div>
+            
             <div class="other-service-item">
-            <i class="bx bx-laptop"></i>
-            <span>Vệ sinh máy tính, laptop</span>
-            </div>
-            <div class="other-service-item">
-            <i class="bx bx-check-shield"></i>
-            <span>Bảo hành tại nhà</span>
+                <i class="bx bx-check-shield"></i>
+                <span>Giảm giá 30% khi mua bất kì đôi vớ nào!</span>
             </div>
         </div>
         </div>
@@ -148,15 +158,11 @@
         </tr>
         <tr>
             <td>Bảo hành</td>
-            <td>12</td>
+            <td>1 tháng</td>
         </tr>
         <tr>
             <td>Màu sắc</td>
             <td>Trắng, Bạc / White</td>
-        </tr>
-        <tr>
-            <td>Công nghệ màn hình</td>
-            <td>OLED</td>
         </tr>
         <tr>
             <td>Kết nối</td>
@@ -188,20 +194,68 @@
     <div class="product-description">
         <h2>Mô tả sản phẩm</h2>
         <span>
-        Là một trong những chiếc smartwatch của Apple, Watch Series 7 GPS +
-        Cellular, 41mm (MKHT3VN/A) có kiểu dáng thể thao phù hợp với người
-        dùng năng động. Cùng với diện tích màn hình lớn và các tính năng thông
-        minh sẽ là sự lựa chọn hoàn hảo cho tín đồ của Apple. Trọng lượng siêu
-        nhẹ 32g, màn hình Retina 41mm Khung viền đồng hồ thông minh S7 GPS +
-        Cellular được làm bằng chất liệu nhôm nên đạt trọng lượng siêu nhẹ 32g
-        cùng dây đeo da nên có độ đàn hồi tốt. Đặc biệt, smartwatch S7 còn có
-        tính năng chống bụi IP6X và khả năng chống nước WR50 nên bạn có thể
-        yên tâm tham gia hay vận động thể thao ngoài trời. Watch Series 7 GPS
-        + Cellular sẽ có thời lượng sử dụng lâu lên đến 18 giờ cùng với cáp
-        sạc nhanh từ tính USB-C giúp sạc lên đến 80% mất khoảng 45 phút và chỉ
-        với 8 phút, có thể theo dõi giấc ngủ lên đến 8 giờ. Bên cạnh đó, đồng
-        hồ Series 7 GPS + Cellular được trang bị chip Apple S7, có bộ nhớ
-        trong 32GB và sử dụng hệ điều hành WatchOS.
+        <h4 style="display:inline-block;">{{product.name}} </h4>
+        là một trong những
+        sản phẩm được ưa chuộng nhất. Với thiết kế nhẹ, bền; cho phép đôi chân
+        bạn có thể linh hoạt nhất có thể. Độ bền cho trên 400 lần ra sân. Phù 
+        hợp với mọi loại bàn chân như: chân thon, bè,...
         </span>
     </div>
 </section>
+
+<script>
+    const groupColor = document.querySelector('.product-color-options');
+    const groupSize = document.querySelector('.product-size-options');
+    const colorElements = groupColor.querySelectorAll('.option');
+    const sizeElements = groupSize.querySelectorAll('.option');
+
+    const qtyInput = document.querySelector('.quantity-input');
+    const btnIncrease = document.querySelector('.increase');
+    const btnDecrease = document.querySelector('.decrease');
+
+
+    function removeSelectedColor()  {
+        colorElements.forEach(ele =>    {
+            ele.classList.remove('selected');
+        })
+    }
+
+    function removeSelectedSize()   {
+        sizeElements.forEach(ele => {
+            ele.classList.remove('selected');
+        })
+    }
+
+    colorElements.forEach(ele =>    {
+        ele.onclick = function()    {
+            removeSelectedColor();
+            ele.classList.add('selected');
+        }
+    })
+
+    sizeElements.forEach(ele => {
+        ele.onclick = function()    {
+            removeSelectedSize();
+            ele.classList.add('selected');
+        }
+    })
+
+    btnIncrease.onclick = function()    {
+        var valueInput = qtyInput.value;
+        if(valueInput >= 10)    {
+            return;
+        }
+        valueInput++;
+        qtyInput.value = valueInput;
+    }
+
+    btnDecrease.onclick = function()    {
+        var valueInput = qtyInput.value;
+        if(valueInput == 1)    {
+            return;
+        }
+        valueInput--;
+        qtyInput.value = valueInput;
+    }
+
+</script>
