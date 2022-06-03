@@ -63,7 +63,7 @@
           </div>
           {{#if this.sale}}
           <div class="product-price-initial">
-            <p>960.000 <span>đ</span></p>
+            <p> {{print_price_down this.price this.discount}} <span>đ</span></p>
             <span class="sale-off">-{{this.sale}}%</span>
           </div>
           {{/if}}

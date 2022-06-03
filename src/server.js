@@ -40,17 +40,30 @@ app.engine(
     helpers: {
       print_price: function(price) {
         var temp;
-    temp = price.toString();
-    var dot = ".";
-    var k=0;
-    for(var i = temp.length - 1; i >= 0; i--)   {
-        ++k;
-        if(k%3==0)  {
-            temp = [temp.slice(0,i), dot, temp.slice(i)].join('');
+        temp = price.toString();
+        var dot = ".";
+        var k=0;
+        for(var i = temp.length - 1; i >= 0; i--)   {
+            ++k;
+            if(k%3==0 && i!=0)  {
+                temp = [temp.slice(0,i), dot, temp.slice(i)].join('');
+            }
         }
-    }
-    return temp;
-      }
+        return temp;
+      },
+      print_price_down: function(price,discount) {
+        var temp;
+        temp = (price*(100-discount)*0.01).toString();
+        var dot = ".";
+        var k=0;
+        for(var i = temp.length - 1; i >= 0; i--)   {
+            ++k;
+            if(k%3==0 && i!=0)  {
+                temp = [temp.slice(0,i), dot, temp.slice(i)].join('');
+            }
+        }
+        return temp;
+      },
   }
 }));
 app.set('view engine', '.hbs');

@@ -21,22 +21,18 @@
                     <span>Category</span>
                     <select name="category" id="category" class="long-input style-input">
                         <option value=""></option>
-                        <option value="">Giày vải</option>
-                        <option value="">Giày đinh</option>
-                        <option value="">Giày đế bằng</option>
-                        <option value="">Giày chống trượt</option>
-                        <option value="">Giày fulsal</option>
+                        {{#each listCategories}}
+                        <option value="">{{this.name}}</option>
+                        {{/each}}
                     </select>
                 </div>
                 <div class="item">
                     <span>Brand</span>
                     <select name="brand" id="brand" class="long-input style-input">
                         <option value=""></option>
-                        <option value="">Adidas</option>
-                        <option value="">Nike</option>
-                        <option value="">Zocker</option>
-                        <option value="">Mitre</option>
-                        <option value="">Mizuno</option>
+                        {{#each brands}}
+                        <option value="">{{this.name}}</option>
+                        {{/each}}
                     </select>
                 </div>
                 <div class="item">

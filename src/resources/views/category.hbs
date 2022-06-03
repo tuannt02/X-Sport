@@ -101,9 +101,10 @@
         </div>
     <section id="products-for-you">
         <div class="products-for-you-list">
-            <a href="#" class="product-for-you-item">
-                <img src="/img/1.jpg" alt="vacuum cleaner" class="product-image"/>
-                <span class="product-name">Máy hút bụi diệt khuẩn Deerma CM800</span>
+            {{#each trendingProd}}
+            <a href="/products/{{this.slug}}" class="product-for-you-item">
+                <img src="{{this.img.[0]}}" alt="Ảnh giày đá banh" class="product-image"/>
+                <span class="product-name">{{this.name}}</span>
                 <div class="product-star">
                     <i class="bx bxs-star"></i>
                     <i class="bx bxs-star"></i>
@@ -112,7 +113,7 @@
                     <i class="bx bxs-star"></i>
                 </div>
                 <div class="product-price-wrapper">
-                    <p class="product-price">790.000 <span>đ</span></p>
+                    <p class="product-price"> {{print_price_down this.price this.discount}} <span>đ</span></p>
                     <svg
                         fill="none"
                         viewBox="0 0 24 24"
@@ -135,11 +136,11 @@
                     </svg>
                 </div>
                 <div class="product-price-initial">
-                    <p>960.000 <span>đ</span></p>
-                    <span class="sale-off">-17.71%</span>
+                    <p> {{print_price this.price}} <span>đ</span></p>
+                    <span class="sale-off">-{{this.discount}}%</span>
                 </div>
             </a>
-        
+            {{/each}}
         </div>
 
     </section>

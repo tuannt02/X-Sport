@@ -37,6 +37,7 @@ class SiteController    {
         Product.find({})
         .then(products => {
             trendingProd = mutipleMongooseToObject(products);
+            console.log(trendingProd);
         })
         .catch(next);
 
@@ -70,6 +71,8 @@ class SiteController    {
     }
 
     category(req, res)  {
+        var trendingProd;
+        
         var user;
         try {
             user = mongooseToObject(res.locals.user);
@@ -78,14 +81,29 @@ class SiteController    {
             user = '';
         }
 
-        res.render(
-            'category',
-            {
-                layout: 'site2',
-                title: 'Danh mục',
-                val: 'category',
-                user: user,
-            });
+        Product.find({})
+        .then(products => {
+            trendingProd = mutipleMongooseToObject(products);
+            res.render(
+                'category',
+                {
+                    layout: 'site2',
+                    title: 'Danh mục',
+                    val: 'category',
+                    user: user,
+                    trendingProd: trendingProd,
+                });
+        })
+        
+        // res.render(
+        //     'category',
+        //     {
+        //         layout: 'site2',
+        //         title: 'Danh mục',
+        //         val: 'category',
+        //         user: user,
+        //         trendingProd: trendingProd,
+        //     });
     }   
 
     // [GET] /search

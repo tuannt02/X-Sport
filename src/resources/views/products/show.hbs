@@ -30,8 +30,8 @@
                 <span>{{product.sold}}</span>
             </div>
         </div>
-        <h2>{{print_price product.price}} <span>đ</span></h2>
-        <p class="old-price">14.990.000 <span>đ</span></p>
+        <h2>{{print_price_down product.price product.discount}} <span>đ</span></h2>
+        <p class="old-price"> {{print_price product.price}} <span>đ</span></p>
 
         <div class="product-color-options product-options">
             <span>Màu:</span>
@@ -258,4 +258,14 @@
         qtyInput.value = valueInput;
     }
 
+
+    // Change img when user click item
+    const mainImg = document.querySelector('#MainImg');
+
+    const listImg = document.querySelectorAll('.small-img');
+    listImg.forEach(ele => {
+        ele.onclick = function()    {
+            mainImg.src = ele.src;
+        }
+    })
 </script>
