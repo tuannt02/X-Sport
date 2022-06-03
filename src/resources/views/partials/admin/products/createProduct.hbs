@@ -8,19 +8,20 @@
             </a>
             <div class="separate"></div>
         </div>
-        <div class="container">
-            <div class="container-left">
-                <div class="item">
-                    <span>Product Name</span>
-                    <div class="wrap-product-name-input long-input">
-                        <input type="text" name="name" id="productName" class="style-input">
-                        <p class="product-name__warning">Do not exceed 20 characters when entering the product name.</p>
+            <div class="container">
+                <div class="container-left">
+                    <div class="item">
+                        <span>Product Name</span>
+                        <div class="wrap-product-name-input long-input">
+                            <input type="text" name="name" id="productName" value= "{{product.name}}" class="style-input">
+                            <p class="product-name__warning">Do not exceed 20 characters when entering the product name.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="item">
                     <span>Category</span>
                     <select name="category" id="category" class="long-input style-input">
-                        <option value=""></option>
+                         <option value="">{{product.category}}</option>
                         {{#each listCategories}}
                         <option value="">{{this.name}}</option>
                         {{/each}}
@@ -29,7 +30,7 @@
                 <div class="item">
                     <span>Brand</span>
                     <select name="brand" id="brand" class="long-input style-input">
-                        <option value=""></option>
+                        <option value="">{{product.brand}}</option>
                         {{#each brands}}
                         <option value="">{{this.name}}</option>
                         {{/each}}
@@ -39,88 +40,111 @@
                     <div class="wrap-price">
                         <span class="mr-10">Price</span>
                         <input type="text" name="price" class="short-input style-input" id="price">
+                    </div>                    
+                    <div class="item">
+                        <div class="wrap-price">
+                            <span class="mr-10">Price</span>
+                            <input type="text" name="price" value="{{product.price}}" class="short-input style-input" id="price">
+                        </div>
+                        <div class="wrap-discount">
+                            <span class="mr-10">Discount</span>
+                            <input type="text" name="discount" value="{{product.discount}}" class=" input-discount short-input style-input" id="discount">
+                        </div>
                     </div>
-                    <div class="wrap-discount">
-                        <span class="mr-10">Discount</span>
-                        <input type="text" name="discount" class=" input-discount short-input style-input" id="discount">
+                    <div class="item">
+                        <div class="wrap-total">
+                            <span class="mr-10">Total</span>
+                            <input type="text" name="total" value="{{product.total}}" class="short-input style-input" id="total">
+                        </div>
+                        <div class="wrap-sold">
+                            <span class="mr-10">Sold</span>
+                            <input type="text" name="sold" value="{{product.sold}}" class="short-input style-input" id="sold">
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="wrap-total">
-                        <span class="mr-10">Total</span>
-                        <input type="text" name="total" class="short-input style-input" id="total">
-                    </div>
-                    <div class="wrap-sold">
-                        <span class="mr-10">Sold</span>
-                        <input type="text" name="sold" class="short-input style-input" id="sold">
-                    </div>
-                </div>
-                <div class="item">
-                    <span class="mr-10">Size</span>
-                    <div class="wrap-size-option">
-
-                        <div class="wrap-insert-size">
-                            <input type="text" id="" class="input-size" placeholder="add size">
-                            <i class='bx bx-plus-circle add-size' onclick="addSize()"></i>
+                    <div class="item">
+                        <span class="mr-10">Size</span>
+                        <div class="wrap-size-option">
+                            {{#each product.size}}
+                            <li>
+                                {{this}}
+                                <i class="bx bx-x"></i>
+                            </li>
+                            {{/each}}
+                            <div class="wrap-insert-size">
+                                <input type="text" id="" class="input-size" placeholder="add size">
+                                <i class='bx bx-plus-circle add-size' onclick="addSize()"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-right">
-                <div class="item">
-                    <span class="mr-10">Color</span>
-                    <div class="wrap-color-option">
-
-                        <div class="wrap-insert-color">
-                            <input type="text" id="" class="input-color" placeholder="add color">
-                            <i class='bx bx-plus-circle add-color' onclick="addColor()"></i>
+                <div class="container-right">
+                    <div class="item">
+                        <span class="mr-10">Color</span>
+                        <div class="wrap-color-option">
+                            {{#each product.color}}
+                            <li>
+                                {{this}}
+                                <i class="bx bx-x"></i>
+                            </li>
+                            {{/each}}
+                            <div class="wrap-insert-color">
+                                <input type="text" id="" class="input-color" placeholder="add color">
+                                <i class='bx bx-plus-circle add-color' onclick="addColor()"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="wrap-profuct-images">
-                    <span class="title">Product Images</span>
-                    <div class="list-imgs">
-                        <label for="file-upload1" id="item-img1" class="item-img"
-                            onchange="ImagesFileAsURL('file-upload1','item-img1')">
-                            <input type="file" id="file-upload1">
-                            <i class='bx bxs-image-add'></i>
-                            <span>Add image here</span>
-                        </label>
-                        <label for="file-upload2" id="item-img2" class="item-img"
-                            onchange="ImagesFileAsURL('file-upload2','item-img2')">
-                            <input type="file" id="file-upload2">
-                            <i class='bx bxs-image-add'></i>
-                            <span>Add image here</span>
-                        </label>
-                        <label for="file-upload3" id="item-img3" class="item-img"
-                            onchange="ImagesFileAsURL('file-upload3','item-img3')">
-                            <input type="file" id="file-upload3">
-                            <i class='bx bxs-image-add'></i>
-                            <span>Add image here</span>
-                        </label>
-                        <label for="file-upload4" id="item-img4" class="item-img"
-                            onchange="ImagesFileAsURL('file-upload4','item-img4')">
-                            <input type="file" id="file-upload4">
-                            <i class='bx bxs-image-add'></i>
-                            <span>Add image here</span>
-                        </label>
-                        <label for="file-upload5" id="item-img5" class="item-img"
-                            onchange="ImagesFileAsURL('file-upload5','item-img5')">
-                            <input type="file" id="file-upload5">
-                            <i class='bx bxs-image-add'></i>
-                            <span>Add image here</span>
-                        </label>
+                    <div class="wrap-profuct-images">
+                        <span class="title">Product Images</span>
+                        <div class="list-imgs">
+                            <label for="file-upload1" id="item-img" class="item-img"
+                                onchange="ImagesFileAsURL(this)">
+                                <input type="file" id="file-upload1">
+                                <i class='bx bxs-image-add'></i>
+                                <span>Add image here</span>
+                                <img src="{{product.img.[0]}}" alt="">
+                            </label>
+                            <label for="file-upload2" id="item-img" class="item-img"
+                                onchange="ImagesFileAsURL(this)">
+                                <input type="file" id="file-upload2">
+                                <i class='bx bxs-image-add'></i>
+                                <span>Add image here</span>
+                                <img src="{{product.img.[1]}}" alt="">
+                            </label>
+                            <label for="file-upload3" id="item-img" class="item-img"
+                                onchange="ImagesFileAsURL(this)">
+                                <input type="file" id="file-upload3">
+                                <i class='bx bxs-image-add'></i>
+                                <span>Add image here</span>
+                                <img src="{{product.img.[2]}}" alt="">
+                            </label>
+                            <label for="file-upload4" id="item-img" class="item-img"
+                                onchange="ImagesFileAsURL(this)">
+                                <input type="file" id="file-upload4">
+                                <i class='bx bxs-image-add'></i>
+                                <span>Add image here</span>
+                                <img src="{{product.img.[3]}}" alt="">
+                            </label>
+                            <label for="file-upload5" id="item-img" class="item-img"
+                                onchange="ImagesFileAsURL(this)">
+                                <input type="file" id="file-upload5">
+                                <i class='bx bxs-image-add'></i>
+                                <span>Add image here</span>
+                                <img src="{{product.img.[4]}}" alt="">
+                            </label>
+                        </div>
+                        <p class="image-description">You need to add at least 4 images.Pay attention to the quality of the
+                            pictures you add, comply with
+                            the background color standards. Pictures must be in certain dimensions. Notice that the product
+                            shows all the details</p>
                     </div>
-                    <p class="image-description">You need to add at least 4 images.Pay attention to the quality of the
-                        pictures you add, comply with
-                        the background color standards. Pictures must be in certain dimensions. Notice that the product
-                        shows all the details</p>
-                </div>
-                <div>
-                    <button type="submit" class="button" style="background-color: #1A94FF; color:#fff;">Add Product</button>
-                    <button class="button">Save Product</button>
+                    <div>
+                        {{#if check}}
+                        <button type="submit" name="update" value="{{product._id}}" class="button">Save Product</button>
+                        {{else}}
+                        <button type="submit" name="create" class="button" style="background-color: #1A94FF; color:#fff;">Add Product</button>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </form>

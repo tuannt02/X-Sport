@@ -47,6 +47,7 @@ class ProductsController {
                 res.render('partials/admin/products/listProductView',
                     { layout: 'admin', products: mutipleMongooseToObject(products) })
             })
+            .catch(next);
     }
 
 
@@ -66,12 +67,14 @@ class ProductsController {
                     res.render('partials/admin/products/listProductView',
                         { layout: 'admin', products: mutipleMongooseToObject(products) })
                 })
+                .catch(next)
         } else {
             Product.find({})
                 .then(products => {
                     res.render('partials/admin/products/listProductView',
                         { layout: 'admin', products: mutipleMongooseToObject(products) })
                 })
+                .catch(next);
         }
     }
 
@@ -80,10 +83,30 @@ class ProductsController {
     destroyProduct(req, res, next) {
         Product.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
-            .catch(next)
+            .catch(next);
     }
-}
 
+
+    //[GET] /admin/edit-view-product/:id
+    editView(req, res, next){
+        Product.findOne({
+            _id: req.params.id
+        })
+        .then((product => {
+            res.render('partials/admin/products/createProduct',
+            { layout: 'admin', product: mongooseToObject(product), check : true})
+        }))
+        .catch(next);
+    }
+
+    //[PUT] /admin/edit-product/:id
+    updateProduct(req, res, next){
+        Product.updateOne({ _id: req.params.id}, req.body)
+        .then(() => res.send('success'))
+        .catch(next);
+    }
+
+}
 
 module.exports = new ProductsController;
 
