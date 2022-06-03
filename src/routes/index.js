@@ -1,5 +1,6 @@
 const siteRouter = require('./site');
 const userRouter = require('./user');
+const categoriesRouter = require('./category');
 const productsRouter = require('./products');
 const APIsRouter = require('./api');
 const UserController = require('../app/controllers/UserController');
@@ -13,6 +14,8 @@ function route(app) {
 
     app.use('/admin', AdminRouter);
 
+    app.use('/categories', categoriesRouter);
+    
     app.use('/products', productsRouter);
 
     app.use('/api', APIsRouter);

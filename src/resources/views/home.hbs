@@ -1,6 +1,6 @@
 <section id="category-menu">
     {{#each categories}}
-    <a href="#">{{this.name}}</a>
+    <a href="categories/{{this.slug}}">{{this.name}}</a>
     {{/each}}
 </section>
 
@@ -37,7 +37,7 @@
           </a>
 
           <div class="product-price-wrapper">
-            <p class="product-price"> {{print_price this.price}} <span>đ</span></p>
+            <p class="product-price"> {{print_price_down this.price this.discount}} <span>đ</span></p>
             {{#if this.freeship}}
             <svg
               fill="none"
@@ -61,12 +61,10 @@
             </svg>
             {{/if}}
           </div>
-          {{#if this.sale}}
           <div class="product-price-initial">
-            <p> {{print_price_down this.price this.discount}} <span>đ</span></p>
-            <span class="sale-off">-{{this.sale}}%</span>
+            <p> {{print_price this.price}} <span>đ</span></p>
+            <span class="sale-off">-{{this.discount}}%</span>
           </div>
-          {{/if}}
         </div>
         {{/each}}
       </div>

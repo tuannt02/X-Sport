@@ -45,7 +45,7 @@
         <div class="product-size-options product-options">
             <span>Size:</span>
             <div>
-                {{#each product.color}}
+                {{#each product.size}}
                 <button class="option">{{this}}</button>
                 {{/each}}
             </div>
@@ -67,7 +67,7 @@
             <button class="increase">
                 <i class="bx bx-plus"></i>
             </button>
-            <div class="remaining-products">Chỉ còn 1219 sản phẩm</div>
+            <div class="remaining-products">Chỉ còn {{remaining_product product.total product.sold}} sản phẩm</div>
         </div>
 
         <div>

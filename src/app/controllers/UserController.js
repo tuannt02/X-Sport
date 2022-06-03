@@ -50,12 +50,6 @@ class UserController    {
 
 
 
-    // [GET] /
-    sign_out(req,res)  {
-        res.clearCookie('token');
-        res.redirect('/user/sign_in');
-    }
-    
     // [GET] /sign_in
     sign_in(req,res) {
         res.render('user/sign_in', {layout: 'sign_in'});
@@ -183,12 +177,21 @@ class UserController    {
     // [GET] /account/:slug
     account(req, res, next)   {
 
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
+
         var slug = req.params.slug;
         if(slug == 'profile')   {
             res.render('partials/user/account/profile', 
             {
                 layout: 'user_info',
                 val: slug,
+                user: user,
             })
             return;
         }
@@ -198,6 +201,7 @@ class UserController    {
             {
                 layout: 'user_info',
                 val: slug,
+                user: user,
             });
             return;
         }
@@ -207,6 +211,7 @@ class UserController    {
             {
                 layout: 'user_info',
                 val: slug,
+                user: user,
             });
             return;
         }
@@ -218,19 +223,39 @@ class UserController    {
 
     // [GET] /purchase  
     purchase(req, res, next)  {
+
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
+
         res.render('partials/user/purchase/purchase', 
         {
             layout: 'user_info',
             val: 'purchase',
+            user: user,
         });
     }
 
     // [GET] /notifications
     notifications(req, res, next) {
+
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
+
         res.render('partials/user/notifications/notifications', 
         {
             layout: 'user_info',
             val: 'notifications',
+            user: user,
         });
     }
 

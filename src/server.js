@@ -64,6 +64,9 @@ app.engine(
         }
         return temp;
       },
+      remaining_product: function(total, sold)  {
+        return total - sold;
+      },
   }
 }));
 app.set('view engine', '.hbs');

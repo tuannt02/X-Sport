@@ -6,10 +6,24 @@ class ProductsController   {
     
     // [GET] /courses/:slug
     show(req, res, next)  {
+
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch   {
+            user = '';
+        }
+
+
         Product.findOne( {slug: req.params.slug} )
             .then(product => {
                 // res.json(product);
-                res.render('products/show', { product: mongooseToObject(product) });
+                res.render('products/show', 
+                    { 
+                        product: mongooseToObject(product),
+                        user: user,
+                    });
                 
             }).catch(next);
 

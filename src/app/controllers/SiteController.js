@@ -22,6 +22,7 @@ class SiteController    {
         var banner1;
         var banner2;
         var trendingProd;
+        var listCategories;
         Banner.find({id: {$lt: 9} })
         .then(banners => {
             banner1 = mutipleMongooseToObject(banners);
@@ -34,24 +35,42 @@ class SiteController    {
         })
         .catch(next);
 
-        Product.find({})
-        .then(products => {
-            trendingProd = mutipleMongooseToObject(products);
-            console.log(trendingProd);
-        })
-        .catch(next);
-
         Category.find({})
             .then(categories => {
-                res.render('home', { 
-                    categories: mutipleMongooseToObject(categories),
-                    banners1: banner1,
-                    banners2: banner2,
-                    trendingProd: trendingProd,
-                    user: user,
-                 })
+                listCategories = mutipleMongooseToObject(categories);
             })
             .catch(next);
+
+        Product.find({})
+            .then(products => {
+                res.render('home',
+                    {
+                        categories: listCategories,
+                        banners1: banner1,
+                        banners2: banner2,
+                        trendingProd: mutipleMongooseToObject(products),
+                        user: user,
+                    })
+            })
+
+        // Product.find({})
+        // .then(products => {
+        //     trendingProd = mutipleMongooseToObject(products);
+        //     console.log(trendingProd);
+        // })
+        // .catch(next);
+
+        // Category.find({})
+        //     .then(categories => {
+        //         res.render('home', { 
+        //             categories: mutipleMongooseToObject(categories),
+        //             banners1: banner1,
+        //             banners2: banner2,
+        //             trendingProd: trendingProd,
+        //             user: user,
+        //          })
+        //     })
+        //     .catch(next);
 
         
     }
