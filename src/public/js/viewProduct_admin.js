@@ -1,5 +1,6 @@
 
 var deleteForm = document.getElementById('delete-hidden-form');
+// var editForm = document.getElementById('edit-hidden-form');
 
 function deleteProduct(productID){
     var result = confirm("Do you want to delete this product?");

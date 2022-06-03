@@ -1,18 +1,48 @@
-function ImagesFileAsURL(uploadID, itemID) {
-    var fileSelected = document.querySelector("#" + uploadID).files;
+function initImage(){
+    var listElemenLabel = document.querySelectorAll('.item-img');
+    var listElemenImg = document.querySelector('.list-imgs').getElementsByTagName('img');
+    var listImage = [];
+
+    for(let i = 0; i < listElemenImg.length; i++){
+        listImage.push(listElemenImg[i].src);
+    }
+    while(listElemenImg.length){
+        listElemenImg[0].remove();
+    }
+    var index = 0;
+    for(let img of listImage){
+        if(img.substring(0,4) == 'data' ){
+            var newImage = document.createElement('img');
+            newImage.src = img;
+            listElemenLabel[index].appendChild(newImage)
+            listElemenLabel[index].classList.add('none-boder');
+            index ++;
+        }
+    }
+}
+initImage()
+
+
+function ImagesFileAsURL(label) {
+    var fileSelected = label.getElementsByTagName('input')[0].files;
     if (fileSelected.length > 0) {
+        var img = label.getElementsByTagName('img');
+        if(img.length){
+            img[0].remove();
+        }
         var fileToLoad = fileSelected[0];
         var fileReader = new FileReader();
         fileReader.onload = function (fileLoaderEvent) {
             var srcData = fileLoaderEvent.target.result;
             var newImage = document.createElement('img');
             newImage.src = srcData;
-            document.querySelector('#' + itemID).innerHTML = newImage.outerHTML;
-            document.querySelector('#' + itemID).classList.add('none-boder');
+            label.appendChild(newImage);
+            label.classList.add('none-boder');
         }
         fileReader.readAsDataURL(fileToLoad);
     }
 }
+
 
 
 var containerColor = document.querySelector('.wrap-color-option');
@@ -22,8 +52,25 @@ var tagColors = []
 
 var containerSize = document.querySelector('.wrap-size-option');
 var insertFieldSize = document.querySelector('.wrap-insert-size');
-var inputSize = document.querySelector('.input-size')
+var inputSize = document.querySelector('.input-size');
 var tagSizes = []
+
+function initSize(){
+    var initSizes = containerSize.getElementsByTagName('li');
+    for(let li of initSizes){
+        tagSizes.push(li.textContent);
+    }
+}
+initSize();
+
+
+function initColor(){
+    var initColors = containerColor.getElementsByTagName('li');
+    for(let li of initColors){
+        tagColors.push(li.textContent);
+    }
+}
+initColor();
 
 
 function renderColors() {
@@ -85,7 +132,7 @@ var form = document.getElementById('form')
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
-    
+
     var productName = document.getElementById('productName').value
     var price = document.getElementById('price').value
     var total = document.getElementById('total').value
@@ -102,7 +149,6 @@ form.addEventListener('submit', function(e){
     var listColor = []
     var listImage =[]
 
-
     // Insert list Color
     var childColor = containerColor.childNodes;
     childColor.forEach(function(li){
@@ -110,7 +156,6 @@ form.addEventListener('submit', function(e){
             listColor.push(li.innerText)
         }
     })
-
 
     //Insert list Size
     var childSize = containerSize.childNodes;
@@ -120,40 +165,65 @@ form.addEventListener('submit', function(e){
         }
     })
 
-
-
     //Insert list Image
     var containerImage = document.querySelector('.list-imgs')
     var childImage = containerImage.getElementsByTagName('img');
     for(let img of childImage){
         listImage.push(img.src)
     }
-    
-    if(productName && category && brand && price && listSize.length && listColor.length && listImage.length){        
-        fetch("/admin/store-product",{
-            method: 'POST',
-            body: JSON.stringify({
-                name: productName,
-                category: category,
-                brand: brand,
-                price: price,
-                total: total,
-                discount: discount,
-                sold: sold,
-                img: listImage,
-                size: listSize,
-                color: listColor
-            }),
-            headers: {
-                "Content-type":"application/json; charset=UTF-8"
+
+        if(productName && category && brand && price && listSize.length && listColor.length && listImage.length){        
+            if(e.submitter.name == "create"){
+                fetch("/admin/store-product",{
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: productName,
+                        category: category,
+                        brand: brand,
+                        price: price,
+                        total: total,
+                        discount: discount,
+                        sold: sold,
+                        img: listImage,
+                        size: listSize,
+                        color: listColor
+                    }),
+                    headers: {
+                        "Content-type":"application/json; charset=UTF-8"
+                    }
+                })
+                .then(function(response){
+                    alert('Thêm mới sản phẩm thành công!');
+                    location.reload();
+                }) 
             }
-        })
-        .then(function(response){
-            alert('Thêm mới sản phẩm thành công!');
-            location.reload();
-        })   
-    }
-    else{
-        alert('Vui lòng nhập đầy đủ thông tin sản phẩm!')
-    }
+            else if(e.submitter.name == "update") 
+            {
+                fetch("/admin/edit-product/"+ e.submitter.value,{   
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        name: productName,
+                        category: category,
+                        brand: brand,
+                        price: price,
+                        total: total,
+                        discount: discount,
+                        sold: sold,
+                        img: listImage,
+                        size: listSize,
+                        color: listColor
+                    }),
+                    headers: {
+                        "Content-type":"application/json; charset=UTF-8"
+                    }
+                })
+                .then(function(response){
+                    alert('Cập nhật sản phẩm thành công!');
+                    // location.reload();
+                }) 
+            }
+        }
+        else{
+            alert('Vui lòng nhập đầy đủ thông tin sản phẩm!')
+        }
 })

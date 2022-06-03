@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="product-edit">
-                        <a href="/admin/create-product/{{this.slug}}" class="button-update">Sửa</a>
+                        <a href="/admin/edit-view-product/{{this._id}}" class="button-update">Sửa</a>
                         <a href="#" class="button-delete" onclick="deleteProduct('{{this._id}}')">Xóa</a>
                     </div>
                 </div>
@@ -53,5 +53,6 @@
     </div>
 {{!-- Delete hidden form --}}
 <form id="delete-hidden-form" method="POST"></form>
+{{!-- <form id="edit-hidden-form" method="GET"></form> --}}
 
 </div </html>

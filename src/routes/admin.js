@@ -15,4 +15,8 @@ router.get('/search-product', adminController.productSearch);
 
 router.delete('/:id', adminController.destroyProduct);
 
+router.get('/edit-view-product/:id', adminController.editView);
+
+router.put('/edit-product/:id', adminController.updateProduct)
+
 module.exports = router;
