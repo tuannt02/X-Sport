@@ -1,0 +1,126 @@
+h3 {
+    line-height: 40px;
+}
+
+
+
+#slider .text-page {
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 40px;
+}
+
+#slider .text-page {
+    font-weight: lighter;
+    font-size: large;
+}
+
+#content {
+    position: relative;
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: -90px;
+    margin-bottom: 20px;
+    background-color: white;
+    line-height: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0px 0px 4px 8px #eee;
+}
+
+#content .page-content {
+    list-style-type: none;
+    font-size: 20px;
+    margin-left: 10px;
+   
+}
+
+#content .header-content h3 {
+    padding-bottom: 100px;
+}
+
+#content .header-content p{
+    font-size: 20px;
+}
+
+#content .table-one {
+    width: 100%;
+}
+
+#content .table-left {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+#content .table-right {
+    margin-top: 40px;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+#content .table-mid {
+    margin-top: 40px;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.table-img  {
+    margin: 0 auto;
+}
+
+#content .content-underlines{
+    text-decoration: underline;
+    font-size: 20px;
+    margin-top: 35px;
+    font-weight: 30;
+    height: 30px;
+    margin-bottom: 30px;
+}
+
+#content div .box-content {
+    width: 496px ;
+}
+
+.page-content .header-page-content {
+    text-align: center;
+    padding-top: 9px;
+}
+
+#content b {
+    color: rgb(190, 39, 39) ;
+}
+
+
+
+#content .page-content .content-shoe-img {
+    text-align: center;
+    font-weight: normal; 
+}
+
+#content .page-content .shoe-img {
+    max-width: 260px;
+    padding: 20px;
+    height: auto;
+    float: right;
+    text-align: center;
+    font-weight: 30px;
+}
+
+
+
+.page-content li {
+    
+    font-size: 12px;
+    width: 100%;
+}
+
+#content .mini-word{ 
+    font-weight: lighter !important;
+    font-size: 20px;
+}
+
+#content .notice-content li {
+    font-size: 20px;
+}

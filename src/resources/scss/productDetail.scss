@@ -146,8 +146,7 @@
         margin-left: 2rem;
       }
   
-      .amount-wrapper,
-      .product-options {
+      .amount-wrapper {
         margin: 1.5rem 0;
         display: flex;
         align-items: center;
@@ -175,7 +174,14 @@
       }
   
       .product-options {
+
+        margin: 1.5rem 0;
+        display: flex;
+        align-items: center;
+
         span {
+          font-size: 1.5rem;
+          color: #787878;
           margin-right: 5.5rem;
         }
   
@@ -185,13 +191,16 @@
           color: rgba(0, 0, 0, 0.8);
           background-color: $white-col;
           margin-right: 1rem;
-  
-          &:focus {
-            color: $pri-col;
-            border: 0.1rem solid $pri-col;
-          }
+          cursor: pointer;
+        }
+
+        .selected {
+          color: $pri-col;
+          border: 0.1rem solid $pri-col;
         }
       }
+
+      
   
       .buy-now-button,
       .add-to-cart-button {

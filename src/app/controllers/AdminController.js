@@ -1,4 +1,6 @@
 const Product = require('../models/Product');
+const Category = require('../models/Category');
+const Brand = require('../models/Brand');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 
@@ -6,7 +8,26 @@ class ProductsController {
 
     //[GET] /admin/create-product
     createProduct(req, res, next) {
-        res.render('partials/admin/products/createProduct', { layout: 'admin', check : false})
+
+        var brand;
+
+        Brand.find({})
+            .then(brands => {
+                brand = mutipleMongooseToObject(brands);
+            })
+        
+
+        Category.find({})
+        .then(categories => {
+            res.render('partials/admin/products/createProduct', 
+            { 
+                layout: 'admin',
+                listCategories: mutipleMongooseToObject(categories),
+                brands: brand,
+            });
+        })
+        .catch(next);
+
     }
 
 

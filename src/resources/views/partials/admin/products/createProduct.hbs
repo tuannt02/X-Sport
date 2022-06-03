@@ -17,28 +17,30 @@
                             <p class="product-name__warning">Do not exceed 20 characters when entering the product name.</p>
                         </div>
                     </div>
-                    <div class="item">
-                        <span>Category</span>
-                        <select name="category" id="category" class="long-input style-input">
-                            <option value="">{{product.category}}</option>
-                            <option value="">Giày vải</option>
-                            <option value="">Giày đinh</option>
-                            <option value="">Giày đế bằng</option>
-                            <option value="">Giày chống trượt</option>
-                            <option value="">Giày fulsal</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <span>Brand</span>
-                        <select name="brand" id="brand" class="long-input style-input">
-                            <option value="">{{product.brand}}</option>
-                            <option value="">Adidas</option>
-                            <option value="">Nike</option>
-                            <option value="">Zocker</option>
-                            <option value="">Mitre</option>
-                            <option value="">Mizuno</option>
-                        </select>
-                    </div>
+                </div>
+                <div class="item">
+                    <span>Category</span>
+                    <select name="category" id="category" class="long-input style-input">
+                         <option value="">{{product.category}}</option>
+                        {{#each listCategories}}
+                        <option value="">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="item">
+                    <span>Brand</span>
+                    <select name="brand" id="brand" class="long-input style-input">
+                        <option value="">{{product.brand}}</option>
+                        {{#each brands}}
+                        <option value="">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="item">
+                    <div class="wrap-price">
+                        <span class="mr-10">Price</span>
+                        <input type="text" name="price" class="short-input style-input" id="price">
+                    </div>                    
                     <div class="item">
                         <div class="wrap-price">
                             <span class="mr-10">Price</span>

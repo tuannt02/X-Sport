@@ -21,14 +21,41 @@
         <span>Thông báo</span>
     </a>
 
-    <a href="/logout" class="menu-icon">
+    <a href="#" class="menu-icon">
         <i class="bx bx-cart-alt"></i>
-        <span>{{user.email}}</span>
+        <span>Giỏ hàng</span>
     </a>
 
-    <a href="/user/sign_in" class="menu-icon">
+    {{#if user.email}}
+    <li id="icon_sign_in">
+        <a href="/user/account/profile" class="menu-icon" id="menu-icon_sign_in">
+            <i class="bx bx-user-circle"></i>
+            <span>{{user.email}}</span>
+        </a>
+        <ul class="subnav hide">
+            <li><a href="/user/account/profile">Tài khoản của tôi</a></li>
+            <li><a href="/user/purchase">Đơn mua</a></li>
+            <li><a href="/logout">Đăng xuất</a></li>
+        </ul>
+        <script>
+            const btnSignIn = document.getElementById('icon_sign_in');
+            const submenu = document.querySelector('.subnav');
+
+            btnSignIn.onmouseout = function()   {
+                submenu.classList.add('hide');
+            }
+
+            btnSignIn.onmouseover = function()  {
+                submenu.classList.remove('hide');
+            }
+
+        </script>
+    </li>
+    {{else}}
+    <a href="/user/sign_in" class="menu-icon" id="menu-icon_sign_in">
         <i class="bx bx-user-circle"></i>
         <span>Đăng nhập</span>
     </a>
+    {{/if}}
 
 </section>

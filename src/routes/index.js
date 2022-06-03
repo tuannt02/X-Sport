@@ -18,7 +18,7 @@ function route(app) {
     app.use('/api', APIsRouter);
 
     app.use('/',
-        requireAuth, 
+        // requireAuth, 
         siteRouter);
    
     
