@@ -259,6 +259,11 @@ class UserController    {
         });
     }
 
+    //[GET] /user/cart
+    cart(req, res, next){
+        res.render('user/cart');
+    }
+
 
     // [GET] /
     // -> isLogin == true ? ->homePage : -> loginPage

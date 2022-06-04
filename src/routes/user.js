@@ -42,7 +42,9 @@ router.get('/notifications',
             userController.notifications);
 
 
-
+router.get('/cart',
+            requireAuth,
+            userController.cart);
 
 
 router.get('/',

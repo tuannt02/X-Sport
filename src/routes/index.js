@@ -22,8 +22,6 @@ function route(app) {
 
     app.use('/api', APIsRouter);
 
-    app.use('/cart', CartRouter);
-
     app.use('/',
         // requireAuth, 
         siteRouter);
