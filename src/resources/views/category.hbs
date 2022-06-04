@@ -7,19 +7,19 @@
             </div>
             <div class="filter-content">
                 <label class="">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="brand-item" value="Khác"/>
                     <span>Khác</span>
                 </label>
                 <label class="">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="brand-item" value="Adidas"/>
                     <span>Adidas</span>
                 </label>
                 <label class="">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="brand-item" value="Nike"/>
                     <span>Nike</span>
                 </label>
                 <label class="">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="brand-item" value="Puma"/>
                     <span>Puma</span>
                 </label>
             </div>
@@ -32,23 +32,23 @@
             </div>
             <div class="filter-content d-flex">
                 <label class="">
-                    <input type="radio" name="radio-price"/>
+                    <input type="radio" name="radio-price" class="priceCheckbox" value="Nhỏ hơn 1,000,000đ"/>
                     <span>Nhỏ hơn 1,000,000đ</span>
                 </label>
                 <label class="">
-                    <input type="radio" name="radio-price"/>
+                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 1,000,000đ - 1,500,000đ"/>
                     <span>Từ 1,000,000đ - 1,500,000đ</span>
                 </label>
                 <label class="">
-                    <input type="radio" name="radio-price"/>
+                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 1,500,000đ - 2,000,000đ"/>
                     <span>Từ 1,500,000đ - 2,000,000đ</span>
                 </label>
                 <label class="">
-                    <input type="radio" name="radio-price"/>
+                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 2,000,000đ - 3,000,000đ"/>
                     <span>Từ 2,000,000đ - 3,000,000đ</span>
                 </label>
                 <label class="">
-                    <input type="radio" name="radio-price"/>
+                    <input type="radio" name="radio-price" class="priceCheckbox" value="Lớn hơn 3,000,000đ"/>
                     <span>Lớn hơn 3,000,000đ</span>
                 </label>
             </div>
@@ -61,28 +61,50 @@
             </div>
             <div class="filter-content filter-size">
                 <label class="label-size">
-                    <input type="checkbox" />
-                    <span>35.5</span>
+                    <input type="checkbox" value="35" name="size-item"/>
+                    <span>35</span>
                 </label>
                 <label class="label-size">
-                    <input type="checkbox" />
+                    <input type="checkbox" value="36" name="size-item"/>
                     <span>36</span>
                 </label>
                 <label class="label-size">
-                    <input type="checkbox" />
-                    <span>36.5</span>
+                    <input type="checkbox" value="37" name="size-item"/>
+                    <span>37</span>
                 </label>
                 <label class="label-size">
-                    <input type="checkbox" />
-                    <span>37</span>
+                    <input type="checkbox" value="38" name="size-item"/>
+                    <span>38</span>
+                </label>
+                <label class="label-size">
+                    <input type="checkbox" value="39" name="size-item"/>
+                    <span>39</span>
+                </label>
+                <label class="label-size">
+                    <input type="checkbox" value="40" name="size-item"/>
+                    <span>40</span>
+                </label>
+                <label class="label-size">
+                    <input type="checkbox" value="41" name="size-item"/>
+                    <span>41</span>
+                </label>
+                <label class="label-size">
+                    <input type="checkbox" value="42" name="size-item"/>
+                    <span>42</span>
+                </label>
+                <label class="label-size">
+                    <input type="checkbox" value="43" name="size-item"/>
+                    <span>43</span>
                 </label>
             </div>
         </div>
+
+        <button class="btn-search">Tìm kiếm</button>
     </div>
 
     <div class="filter-product">
         <div class="filter-product-title d-flex">
-            <h3>Giày đinh sân cỏ tự nhiên</h3>
+            <h3 id="category-name">{{category.name}}</h3>
             <div class="product-sort d-flex">
             <span>Sắp xếp theo:</span>
             <span>
@@ -150,11 +172,82 @@
 <script>
     const btnHide = document.querySelectorAll('.minus-icon');
     const dynamicContent = document.querySelectorAll('.filter-content');
+    const btnSearch = document.querySelector('.btn-search');
+    const categoryName = document.querySelector('#category-name'); 
+
 
     btnHide.forEach((ele,index) => {
         ele.onclick = function()    {
             dynamicContent[index].classList.toggle('hide');
         }
     })
+
+
+
+    function getSelectedBrands()    {
+        var radios = document.getElementsByName('size-item');
+        var collections = [];
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                collections.push(radios[i].value);
+            }
+        }
+        return collections;
+    }
+
+    function getSelectedPrice() {
+        var checkedValue = null; 
+        var inputElements = document.getElementsByClassName('priceCheckbox');
+        for(var i=0; inputElements[i]; ++i){
+            if(inputElements[i].checked){
+                checkedValue = inputElements[i].value;
+                break;
+            }
+        }
+        return checkedValue;
+    }
+
+    function getSelectedSize()  {
+        var radios = document.getElementsByName('brand-item');
+        var collections = [];
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                collections.push(radios[i].value);
+            }
+        }
+        return collections;
+    }
+
+
+    if(categoryName.outerText == 'Tất (Vớ)'
+            || categoryName.outerText == 'Bóng'
+            || categoryName.outerText == 'Găng tay'
+            || categoryName.outerText == 'Bảo hộ chân')  {
+                btnSearch.classList.add('hide')
+    }
+    else    {
+        btnSearch.onclick = function()  {
+            const listSelectedBrands = getSelectedBrands();
+            const valueSelectedPrice = getSelectedPrice();
+            const listSelectedSize = getSelectedSize();
+
+            console.log(listSelectedBrands)
+            console.log(valueSelectedPrice)
+            console.log(listSelectedSize)
+
+
+            if(listSelectedBrands.length!=0 && listSelectedSize!=0 && valueSelectedPrice !=null)    {
+                alert('OKE')
+                // Do sth
+                // Call Api
+            }
+            else{
+                alert('Vui lòng nhập đủ tất cả các trường')
+            }
+        }
+    }
+
+
+
 
 </script>
