@@ -5,7 +5,9 @@ const productsRouter = require('./products');
 const APIsRouter = require('./api');
 const UserController = require('../app/controllers/UserController');
 const AdminRouter = require('./admin');
+const CartRouter = require('./cart');
 const { requireAuth, checkUser } = require('../app/middleware/UserMiddleware');
+const { category } = require('../app/controllers/SiteController');
 
 function route(app) {
     app.get('*', checkUser);
@@ -19,6 +21,8 @@ function route(app) {
     app.use('/products', productsRouter);
 
     app.use('/api', APIsRouter);
+
+    app.use('/cart', CartRouter);
 
     app.use('/',
         // requireAuth, 
