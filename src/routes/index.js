@@ -6,6 +6,7 @@ const APIsRouter = require('./api');
 const UserController = require('../app/controllers/UserController');
 const AdminRouter = require('./admin');
 const { requireAuth, checkUser } = require('../app/middleware/UserMiddleware');
+const { category } = require('../app/controllers/SiteController');
 
 function route(app) {
     app.get('*', checkUser);
