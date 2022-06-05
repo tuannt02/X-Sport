@@ -67,6 +67,22 @@
 
         }
 
+        .btn-search {
+            padding: 8px 8px;
+            background-color: $pri-col;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        .btn-search.hide {
+            display: none;
+        }
+
     }
 
 
