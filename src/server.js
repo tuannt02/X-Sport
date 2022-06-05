@@ -67,6 +67,9 @@ app.engine(
       remaining_product: function(total, sold)  {
         return total - sold;
       },
+      sum_price_product: function(price, quatity){
+        return price * quatity;
+      }
   }
 }));
 app.set('view engine', '.hbs');
