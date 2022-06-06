@@ -280,6 +280,15 @@ class UserController {
             .catch(next);
     }
 
+    // [POST] /user/add-to-cart
+    addToCart(req, res, next){
+        const cart = new Cart(req.body);
+        cart.save()
+            .then(() => res.json(req.body))
+            .catch(next);
+    }
+
+
     // [GET] /
     // -> isLogin == true ? ->homePage : -> loginPage
     rerouting(req, res) {

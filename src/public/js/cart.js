@@ -1,12 +1,12 @@
 // Function increase, decrease quatity
 function Plus(e){
-    var textbox = e.parentNode.querySelector("#textbox-quatity");
+    var textbox = e.parentNode.querySelector("#textbox-quantity");
     var num = textbox.value;
     textbox.ariaValueNow = textbox.value = parseInt(num) + 1;
 }
 
 function Minus(e){
-    var textbox = e.parentNode.querySelector("#textbox-quatity");
+    var textbox = e.parentNode.querySelector("#textbox-quantity");
     var num = textbox.value;
     if(num > 1){
         textbox.ariaValueNow = textbox.value = parseInt(num) - 1;
@@ -28,24 +28,27 @@ function CheckedAll(){
 var topCheckbox = document.getElementById('top-check-all');
 var bottomCheckbox = document.getElementById('bottom-check-all');
 
-topCheckbox.addEventListener('change', function(){
-    if(topCheckbox.checked){
-        CheckedAll();
-    }
-    else{
-        unCheckedAll();
-    }
-});
+if(topCheckbox){
+    topCheckbox.addEventListener('change', function(){
+        if(topCheckbox.checked){
+            CheckedAll();
+        }
+        else{
+            unCheckedAll();
+        }
+    });
+}
 
-bottomCheckbox.addEventListener('change', function(){
-    if(bottomCheckbox.checked){
-        CheckedAll();
-    }
-    else{        
-        unCheckedAll();
-    }
-});
-
+if(bottomCheckbox){
+    bottomCheckbox.addEventListener('change', function(){
+        if(bottomCheckbox.checked){
+            CheckedAll();
+        }
+        else{        
+            unCheckedAll();
+        }
+    });
+}
 
 
 // Function Print price
@@ -73,7 +76,7 @@ function TotalPayment(){
     listOldPrice.forEach(Oldprice =>
             sum +=  parseInt(Oldprice.firstChild.textContent.split('.').join(''))
         )
-    
-    TotalPrice.textContent = print_price(sum) + ' đ';
+    if(TotalPrice)
+        TotalPrice.textContent = print_price(sum) + ' đ';
 }
 TotalPayment();

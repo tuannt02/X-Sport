@@ -1,13 +1,13 @@
 <section id="product-details">
     {{!-- Main img --}}
     <div class="single-product-img">
-        <img src="{{product.img.[0]}}" width="100%" id="MainImg" alt="Ảnh lỗi"/>
+        <img src="{{product.img.[0]}}" width="100%" id="MainImg" alt="Ảnh lỗi" />
 
-    {{!-- List img --}}
+        {{!-- List img --}}
         <div class="small-img-group">
             {{#each product.img}}
             <div class="small-img-column">
-                <img src="{{this}}" width="100%" class="small-img" alt=""/>
+                <img src="{{this}}" width="100%" class="small-img" alt="" />
             </div>
             {{/each}}
         </div>
@@ -56,14 +56,7 @@
             <button class="decrease">
                 <i class="bx bx-minus"></i>
             </button>
-            <input
-                class="quantity-input"
-                type="text"
-                role="spinbutton"
-                value="1"
-                min="1"
-                readonly
-            />
+            <input class="quantity-input" type="text" role="spinbutton" value="1" min="1" readonly />
             <button class="increase">
                 <i class="bx bx-plus"></i>
             </button>
@@ -71,137 +64,130 @@
         </div>
 
         <div>
-        <button class="add-to-cart-button">
-            <i class="bx bxs-cart-add"></i> Thêm vào giỏ hàng
-        </button>
-        <button class="buy-now-button">Mua ngay</button>
+            <form id="add-to-cart-form" method="POST">
+                <input type="hidden" id="productID" value="{{product._id}}">
+                <input type="hidden" id="userID" value="{{user._id}}">
+                <button name="add-btn" class="add-to-cart-button">
+                    <i class="bx bxs-cart-add"></i> Thêm vào giỏ hàng
+                </button>
+                <button name="buy-btn" class="buy-now-button">Mua ngay</button>     
+            </form>
         </div>
 
         <div class="guarantee">
-        <span>
-            <i class="bx bx-check-shield"></i>
-            Chúng tôi đảm bảo
-        </span>
+            <span>
+                <i class="bx bx-check-shield"></i>
+                Chúng tôi đảm bảo
+            </span>
 
-        <p>3 ngày trả hàng / hoàn tiền</p>
+            <p>3 ngày trả hàng / hoàn tiền</p>
         </div>
     </div>
 
     <div class="product-notes">
         <div class="free-shipping">
-        <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            size="24"
-            class="css-174w0qc"
-            color="#53c305"
-            height="24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-            d="M10.2437 8.8V10.077H10.5287C10.6548 10.077 10.7384 10.0429 10.7939 9.98729C10.8495 9.93171 10.8837 9.84817 10.8837 9.722V9.155C10.8837 9.02883 10.8495 8.94529 10.7939 8.88971C10.7384 8.83413 10.6548 8.8 10.5287 8.8H10.2437Z"
-            fill="#30CD60"
-            ></path>
-            <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M5 6C4.44772 6 4 6.44771 4 7V7.74985H0.625014C0.280006 7.74985 0 8.02986 0 8.37486C0 8.71987 0.280006 8.99988 0.625014 8.99988H4V10.2494H1.87453C1.52952 10.2494 1.24951 10.5294 1.24951 10.8744C1.24951 11.2194 1.52952 11.4994 1.87453 11.4994H4V12.75H3.12697C2.78196 12.75 2.50195 13.03 2.50195 13.375C2.50195 13.72 2.78196 14 3.12697 14H4V15C4 15.5523 4.44772 16 5 16L6.00197 16C6.05465 17.3322 7.15515 18.4 8.5 18.4C9.84482 18.4 10.9453 17.3322 10.998 16.0001L16.002 16.0002C16.0547 17.3323 17.1552 18.4 18.5 18.4C19.8448 18.4 20.9452 17.3323 20.998 16.0003L23.3751 16.0003C23.7201 16.0003 24.0002 15.7203 24.0002 15.3753V12.2502C24.0002 12.1365 23.9701 12.0252 23.9114 11.9289L22.0364 8.80388C21.9239 8.61512 21.7201 8.50012 21.5001 8.50012H20V7C20 6.44772 19.5523 6 19 6H5ZM22.6458 12.2499H20V9.74988H21.1458L22.6458 12.2499ZM7.5 15.9C7.5 15.35 7.948 14.9 8.5 14.9C9.052 14.9 9.5 15.35 9.5 15.9C9.5 16.45 9.052 16.9 8.5 16.9C7.948 16.9 7.5 16.45 7.5 15.9ZM18.5 14.9C17.948 14.9 17.5 15.35 17.5 15.9C17.5 16.45 17.948 16.9 18.5 16.9C19.052 16.9 19.5 16.45 19.5 15.9C19.5 15.35 19.052 14.9 18.5 14.9ZM6.30615 7.9H8.57815V8.8H7.24815V10.035H8.29815V10.935H7.24815V13H6.30615V7.9ZM9.30166 7.9H10.5637C10.9398 7.9 11.2496 8.01459 11.4818 8.25169C11.7138 8.48397 11.8257 8.79355 11.8257 9.169V9.708C11.8257 9.94543 11.7786 10.1598 11.6816 10.3487C11.5966 10.5142 11.4795 10.6493 11.3311 10.7527L11.9701 13H10.9908L10.4518 10.977H10.2437V13H9.30166V7.9ZM15.0007 7.9H12.6937V13H15.0007V12.1H13.6357V10.865H14.7207V9.965H13.6357V8.8H15.0007V7.9ZM15.7712 7.9H18.0782V8.8H16.7132V9.965H17.7982V10.865H16.7132V12.1H18.0782V13H15.7712V7.9Z"
-            fill="#30CD60"
-            ></path>
-        </svg>
-        <span>Sản phẩm được miễn phí giao hàng</span>
+            <svg fill="none" viewBox="0 0 24 24" size="24" class="css-174w0qc" color="#53c305" height="24" width="24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M10.2437 8.8V10.077H10.5287C10.6548 10.077 10.7384 10.0429 10.7939 9.98729C10.8495 9.93171 10.8837 9.84817 10.8837 9.722V9.155C10.8837 9.02883 10.8495 8.94529 10.7939 8.88971C10.7384 8.83413 10.6548 8.8 10.5287 8.8H10.2437Z"
+                    fill="#30CD60"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M5 6C4.44772 6 4 6.44771 4 7V7.74985H0.625014C0.280006 7.74985 0 8.02986 0 8.37486C0 8.71987 0.280006 8.99988 0.625014 8.99988H4V10.2494H1.87453C1.52952 10.2494 1.24951 10.5294 1.24951 10.8744C1.24951 11.2194 1.52952 11.4994 1.87453 11.4994H4V12.75H3.12697C2.78196 12.75 2.50195 13.03 2.50195 13.375C2.50195 13.72 2.78196 14 3.12697 14H4V15C4 15.5523 4.44772 16 5 16L6.00197 16C6.05465 17.3322 7.15515 18.4 8.5 18.4C9.84482 18.4 10.9453 17.3322 10.998 16.0001L16.002 16.0002C16.0547 17.3323 17.1552 18.4 18.5 18.4C19.8448 18.4 20.9452 17.3323 20.998 16.0003L23.3751 16.0003C23.7201 16.0003 24.0002 15.7203 24.0002 15.3753V12.2502C24.0002 12.1365 23.9701 12.0252 23.9114 11.9289L22.0364 8.80388C21.9239 8.61512 21.7201 8.50012 21.5001 8.50012H20V7C20 6.44772 19.5523 6 19 6H5ZM22.6458 12.2499H20V9.74988H21.1458L22.6458 12.2499ZM7.5 15.9C7.5 15.35 7.948 14.9 8.5 14.9C9.052 14.9 9.5 15.35 9.5 15.9C9.5 16.45 9.052 16.9 8.5 16.9C7.948 16.9 7.5 16.45 7.5 15.9ZM18.5 14.9C17.948 14.9 17.5 15.35 17.5 15.9C17.5 16.45 17.948 16.9 18.5 16.9C19.052 16.9 19.5 16.45 19.5 15.9C19.5 15.35 19.052 14.9 18.5 14.9ZM6.30615 7.9H8.57815V8.8H7.24815V10.035H8.29815V10.935H7.24815V13H6.30615V7.9ZM9.30166 7.9H10.5637C10.9398 7.9 11.2496 8.01459 11.4818 8.25169C11.7138 8.48397 11.8257 8.79355 11.8257 9.169V9.708C11.8257 9.94543 11.7786 10.1598 11.6816 10.3487C11.5966 10.5142 11.4795 10.6493 11.3311 10.7527L11.9701 13H10.9908L10.4518 10.977H10.2437V13H9.30166V7.9ZM15.0007 7.9H12.6937V13H15.0007V12.1H13.6357V10.865H14.7207V9.965H13.6357V8.8H15.0007V7.9ZM15.7712 7.9H18.0782V8.8H16.7132V9.965H17.7982V10.865H16.7132V12.1H18.0782V13H15.7712V7.9Z"
+                    fill="#30CD60"></path>
+            </svg>
+            <span>Sản phẩm được miễn phí giao hàng</span>
         </div>
 
         <div class="policy">
-        <h2>Chính sách bán hàng</h2>
-        <div class="policy-list">
-            <div class="policy-item">
-            <i class="bx bxs-bus"></i>
-            <span>Miễn phí giao hàng cho đơn hàng từ 800K</span>
+            <h2>Chính sách bán hàng</h2>
+            <div class="policy-list">
+                <div class="policy-item">
+                    <i class="bx bxs-bus"></i>
+                    <span>Miễn phí giao hàng cho đơn hàng từ 800K</span>
+                </div>
+                <div class="policy-item">
+                    <i class="bx bx-check-shield"></i>
+                    <span>Đổi trả trong vòng 15 ngày</span>
+                </div>
+                <div class="policy-item">
+                    <i class="bx bx-package"></i>
+                    <span>Tặng kèm túi rút và tất</span>
+                </div>
             </div>
-            <div class="policy-item">
-            <i class="bx bx-check-shield"></i>
-            <span>Đổi trả trong vòng 15 ngày</span>
-            </div>
-            <div class="policy-item">
-            <i class="bx bx-package"></i>
-            <span>Tặng kèm túi rút và tất</span>
-            </div>
-        </div>
         </div>
 
         <div class="other-service">
-        <h2>Dịch vụ khác</h2>
-        <div class="other-service-list">
-            <div class="other-service-item">
-                <i class="bx bx-cog"></i>
-                <span>Khâu đế thủ công giá 30.000 đ</span>
+            <h2>Dịch vụ khác</h2>
+            <div class="other-service-list">
+                <div class="other-service-item">
+                    <i class="bx bx-cog"></i>
+                    <span>Khâu đế thủ công giá 30.000 đ</span>
+                </div>
+
+                <div class="other-service-item">
+                    <i class="bx bx-check-shield"></i>
+                    <span>Giảm giá 30% khi mua bất kì đôi vớ nào!</span>
+                </div>
             </div>
-            
-            <div class="other-service-item">
-                <i class="bx bx-check-shield"></i>
-                <span>Giảm giá 30% khi mua bất kì đôi vớ nào!</span>
-            </div>
-        </div>
         </div>
     </div>
-    </section>
+</section>
 
-    <section id="more-specific">
+<section id="more-specific">
     <div class="product-detail-table">
         <h2>Thông tin chi tiết</h2>
         <table class="detail-table">
-        <tr>
-            <td>Thương hiệu</td>
-            <td>APPLE</td>
-        </tr>
-        <tr>
-            <td>Bảo hành</td>
-            <td>1 tháng</td>
-        </tr>
-        <tr>
-            <td>Màu sắc</td>
-            <td>Trắng, Bạc / White</td>
-        </tr>
-        <tr>
-            <td>Kết nối</td>
-            <td>Bluetooth, Wifi, GPS</td>
-        </tr>
-        <tr>
-            <td>Thời gian sử dụng</td>
-            <td>Lên đến 18 giờ</td>
-        </tr>
-        <tr>
-            <td>Kích thước</td>
-            <td>40 x 34 x 10.7 mm</td>
-        </tr>
-        <tr>
-            <td>Chất liệu</td>
-            <td>Nhôm</td>
-        </tr>
-        <tr>
-            <td>Dây đeo</td>
-            <td>Silicone</td>
-        </tr>
-        <tr>
-            <td>Trọng lượng</td>
-            <td>30.8 g</td>
-        </tr>
+            <tr>
+                <td>Thương hiệu</td>
+                <td>APPLE</td>
+            </tr>
+            <tr>
+                <td>Bảo hành</td>
+                <td>1 tháng</td>
+            </tr>
+            <tr>
+                <td>Màu sắc</td>
+                <td>Trắng, Bạc / White</td>
+            </tr>
+            <tr>
+                <td>Kết nối</td>
+                <td>Bluetooth, Wifi, GPS</td>
+            </tr>
+            <tr>
+                <td>Thời gian sử dụng</td>
+                <td>Lên đến 18 giờ</td>
+            </tr>
+            <tr>
+                <td>Kích thước</td>
+                <td>40 x 34 x 10.7 mm</td>
+            </tr>
+            <tr>
+                <td>Chất liệu</td>
+                <td>Nhôm</td>
+            </tr>
+            <tr>
+                <td>Dây đeo</td>
+                <td>Silicone</td>
+            </tr>
+            <tr>
+                <td>Trọng lượng</td>
+                <td>30.8 g</td>
+            </tr>
         </table>
     </div>
 
     <div class="product-description">
         <h2>Mô tả sản phẩm</h2>
         <span>
-        <h4 style="display:inline-block;">{{product.name}} </h4>
-        là một trong những
-        sản phẩm được ưa chuộng nhất. Với thiết kế nhẹ, bền; cho phép đôi chân
-        bạn có thể linh hoạt nhất có thể. Độ bền cho trên 400 lần ra sân. Phù 
-        hợp với mọi loại bàn chân như: chân thon, bè,...
+            <h4 style="display:inline-block;">{{product.name}} </h4>
+            là một trong những
+            sản phẩm được ưa chuộng nhất. Với thiết kế nhẹ, bền; cho phép đôi chân
+            bạn có thể linh hoạt nhất có thể. Độ bền cho trên 400 lần ra sân. Phù
+            hợp với mọi loại bàn chân như: chân thon, bè,...
         </span>
     </div>
 </section>
+
 
 <script>
     const groupColor = document.querySelector('.product-color-options');
@@ -214,58 +200,110 @@
     const btnDecrease = document.querySelector('.decrease');
 
 
-    function removeSelectedColor()  {
-        colorElements.forEach(ele =>    {
+    function removeSelectedColor() {
+        colorElements.forEach(ele => {
             ele.classList.remove('selected');
         })
     }
 
-    function removeSelectedSize()   {
+    function removeSelectedSize() {
         sizeElements.forEach(ele => {
             ele.classList.remove('selected');
         })
     }
 
-    colorElements.forEach(ele =>    {
-        ele.onclick = function()    {
+    colorElements.forEach(ele => {
+        ele.onclick = function () {
             removeSelectedColor();
             ele.classList.add('selected');
         }
     })
 
     sizeElements.forEach(ele => {
-        ele.onclick = function()    {
+        ele.onclick = function () {
             removeSelectedSize();
             ele.classList.add('selected');
         }
     })
 
-    btnIncrease.onclick = function()    {
+    btnIncrease.onclick = function () {
         var valueInput = qtyInput.value;
-        if(valueInput >= 10)    {
+        if (valueInput >= 10) {
             return;
         }
         valueInput++;
         qtyInput.value = valueInput;
     }
 
-    btnDecrease.onclick = function()    {
+    btnDecrease.onclick = function () {
         var valueInput = qtyInput.value;
-        if(valueInput == 1)    {
+        if (valueInput == 1) {
             return;
         }
         valueInput--;
         qtyInput.value = valueInput;
     }
 
-
     // Change img when user click item
     const mainImg = document.querySelector('#MainImg');
 
     const listImg = document.querySelectorAll('.small-img');
     listImg.forEach(ele => {
-        ele.onclick = function()    {
+        ele.onclick = function () {
             mainImg.src = ele.src;
         }
     })
+
+
+    // Function Add to Cart
+    var form_AddToCart = document.getElementById('add-to-cart-form');
+
+    form_AddToCart.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var colorBtn = document.querySelector('.product-color-options');
+        var colorOption = colorBtn.querySelector('.selected');
+        var sizeBtn = document.querySelector('.product-size-options');
+        var sizeOption = sizeBtn.querySelector('.selected');
+        var quantity = qtyInput.value;
+        var productID = document.getElementById('productID').value;
+        var user = document.getElementById('userID').value;
+
+        if (colorOption && sizeOption) {
+            if (user) {
+                if (e.submitter.name == "add-btn") {
+                    fetch("/user/add-to-cart", {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            userID: user,
+                            size: sizeOption.innerText,
+                            color: colorOption.innerText,
+                            quantity: quantity,
+                            productID: Object(productID)
+                        }),
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    })
+                        .then(function (response) {
+                            alert('Đã thêm sản phẩm vào giỏ hàng!');
+                        })
+                }
+                else if (e.submitter.name == "buy-btn") {
+                    //Not processed yet
+                }
+            }
+            else {
+                window.location.href = '/user/sign_in';
+            }
+        }
+        else {
+            alert('vui lòng chọn phân loại Hàng!')
+        }
+    })
+
+    //function print() {
+    //    form_AddToCart.submit;
+    //}
+
 </script>

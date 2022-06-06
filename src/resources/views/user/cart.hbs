@@ -26,9 +26,9 @@
                     <div class="item-left__wrap-chekbox">
                         <input type="checkbox" name="" id="">
                     </div>
-                    <img src="https://cf.shopee.vn/file/1657b14b218fd5962fc3508d367379fc" alt="">
+                    <img src="{{this.productID.img.[0]}}" alt="">
                     <div class="description-item">
-                        <h3 class="item-name">{{this.productID.[0].name}}</h3>
+                        <h3 class="item-name">{{this.productID.name}}</h3>
                         <div class="item-option">
                             <span>Phân loại:</span>
                             <span class="item-color">{{this.color}}</span>
@@ -38,18 +38,18 @@
                 </div>
 
                 <div class="cart-item-right">
-                    <p class="item__old-price">{{print_price this.productID.[0].price}} <span>đ</span></p>
+                    <p class="item__old-price">{{print_price this.productID.price}} <span>đ</span></p>
                     <div class="item__quality">
                         <button class="decrease" onclick="Minus(this)">
                             <i class="bx bx-minus"></i>
                         </button>
-                        <input class="quantity-input" id="textbox-quatity" type="text" role="spinbutton"
-                            aria-valuenow="1" value="{{this.quatity}}" />
+                        <input class="quantity-input" id="textbox-quantity" type="text" role="spinbutton"
+                            aria-valuenow="1" value="{{this.quantity}}" />
                         <button class="increase" onclick="Plus(this)">
                             <i class="bx bx-plus"></i>
                         </button>
                     </div>
-                    <h3 class="item-price">{{print_price (sum_price_product this.productID.[0].price this.quatity)}} <span>đ</span></h3>
+                    <h3 class="item-price">{{print_price (sum_price_product this.productID.price this.quantity)}} <span>đ</span></h3>
                     <button class="item-button__delete">Xóa</button>
                 </div>
             </div>

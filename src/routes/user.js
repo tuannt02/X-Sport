@@ -47,6 +47,9 @@ router.get('/cart',
             userController.cart);
 
 
+router.post('/add-to-cart', userController.addToCart);
+
+
 router.get('/',
     userController.rerouting);
 
