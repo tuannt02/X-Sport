@@ -28,7 +28,9 @@
                     </div>
                     <img src="{{this.productID.img.[0]}}" alt="">
                     <div class="description-item">
-                        <h3 class="item-name">{{this.productID.name}}</h3>
+                        <a href="/products/{{this.productID.slug}}">
+                            <h3 class="item-name">{{this.productID.name}}</h3>
+                        </a>
                         <div class="item-option">
                             <span>Phân loại:</span>
                             <span class="item-color">{{this.color}}</span>
