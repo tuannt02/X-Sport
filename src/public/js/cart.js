@@ -80,3 +80,14 @@ function TotalPayment(){
         TotalPrice.textContent = print_price(sum) + ' đ';
 }
 TotalPayment();
+
+// Delete Product
+var formDelete = document.getElementById('form-delete-product');
+
+function deleteProduct(productID){
+    var result = confirm("Do you want to remove this product?");
+    if(result){
+        formDelete.action = '/user/cart/' + productID + '?_method=DELETE';
+        formDelete.submit();
+    }
+}

@@ -46,6 +46,7 @@ router.get('/cart',
             requireAuth,
             userController.cart);
 
+router.delete('/cart/:id', userController.removeCart);
 
 router.post('/add-to-cart', userController.addToCart);
 

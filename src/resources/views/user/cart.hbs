@@ -52,11 +52,12 @@
                         </button>
                     </div>
                     <h3 class="item-price">{{print_price (sum_price_product this.productID.price this.quantity)}} <span>đ</span></h3>
-                    <button class="item-button__delete">Xóa</button>
+                    <a href="#" class="item-button__delete" onclick="deleteProduct('{{this._id}}')">Xóa</a>
                 </div>
             </div>
             <div class="first-line"></div>
         </div>
+        <form id="form-delete-product" method="POST"></form>
         {{/each}}
 
     </div>

@@ -288,6 +288,13 @@ class UserController {
             .catch(next);
     }
 
+    //[DELETE] /user/cart/:id
+    removeCart(req, res, next){
+        Cart.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
 
     // [GET] /
     // -> isLogin == true ? ->homePage : -> loginPage
