@@ -18,11 +18,13 @@ function Minus(e){
 function unCheckedAll(){
     var listCheck = document.querySelectorAll('input[type=checkbox]')
     listCheck.forEach(check => check.checked = false);
+    TotalPayment();
 }
 
 function CheckedAll(){
     var listCheck = document.querySelectorAll('input[type=checkbox]')
-    listCheck.forEach(check => check.checked = true);   
+    listCheck.forEach(check => check.checked = true);  
+    TotalPayment(); 
 }
 
 var topCheckbox = document.getElementById('top-check-all');
@@ -69,17 +71,31 @@ function print_price(price) {
 
 // Function set Total payment
 var TotalPrice = document.querySelector(".total-price");
-var listOldPrice = document.querySelectorAll(".item-price");
+var listProduct = document.querySelectorAll(".cart-item");
 
 function TotalPayment(){
-    sum = 0;
-    listOldPrice.forEach(Oldprice =>
-            sum +=  parseInt(Oldprice.firstChild.textContent.split('.').join(''))
-        )
-    if(TotalPrice)
-        TotalPrice.textContent = print_price(sum) + ' đ';
+    sum = 0;  
+    listProduct.forEach(item =>{
+        if(item.querySelector('#check-item').checked){
+            sum += parseInt(item.querySelector('.item-price').firstChild.textContent.split('.').join(''));
+        }            
+        if(TotalPrice)
+            TotalPrice.textContent = print_price(sum) + ' đ';  
+    })
 }
 TotalPayment();
+
+
+// Add event Checked
+var checkboxItem = document.querySelectorAll('#check-item');
+if(checkboxItem)
+{
+    checkboxItem.forEach(item=>{
+        item.addEventListener('change', function(){
+            TotalPayment();
+        })
+    })
+}
 
 // Delete Product
 var formDelete = document.getElementById('form-delete-product');
