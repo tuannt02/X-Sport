@@ -64,6 +64,9 @@ app.engine(
         }
         return temp;
       },
+      price_down: function(price,discount) {
+        return(price*(100-discount)*0.01);
+      },
       remaining_product: function(total, sold)  {
         return total - sold;
       },
