@@ -295,6 +295,13 @@ class UserController {
             .catch(next);
     }
 
+    //[PUT] /user/edit-quantity
+    updateQuantityProduct(req, res, next){
+        Cart.updateOne({_id: req.body.id},{$set:{quantity: req.body.quantity}})
+        .then(()=>res.send('success'))
+        .catch(next);
+    } 
+
 
     // [GET] /
     // -> isLogin == true ? ->homePage : -> loginPage
