@@ -2,16 +2,57 @@
 function Plus(e){
     var textbox = e.parentNode.querySelector("#textbox-quantity");
     var num = textbox.value;
-    textbox.ariaValueNow = textbox.value = parseInt(num) + 1;
+    var quantity = textbox.ariaValueNow = textbox.value = parseInt(num) + 1;
+
+    var parentNode = e.parentNode.parentNode.parentNode;
+    if(parentNode){
+        var newprice = parseInt(parentNode.querySelector('.item__new-price').textContent.split('.').join(''));
+        var itemprice = parentNode.querySelector('.item-price');
+        itemprice.textContent = print_price(newprice * quantity);
+        TotalPayment();
+    }
 }
 
 function Minus(e){
     var textbox = e.parentNode.querySelector("#textbox-quantity");
     var num = textbox.value;
     if(num > 1){
-        textbox.ariaValueNow = textbox.value = parseInt(num) - 1;
+        var quantity = textbox.ariaValueNow = textbox.value = parseInt(num) - 1;  
+
+        var parentNode = e.parentNode.parentNode.parentNode;
+        if(parentNode){
+            var newprice = parseInt(parentNode.querySelector('.item__new-price').textContent.split('.').join(''));
+            var itemprice = parentNode.querySelector('.item-price');
+            itemprice.textContent = print_price(newprice * quantity);
+            TotalPayment();
+        }
     }
 }
+
+
+// // Update product quatity
+var formUpdateQuantity = document.querySelectorAll('#update-quantity-form');
+
+formUpdateQuantity.forEach(form =>{
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        var quantity = e.submitter.parentNode.querySelector('.quantity-input').value;
+        var cartID = e.submitter.parentNode.querySelector('#cartID').value;
+
+        fetch("/user/edit-quantity",{
+            method: 'PUT',
+            body: JSON.stringify({
+                id: cartID,
+                quantity: quantity
+            }),
+            headers: {
+                "Content-type":"application/json; charset=UTF-8"
+            }
+        })
+    })
+})
+
 
 
 // Function handle check box

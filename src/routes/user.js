@@ -50,6 +50,7 @@ router.delete('/cart/:id', userController.removeCart);
 
 router.post('/add-to-cart', userController.addToCart);
 
+router.put('/edit-quantity', userController.updateQuantityProduct);
 
 router.get('/',
     userController.rerouting);
