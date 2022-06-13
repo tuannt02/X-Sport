@@ -7,83 +7,90 @@
     display: flex;
     margin: 15px 20px;
     
-    .filter-category    {
+    .form-search    {
         display: flex;
         flex-direction: column;
         width: 20%;
         margin-right: 40px;
-
-        .filter-box {
-            background-color: #f4f4f4;
-            margin-bottom: 20px;
-            border-radius: 4px;
-
-            .filter-title   {
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px;
-                border-bottom: 1px solid #dfdfdf;
-
-
-                h3  {
-                    display: inline;
+        .filter-category    {
+            // display: flex;
+            // flex-direction: column;
+            // width: 20%;
+            // margin-right: 40px;
+    
+            .filter-box {
+                background-color: #f4f4f4;
+                margin-bottom: 20px;
+                border-radius: 4px;
+    
+                .filter-title   {
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px;
+                    border-bottom: 1px solid #dfdfdf;
+    
+    
+                    h3  {
+                        display: inline;
+                    }
+    
+                    i   {
+                        cursor: pointer;
+                    }
+    
+    
                 }
-
-                i   {
-                    cursor: pointer;
-                }
-
-
-            }
-
-            .filter-content {
-                display: flex;
-                flex-direction: column;
-                padding: 10px;
-
-                label {
-                    margin-bottom: 5px;
-
-                    span {
-                        margin-left: 4px;
-                        font-size: 16px;
+    
+                .filter-content {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px;
+    
+                    label {
+                        margin-bottom: 5px;
+    
+                        span {
+                            margin-left: 4px;
+                            font-size: 16px;
+                        }
                     }
                 }
-            }
-
-            .filter-size    {
-                flex-direction: row;
-                justify-content: space-between;
-                flex-wrap: wrap;
-
-                .label-size {
-                    width: 50%;
+    
+                .filter-size    {
+                    flex-direction: row;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+    
+                    .label-size {
+                        width: 50%;
+                    }
                 }
+    
+                .hide   {
+                    display: none;
+                }
+    
             }
-
-            .hide   {
+    
+            .btn-search {
+                padding: 8px 8px;
+                background-color: $pri-col;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+    
+    
+            .btn-search.hide {
                 display: none;
             }
-
+    
         }
-
-        .btn-search {
-            padding: 8px 8px;
-            background-color: $pri-col;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 500;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-
-        .btn-search.hide {
-            display: none;
-        }
-
     }
+
 
 
     .filter-product {

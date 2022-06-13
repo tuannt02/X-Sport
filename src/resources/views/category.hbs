@@ -1,124 +1,122 @@
 <section id="filter">
-    <div class="filter-category">
-        <div class="filter-box">
-            <div class="filter-title d-flex">
-                <h3>Thương hiệu</h3>
-                <i class="bx bx-minus minus-icon"></i>
+    <form action="" class="form-search" method="POST">
+        <div class="filter-category">
+            <div class="filter-box">
+                <div class="filter-title d-flex">
+                    <h3>Thương hiệu</h3>
+                    <i class="bx bx-minus minus-icon"></i>
+                </div>
+                <div class="filter-content">
+                    <label class="">
+                        <input type="checkbox" name="brand_item" value="Khác"/>
+                        <span>Khác</span>
+                    </label>
+                    <label class="">
+                        <input type="checkbox" name="brand_item" value="Adidas"/>
+                        <span>Adidas</span>
+                    </label>
+                    <label class="">
+                        <input type="checkbox" name="brand_item" value="Nike"/>
+                        <span>Nike</span>
+                    </label>
+                    <label class="">
+                        <input type="checkbox" name="brand_item" value="Puma"/>
+                        <span>Puma</span>
+                    </label>
+                </div>
             </div>
-            <div class="filter-content">
-                <label class="">
-                    <input type="checkbox" name="brand-item" value="Khác"/>
-                    <span>Khác</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="brand-item" value="Adidas"/>
-                    <span>Adidas</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="brand-item" value="Nike"/>
-                    <span>Nike</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="brand-item" value="Puma"/>
-                    <span>Puma</span>
-                </label>
-            </div>
-        </div>
 
-        <div class="filter-box">
-            <div class="filter-title d-flex">
-                <h3>Giá</h3>
-                <i class="bx bx-minus minus-icon"></i>
+            <div class="filter-box">
+                <div class="filter-title d-flex">
+                    <h3>Giá</h3>
+                    <i class="bx bx-minus minus-icon"></i>
+                </div>
+                <div class="filter-content d-flex">
+                    <label class="">
+                        <input type="radio" name="radio_price" class="priceCheckbox" value="Nhỏ hơn 1,000,000đ"/>
+                        <span>Nhỏ hơn 1,000,000đ</span>
+                    </label>
+                    <label class="">
+                        <input type="radio" name="radio_price" class="priceCheckbox" value="Từ 1,000,000đ - 1,500,000đ"/>
+                        <span>Từ 1,000,000đ - 1,500,000đ</span>
+                    </label>
+                    <label class="">
+                        <input type="radio" name="radio_price" class="priceCheckbox" value="Từ 1,500,000đ - 2,000,000đ"/>
+                        <span>Từ 1,500,000đ - 2,000,000đ</span>
+                    </label>
+                    <label class="">
+                        <input type="radio" name="radio_price" class="priceCheckbox" value="Từ 2,000,000đ - 3,000,000đ"/>
+                        <span>Từ 2,000,000đ - 3,000,000đ</span>
+                    </label>
+                    <label class="">
+                        <input type="radio" name="radio_price" class="priceCheckbox" value="Lớn hơn 3,000,000đ"/>
+                        <span>Lớn hơn 3,000,000đ</span>
+                    </label>
+                </div>
             </div>
-            <div class="filter-content d-flex">
-                <label class="">
-                    <input type="radio" name="radio-price" class="priceCheckbox" value="Nhỏ hơn 1,000,000đ"/>
-                    <span>Nhỏ hơn 1,000,000đ</span>
-                </label>
-                <label class="">
-                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 1,000,000đ - 1,500,000đ"/>
-                    <span>Từ 1,000,000đ - 1,500,000đ</span>
-                </label>
-                <label class="">
-                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 1,500,000đ - 2,000,000đ"/>
-                    <span>Từ 1,500,000đ - 2,000,000đ</span>
-                </label>
-                <label class="">
-                    <input type="radio" name="radio-price" class="priceCheckbox" value="Từ 2,000,000đ - 3,000,000đ"/>
-                    <span>Từ 2,000,000đ - 3,000,000đ</span>
-                </label>
-                <label class="">
-                    <input type="radio" name="radio-price" class="priceCheckbox" value="Lớn hơn 3,000,000đ"/>
-                    <span>Lớn hơn 3,000,000đ</span>
-                </label>
-            </div>
-        </div>
 
-        <div class="filter-box">
-            <div class="filter-title d-flex">
-                <h3>Kích thước</h3>
-                <i class="bx bx-minus minus-icon"></i>
+            <div class="filter-box">
+                <div class="filter-title d-flex">
+                    <h3>Kích thước</h3>
+                    <i class="bx bx-minus minus-icon"></i>
+                </div>
+                <div class="filter-content filter-size">
+                    <label class="label-size">
+                        <input type="checkbox" value="35" name="size_item"/>
+                        <span>35</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="36" name="size_item"/>
+                        <span>36</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="37" name="size_item"/>
+                        <span>37</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="38" name="size_item"/>
+                        <span>38</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="39" name="size_item"/>
+                        <span>39</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="40" name="size_item"/>
+                        <span>40</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="41" name="size_item"/>
+                        <span>41</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="42" name="size_item"/>
+                        <span>42</span>
+                    </label>
+                    <label class="label-size">
+                        <input type="checkbox" value="43" name="size_item"/>
+                        <span>43</span>
+                    </label>
+                </div>
             </div>
-            <div class="filter-content filter-size">
-                <label class="label-size">
-                    <input type="checkbox" value="35" name="size-item"/>
-                    <span>35</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="36" name="size-item"/>
-                    <span>36</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="37" name="size-item"/>
-                    <span>37</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="38" name="size-item"/>
-                    <span>38</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="39" name="size-item"/>
-                    <span>39</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="40" name="size-item"/>
-                    <span>40</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="41" name="size-item"/>
-                    <span>41</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="42" name="size-item"/>
-                    <span>42</span>
-                </label>
-                <label class="label-size">
-                    <input type="checkbox" value="43" name="size-item"/>
-                    <span>43</span>
-                </label>
-            </div>
-        </div>
 
-        <button class="btn-search">Tìm kiếm</button>
-    </div>
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+    </form>
 
     <div class="filter-product">
         <div class="filter-product-title d-flex">
             <h3 id="category-name">{{category.name}}</h3>
             <div class="product-sort d-flex">
-            <span>Sắp xếp theo:</span>
+            {{!-- <span>Sắp xếp theo:</span>
             <span>
                 <select>
-                <option value="manual">Sản phẩm nổi bật</option>
-                <option value="price-ascending">Giá: Tăng dần</option>
-                <option value="price-descending">Giá: Giảm dần</option>
-                <option value="title-ascending">Tên: A-Z</option>
-                <option value="title-descending">Tên: Z-A</option>
-                <option value="created-ascending">Cũ nhất</option>
-                <option value="created-descending">Mới nhất</option>
-                <option value="best-selling">Bán chạy nhất</option>
+                    <option value="price-ascending">Giá: Tăng dần</option>
+                    <option value="price-descending">Giá: Giảm dần</option>
+                    <option value="title-ascending">Tên: A-Z</option>
+                    <option value="title-descending">Tên: Z-A</option>
                 </select>
-            </span>
+            </span> --}}
             </div>
         </div>
     <section id="products-for-you">
@@ -185,7 +183,7 @@
 
 
     function getSelectedBrands()    {
-        var radios = document.getElementsByName('size-item');
+        var radios = document.getElementsByName('size_item');
         var collections = [];
         for (var i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
@@ -208,7 +206,7 @@
     }
 
     function getSelectedSize()  {
-        var radios = document.getElementsByName('brand-item');
+        var radios = document.getElementsByName('brand_item');
         var collections = [];
         for (var i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
@@ -237,9 +235,10 @@
 
 
             if(listSelectedBrands.length!=0 && listSelectedSize!=0 && valueSelectedPrice !=null)    {
-                alert('OKE')
                 // Do sth
                 // Call Api
+
+
             }
             else{
                 alert('Vui lòng nhập đủ tất cả các trường')
