@@ -52,6 +52,8 @@ router.post('/add-to-cart', userController.addToCart);
 
 router.put('/edit-quantity', userController.updateQuantityProduct);
 
+router.get('/checkout', userController.checkout);
+
 router.get('/',
     userController.rerouting);
 

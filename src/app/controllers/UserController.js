@@ -303,6 +303,12 @@ class UserController {
     } 
 
 
+    //[GET] /user/checkout
+    checkout(req, res, next){
+        res.render('user/checkout', {layout: 'checkout'})
+    }
+
+
     // [GET] /
     // -> isLogin == true ? ->homePage : -> loginPage
     rerouting(req, res) {
