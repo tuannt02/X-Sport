@@ -9,6 +9,14 @@ const { requireAuth, checkUser } = require('../app/middleware/UserMiddleware');
 const { category } = require('../app/controllers/SiteController');
 
 function route(app) {
+
+
+    // app.all('*', function(req, res, next) {
+    //     res.header("Access-Control-Allow-Origin", "*");
+    //     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    //     next()
+    // });
+
     app.get('*', checkUser);
 
     app.use('/user', userRouter);

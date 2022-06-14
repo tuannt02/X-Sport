@@ -81,3 +81,187 @@
     </div>
 
 </div>
+
+<div class="modal modal_addr hide">
+    <div class="modal__main">
+
+        <p class="title">Địa chỉ mới</p>
+        <div class="content">
+            <input class="input_addr width-half" type="text" placeholder="Nhập tên">
+            <input class="input_addr width-half right" type="text" placeholder="Nhập số điện thoại">
+            <select name="category" id="category" class="input_addr input_prov" aria-placeholder="Chọn tỉnh/thành phố">
+                <option value="none" selected disabled hidden>-- Chọn Tỉnh/TP --</option>
+            </select>
+            <select disabled name="category" id="category" class="input_addr input_dist" aria-placeholder="Chọn tỉnh/thành phố">
+                <option value="none" selected disabled hidden>-- Chọn Quận/Huyện --</option>
+            </select>
+            <select disabled name="category" id="category" class="input_addr input_ward" aria-placeholder="Chọn tỉnh/thành phố">
+                <option value="none" selected disabled hidden>-- Chọn Phường/Xã --</option>
+            </select>
+            <input disabled class="input_addr input_detail_addr" type="text" placeholder="Nhập địa chỉ chi tiết">
+            <p>Địa chỉ chi tiết có thể là số nhà kết hợp với đường hoặc con đường. Ví dụ: 41.C Nguyễn Lạc</p>
+        </div>
+        <div class="group-btn">
+            <button class="btn btn-cancel">Trở về</button>
+            <button class="btn btn-accept">Thêm</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function addClassHide(element) {
+        element.classList.add('hide');
+    }
+
+    function removeClassHide(element)   {
+        element.classList.remove('hide');
+    }
+
+
+    const btnAddAddr = document.querySelector('.btnAdd');
+
+    // Modal addr
+    const modalAddAddr = document.querySelector('.modal_addr');
+    const modalAddAddrContainer = document.querySelector('.modal__main')
+    const cbbProv = document.querySelector('.input_addr.input_prov');
+    const cbbDist = document.querySelector('.input_addr.input_dist');
+    const cbbWard = document.querySelector('.input_addr.input_ward');
+    const inputDetailAddr = document.querySelector('.input_addr.input_detail_addr');
+    const btnCancel = document.querySelector('.btn-cancel');
+    const btnAdd = document.querySelector('.btn-accept');
+
+
+    // Validate field
+
+    var isValidFieldName = false;
+    var isValidFieldPhone = false;
+    var isValidFieldProv = false;
+    var isValidFieldDist = false;
+    var isValidFieldWard = false;
+    var isValidFieldDetailStreet = false;
+
+    btnAddAddr.onclick = function() {
+        removeClassHide(modalAddAddr);
+    }
+
+    btnCancel.onclick = function()  {
+        addClassHide(modalAddAddr);
+    }
+
+    modalAddAddr.onclick = function()   {
+        addClassHide(modalAddAddr);
+    }
+
+    modalAddAddrContainer.onclick = function(e)  {
+        e.stopPropagation();
+    }
+
+    // Test
+    const a = ["Tinh Bình Định",
+               "Tinh Phú Yên",
+               "Tinh Thừa Thiên",
+               "Tinh Quãng Ngãi",
+               "Tinh Khánh Hòa", ]
+
+    // API root
+    const ProvinceAPI = 'https://provinces.open-api.vn/api/';
+
+    function renderCbboxProv(data)  {
+        var htmls = data.map((prov,index) => {
+            return `<option value="${prov.code}">${prov.name}</option>`
+        })
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Tỉnh/TP --</option>';
+        cbbProv.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    function renderCbboxDistrict(data)  {
+        const htmls = data.map((dist,index) => {
+            return `<option value="${dist.code}">${dist.name}</option>`
+        }) 
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Quận/Huyện --</option>';
+        cbbDist.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    function renderCbboxWard(data)  {
+        const htmls = data.map((ward,index) => {
+            return `<option value="${ward.code}">${ward.name}</option>`
+        }) 
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Phường/Xã --</option>';
+        cbbWard.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    // First
+    fetch(ProvinceAPI)
+        .then(response => response.json())
+        .then(function(data)    {
+            renderCbboxProv(data)
+        });
+
+    // Sec
+    cbbProv.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+
+        }
+        else    {
+            cbbDist.removeAttribute("disabled");
+            cbbWard.value = 'none';
+            cbbWard.setAttribute("disabled", "disabled");
+            inputDetailAddr.value = "";
+            inputDetailAddr.setAttribute("disabled", "disabled");
+            const codeProvince = this.value;
+            const DistrictAPI = `https://provinces.open-api.vn/api/p/${codeProvince}?depth=2`;
+            fetch(DistrictAPI)
+                .then(response => response.json())
+                .then(function(data)    {
+                    renderCbboxDistrict(data.districts)
+                })
+        }
+    })
+
+    // Rd
+
+    cbbDist.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+
+        }
+        else    {
+            cbbWard.removeAttribute("disabled");
+            inputDetailAddr.value = "";
+            inputDetailAddr.setAttribute("disabled", "disabled");
+            const codeDistrict = this.value;
+            const WardAPI = `https://provinces.open-api.vn/api/d/${codeDistrict}?depth=2`;
+            fetch(WardAPI)
+                .then(response => response.json())
+                .then(function(data)    {
+                    renderCbboxWard(data.wards)
+                })
+        }
+    })
+
+    cbbWard.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+
+        }
+        else    {
+            inputDetailAddr.removeAttribute("disabled");
+        }
+    })
+
+
+
+    // Validate
+    //input.addEventListener('input', updateValue);
+
+    btnAdd.onclick = function() {
+
+    }
+
+
+
+
+
+</script>

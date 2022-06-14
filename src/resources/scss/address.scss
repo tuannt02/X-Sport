@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+
 /* Contain */
 .contain    {
     width: 100%;
@@ -119,4 +120,89 @@
 
 .address_item .divider2 {
     background-color: #A39494;
+}
+
+
+.modal  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+
+    .modal__main    {
+        width: 400px;
+        height: fit-content;
+        background-color: #fff;
+        opacity: 1;
+        padding: 20px;
+        border-radius: 4px;
+
+        .title  {
+            color: #000;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .content    {
+            .input_addr {
+                margin-top: 20px;
+                width: 100%;
+                padding: 8px;
+            }
+            
+            .width-half {
+                width: 45%;
+            }
+
+            .right   {
+                float: right;
+            }
+
+            p   {
+                margin-top: 5px;
+                font-size: 12px;
+                color: #A39494;
+            }
+        }
+
+        .group-btn  {
+            float: right;
+            margin-top: 20px;
+            .btn    {
+                border: none;
+                padding: 10px 20px;
+            }
+
+
+            .btn-cancel  {
+                border: solid 1px #A39494;
+                background-color: #fff;
+                border-radius: 2px;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            .btn-accept {
+                border: solid 1px #1A94FF;
+                background-color: #1A94FF;
+                border-radius: 2px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    
+
+}
+
+.hide   {
+    display: none;
 }
