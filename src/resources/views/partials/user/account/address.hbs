@@ -6,78 +6,381 @@
         <div class="divider2"></div>
     </div>
     <div class="contain__body">
+
+        {{#each list_addr}}
+        {{#if this.is_default}}
         <div class="address_item active">
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Họ và tên</lable>
-                <p class="addr_item_val">Nguyen Thai Tuan</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Số điện thoại</lable>
-                <p class="addr_item_val">0967 781 796</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Địa chỉ</lable>
-                <p class="addr_item_val">Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung
-                    Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
-            </div>
-            <p class="addr_item_edit_txt">Sửa</p>
-            <button class="addr_item_btn_edit">Chọn làm địa chỉ giao hàng</button>
-            <div class="divider2"></div>
-        </div>
+        {{else}}
         <div class="address_item">
+        {{/if}}
             <div class="addr_item_field">
                 <lable class="addr_item_lab">Họ và tên</lable>
-                <p class="addr_item_val">Nguyen Thai Tuan</p>
+                <p class="addr_item_val">{{this.name}}</p>
             </div>
             <div class="addr_item_field">
                 <lable class="addr_item_lab">Số điện thoại</lable>
-                <p class="addr_item_val">0967 781 796</p>
+                <p class="addr_item_val">{{this.phone}}</p>
             </div>
             <div class="addr_item_field">
                 <lable class="addr_item_lab">Địa chỉ</lable>
-                <p class="addr_item_val">Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung
-                    Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
+                <p class="addr_item_val">{{this.full_addr}}</p>
             </div>
+            <p class="addr_item_del_addr" onclick="deleteAddrItem('{{this._id}}')">Xóa</p>
             <p class="addr_item_edit_txt">Sửa</p>
+            {{!-- <p class="addr_item_edit_txt">Xóa</p> --}}
+            {{#if this.is_default}}
             <button class="addr_item_btn_edit">Chọn làm địa chỉ giao hàng</button>
+            {{else}}
+            <button class="addr_item_btn_edit" onclick="setAddrDefault('{{this._id}}')">Chọn làm địa chỉ giao hàng</button>
+            {{/if}}
+            
             <div class="divider2"></div>
         </div>
-        <div class="address_item">
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Họ và tên</lable>
-                <p class="addr_item_val">Nguyen Thai Tuan</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Số điện thoại</lable>
-                <p class="addr_item_val">0967 781 796</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Địa chỉ</lable>
-                <p class="addr_item_val">Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung
-                    Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
-            </div>
-            <p class="addr_item_edit_txt">Sửa</p>
-            <button class="addr_item_btn_edit">Chọn làm địa chỉ giao hàng</button>
-            <div class="divider2"></div>
-        </div>
-        <div class="address_item">
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Họ và tên</lable>
-                <p class="addr_item_val">Nguyen Thai Tuan</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Số điện thoại</lable>
-                <p class="addr_item_val">0967 781 796</p>
-            </div>
-            <div class="addr_item_field">
-                <lable class="addr_item_lab">Địa chỉ</lable>
-                <p class="addr_item_val">Ktx khu A ĐHQG, Đường Tạ Quang Bửu, Phường Linh Trung
-                    Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
-            </div>
-            <p class="addr_item_edit_txt">Sửa</p>
-            <button class="addr_item_btn_edit">Chọn làm địa chỉ giao hàng</button>
-            <div class="divider2"></div>
-        </div>
+        {{/each}}
     </div>
 
 </div>
+
+<div class="modal modal_addr hide">
+    <div class="modal__main">
+
+        <p class="title">Địa chỉ mới</p>
+        <div class="content">
+            <form action="" class="addr_form" method="POST">
+                <input class="input_addr width-half input_name" type="text" placeholder="Nhập tên">
+                <input class="input_addr width-half right input_phone" type="text" placeholder="Nhập số điện thoại">
+                <select name="category" id="category" class="input_addr input_prov" aria-placeholder="Chọn tỉnh/thành phố">
+                    <option value="none" selected disabled hidden>-- Chọn Tỉnh/TP --</option>
+                </select>
+                <select disabled name="category" id="category" class="input_addr input_dist" aria-placeholder="Chọn tỉnh/thành phố">
+                    <option value="none" selected disabled hidden>-- Chọn Quận/Huyện --</option>
+                </select>
+                <select disabled name="category" id="category" class="input_addr input_ward" aria-placeholder="Chọn tỉnh/thành phố">
+                    <option value="none" selected disabled hidden>-- Chọn Phường/Xã --</option>
+                </select>
+                <input disabled class="input_addr input_detail_addr" type="text" placeholder="Nhập địa chỉ chi tiết">
+                <p>Địa chỉ chi tiết có thể là số nhà kết hợp với đường hoặc con đường. Ví dụ: 41.C Nguyễn Lạc</p>
+            </form>
+        </div>
+        <div class="group-btn">
+            <button class="btn btn-cancel">Trở về</button>
+            <button class="btn btn-accept">Thêm</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal modal_dialog hide">
+    <div class="modal__main">
+
+        <p class="title">Xác nhận</p>
+        <div class="content">
+            Bạn có chắc chắn muốn đặt địa chỉ này làm địa chỉ giao hàng mặc định
+        </div>
+        <div class="group-btn">
+            <button class="btn btn-cancel">Trở về</button>
+            <button class="btn btn-accept">Xác nhận</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function addClassHide(element) {
+        element.classList.add('hide');
+    }
+
+    function removeClassHide(element)   {
+        element.classList.remove('hide');
+    }
+
+
+    const btnAddAddr = document.querySelector('.btnAdd');
+
+    // Modal addr
+    const modal = document.querySelectorAll('.modal');
+    const modalAddAddr = document.querySelector('.modal_addr');
+    const modalDialog = document.querySelector('.modal_dialog');
+    const modalContainer = document.querySelectorAll('.modal__main')
+    const inputName = document.querySelector('.input_addr.input_name');
+    const inputPhone = document.querySelector('.input_addr.input_phone');
+    const cbbProv = document.querySelector('.input_addr.input_prov');
+    const cbbDist = document.querySelector('.input_addr.input_dist');
+    const cbbWard = document.querySelector('.input_addr.input_ward');
+    const inputDetailAddr = document.querySelector('.input_addr.input_detail_addr');
+    const btnCancel = document.querySelectorAll('.btn-cancel');
+    const btnAdd = document.querySelectorAll('.btn-accept');
+
+    // Addr Item
+    const btnChooseAddrDefault = document.querySelectorAll('.addr_item_btn_edit');
+    //btnChooseAddrDefault.forEach(function(ele) {
+    //    ele
+    //})
+
+    // Validate field
+    var isValidFieldName = false;
+    var isValidFieldPhone = false;
+    var isValidFieldProv = false;
+    var isValidFieldDist = false;
+    var isValidFieldWard = false;
+    var isValidFieldDetailStreet = false;
+
+    btnAddAddr.onclick = function() {
+        removeClassHide(modalAddAddr);
+    }
+
+    btnCancel.forEach(function(ele) {
+        ele.onclick = function()    {
+            addClassHide(ele.closest('.modal'));
+        }
+    })
+
+    modal.forEach(function(element)  {
+        element.onclick = function()    {
+            addClassHide(element);
+        }
+    })
+
+    modalContainer.forEach(function(ele)   {
+        ele.onclick = function(e)  {
+            e.stopPropagation();
+        }
+    })
+
+    // API root
+    const ProvinceAPI = 'https://provinces.open-api.vn/api/';
+
+    function renderCbboxProv(data)  {
+        var htmls = data.map((prov,index) => {
+            return `<option value="${prov.code}">${prov.name}</option>`
+        })
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Tỉnh/TP --</option>';
+        cbbProv.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    function renderCbboxDistrict(data)  {
+        const htmls = data.map((dist,index) => {
+            return `<option value="${dist.code}">${dist.name}</option>`
+        }) 
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Quận/Huyện --</option>';
+        cbbDist.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    function renderCbboxWard(data)  {
+        const htmls = data.map((ward,index) => {
+            return `<option value="${ward.code}">${ward.name}</option>`
+        }) 
+        const optionDefault = '<option value="none" selected disabled hidden>-- Chọn Phường/Xã --</option>';
+        cbbWard.innerHTML = htmls.join('') + optionDefault;
+    }
+
+    // First
+    fetch(ProvinceAPI)
+        .then(response => response.json())
+        .then(function(data)    {
+            renderCbboxProv(data)
+        });
+
+    // Sec
+    cbbProv.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+            isValidFieldProv = false;
+        }
+        else    {
+            isValidFieldProv = true;
+            cbbDist.removeAttribute("disabled");
+            cbbWard.value = 'none';
+            cbbWard.setAttribute("disabled", "disabled");
+            inputDetailAddr.value = "";
+            inputDetailAddr.setAttribute("disabled", "disabled");
+            const codeProvince = this.value;
+            const DistrictAPI = `https://provinces.open-api.vn/api/p/${codeProvince}?depth=2`;
+            fetch(DistrictAPI)
+                .then(response => response.json())
+                .then(function(data)    {
+                    renderCbboxDistrict(data.districts)
+                })
+        }
+    })
+
+    // Rd
+
+    cbbDist.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+            isValidFieldDist = false;
+        }
+        else    {
+            isValidFieldDist = true;
+            cbbWard.removeAttribute("disabled");
+            inputDetailAddr.value = "";
+            inputDetailAddr.setAttribute("disabled", "disabled");
+            const codeDistrict = this.value;
+            const WardAPI = `https://provinces.open-api.vn/api/d/${codeDistrict}?depth=2`;
+            fetch(WardAPI)
+                .then(response => response.json())
+                .then(function(data)    {
+                    renderCbboxWard(data.wards)
+                })
+        }
+    })
+
+    cbbWard.addEventListener('change', function()   {
+        if(this.value == 'none')    {
+            isValidFieldWard = false;
+        }
+        else    {
+            inputDetailAddr.removeAttribute("disabled");
+            isValidFieldWard = true;
+        }
+    })
+
+
+
+    // Validate
+    inputName.addEventListener('input', function()  {
+        if(inputName.value == '')   {
+            isValidFieldName = false;
+        }
+        else    {
+            isValidFieldName = true;
+        }
+    });
+
+    inputPhone.addEventListener('input', function()  {
+        if(inputPhone.value == '')   {
+            isValidFieldPhone = false;
+        }
+        else    {
+            isValidFieldPhone = true;
+        }
+    });
+
+    inputDetailAddr.addEventListener('input', function()  {
+        if(inputDetailAddr.value == '')   {
+            isValidFieldDetailStreet = false;
+        }
+        else    {
+            isValidFieldDetailStreet = true;
+        }
+    });
+
+
+    btnAdd.forEach(function(ele) {
+        const e = ele.closest('.modal_addr');
+        if(e) {
+            ele.onclick = function()    {
+                if(isValidFieldDetailStreet &&
+                    isValidFieldDist &&
+                    isValidFieldName &&
+                    isValidFieldPhone &&
+                    isValidFieldProv && 
+                    isValidFieldWard )  {
+                        const formAddr = document.querySelector('.addr_form');
+                        const name = inputName.value;
+                        const phone = inputPhone.value;
+                        const province = {
+                            code: cbbProv.value,
+                            name: cbbProv.options[cbbProv.selectedIndex].text,
+                        };
+                        const district = {
+                            code: cbbDist.value,
+                            name: cbbDist.options[cbbDist.selectedIndex].text,
+                        };
+                        const ward = {
+                            code: cbbWard.value,
+                            name: cbbWard.options[cbbWard.selectedIndex].text,
+                        };
+                        const street_detail = inputDetailAddr.value;
+                        const full_addr = province.name + ', ' + district.name + ', ' + ward.name + ', ' + street_detail;
+
+                        fetch("/user/account/address",{
+                            method: 'POST',
+                            body: JSON.stringify({
+                                name: name,
+                                phone: phone,
+                                province: province,
+                                district: district,
+                                ward: ward,
+                                street_detail: street_detail,
+                                full_addr: full_addr,
+                            }),
+                            headers: {
+                                "Content-type":"application/json; charset=UTF-8"
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(function(data){
+                            alert(data.mes);
+                            location.reload();
+                        })
+                    }
+                else    {
+                    alert('Vui lòng nhập đầy đủ tất cả các trường');
+                }
+            }
+        }
+        else    {
+            //ele.onclick = function()    {
+            //}
+
+        }
+    })
+
+    function setAddrDefault(addr_id)    {
+        removeClassHide(modalDialog);
+        console.log(addr_id)
+        const btnConfirm = modalDialog.querySelector('.btn-accept');
+        btnConfirm.onclick = function() {
+            fetch("/user/account/address/default_addr",{
+                method: 'POST',
+                body: JSON.stringify({
+                    addr_id,
+                }),
+                headers: {
+                    "Content-type":"application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then(function(data){
+                alert(data.mes);
+                location.reload();
+            })
+
+            location.reload();
+        }
+    }
+
+
+    function deleteAddrItem(addr_id)    {
+        removeClassHide(modalDialog);
+
+
+        const modalDialogContent = modalDialog.querySelector('.content');
+        const btnConfirm = modalDialog.querySelector('.btn-accept')
+        modalDialogContent.innerText = 'Bạn có chắc chắn muốn xóa địa chỉ này?';
+        btnConfirm.onclick = function() {
+            fetch("/user/account/address/del_addr",{
+                method: 'POST',
+                body: JSON.stringify({
+                    addr_id,
+                }),
+                headers: {
+                    "Content-type":"application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then(function(data){
+                alert(data.mes);
+                location.reload();
+            })
+
+            location.reload();
+        }
+    }
+
+
+</script>

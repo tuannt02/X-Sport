@@ -6,6 +6,13 @@ const exphbs = require('express-handlebars');
 var cookieParser = require('cookie-parser')
 const app = express();
 const port = 3001;
+var cors = require('cors')
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+// app.use(cors(corsOptions))
 
 const route = require('./routes');
 const db = require('./config/db');
