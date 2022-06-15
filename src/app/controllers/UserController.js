@@ -305,7 +305,19 @@ class UserController {
 
     //[GET] /user/checkout
     checkout(req, res, next){
-        res.render('user/checkout', {layout: 'checkout'})
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch {
+            user = '';
+        }
+        var list = req.query.listID.split(",")
+        Cart.find({_id: {$in: list}}).populate('productID')
+        .then((cart)=>{
+            res.render('user/checkout', {layout: 'checkout', cart: mutipleMongooseToObject(cart) ,user: user,})
+        })
+        .catch(next);
     }
 
 

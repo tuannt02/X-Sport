@@ -242,7 +242,16 @@
         p {
             color: rgb(146, 141, 141);
             width: 340px;
-            font-size: 16px;
+            font-size: 15px;
+        }
+
+        .fast-delivery, 
+        .normal-delivery{
+            display: none;
+        }
+
+        .show{
+            display: block;
         }
     }
 
@@ -298,3 +307,6 @@
         }
     }
 }
+
+
+

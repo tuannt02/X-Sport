@@ -84,7 +84,10 @@
         <div class="cart-bottom-right">
             <h4>Tổng thanh toán: </h4>
             <h2 class="total-price">0 <span>đ</span></h2>
-            <button class="button__payment">Thanh toán</button>
+            <form id="form-payment" action="/user/checkout" method="GET">
+                <button class="button__payment">Thanh toán</button>
+                <input type="hidden" id="inputHidden" name="listID">
+            </form>
         </div>
     </div>
 

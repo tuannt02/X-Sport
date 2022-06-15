@@ -148,3 +148,23 @@ function deleteProduct(productID){
         formDelete.submit();
     }
 }
+
+// Payment
+
+var formCheckout = document.getElementById('form-payment');
+var listPaymentID = [];
+var inputHidden = document.getElementById('inputHidden');
+
+formCheckout.addEventListener('submit', function(e){
+    listProduct.forEach(item =>{
+        if(item.querySelector('#check-item').checked){
+            listPaymentID.push(item.querySelector('#cartID').value);
+        }
+    })
+    if(listPaymentID.length == 0){
+        e.preventDefault();
+        alert('Chưa có sản phẩm nào được chọn để thanh toán');
+    }
+    else
+        inputHidden.value = listPaymentID;
+})
