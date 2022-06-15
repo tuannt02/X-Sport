@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="header-toggle">
+        <a href="#">Categories Manager</a>
+        <div class="separate"></div>
+    </div>
+    <div class="wrap-body">
+        <form id="search-form" action="/admin/search-categories/admin_categories" method="GET">
+            <div class="search-box">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="text" name="value" id="search-input" placeholder="Search for categories...">
+            </div>
+        </form>
+        <div class="container-manager">
+            <div class="table-list-category">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each category}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>40</td>
+                            <td><a href="#">Delete</a></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="wrap-add-category">
+                <form id="add-category-form" action="/admin/create-category" method="POST">
+                    <div class="table-add-category">
+                        <div class="table-head">
+                            <p class="table-head-title">Add Categories</p>
+                        </div>
+                        <input type="text" id="category-name-input" name="name" placeholder="Add new category...">
+                    </div>
+                    <div class="wrap-button">
+                        <button>Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    var searchCategory = document.getElementById('search-input');
+    var searchForm = document.getElementById('search-form');
+
+    if (searchCategory) {
+        searchCategory.addEventListener('keydown', function (e) {
+            if (e.key == 'Enter') {
+                searchForm.submit;
+            }
+        })
+    }
+
+
+    var addCategoryForm = document.getElementById('add-category-form');
+    var inputCategory = document.getElementById('category-name-input');
+    addCategoryForm.addEventListener('submit', function(e){
+        if(inputCategory.value == "")
+        {
+            e.preventDefault();
+            alert('vui lòng nhập tên brand muốn thêm');
+        }
+    })
+
+</script>

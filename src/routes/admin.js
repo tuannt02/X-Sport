@@ -19,4 +19,20 @@ router.get('/edit-view-product/:id', adminController.editView);
 
 router.put('/edit-product/:id', adminController.updateProduct)
 
+//Category manager
+
+router.get('/categories/:slug', adminController.categoriesManager);
+
+router.get('/search-categories/:slug', adminController.categoriesSearch);
+
+router.post('/create-category', adminController.createCategory);
+
+//Brand manager
+
+router.get('/brands/:slug', adminController.brandsManager);
+
+router.get('/search-brands/:slug', adminController.brandsSearch);
+
+router.post('/create-brands', adminController.createBrand);
+
 module.exports = router;

@@ -13,8 +13,10 @@ function deleteProduct(productID){
 var searchInput = document.getElementById('search-input');
 var searchForm = document.getElementById('search-form');
 
-searchInput.addEventListener('keydown', function(e){
-    if(e.key == 'Enter'){
-        searchForm.submit;
-    }
-})
+if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+        if(e.key == 'Enter'){
+            searchForm.submit;
+        }
+    })
+}
