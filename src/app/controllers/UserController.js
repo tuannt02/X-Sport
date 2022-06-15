@@ -1,9 +1,11 @@
 const Customer = require('../models/Customer');
 const User = require('../models/User');
-const { mongooseToObject } = require('../../util/mongoose');
-const { mutipleMongooseToObject } = require('../../util/mongoose');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
+const Address = require('../models/Address');
+const { mongooseToObject } = require('../../util/mongoose');
+const { mutipleMongooseToObject } = require('../../util/mongoose');
+
 
 const jwt = require('jsonwebtoken');
 
@@ -113,10 +115,8 @@ class UserController {
             const token = req.cookies.token;
             const parserToken = jwt.verify(token, 'tuannt');
 
-            console.log(token);
 
             if (parserToken) {
-                console.log(parserToken);
                 return res.redirect('http://localhost:3001/');
             }
             else {
@@ -178,7 +178,7 @@ class UserController {
 
 
     // [GET] /account/:slug
-    account(req, res, next) {
+    async account(req, res, next) {
 
         var user;
         try {
@@ -187,6 +187,8 @@ class UserController {
         catch {
             user = '';
         }
+
+        //const user_id = user._id;
 
         var slug = req.params.slug;
         if (slug == 'profile') {
@@ -200,13 +202,22 @@ class UserController {
         }
 
         if (slug == 'address') {
-            res.render('partials/user/account/address',
+
+            try {
+                const list_addr = await Address.find({ user_id: user._id }).exec();
+                
+                res.render('partials/user/account/address',
                 {
                     layout: 'user_info',
                     val: slug,
                     user: user,
+                    list_addr: mutipleMongooseToObject(list_addr),
                 });
-            return;
+            }
+            catch(err)  {
+
+            }
+
         }
 
         if (slug == 'password') {
@@ -219,10 +230,82 @@ class UserController {
             return;
         }
 
-
-        next();
+        //next();
     }
 
+
+    // [POST] /account/address  
+    async postAddr(req, res, next)    {
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch {
+            user = '';
+        }
+        const data = req.body;
+        data.user_id = user._id;
+
+
+        try {
+            const newAddr = await Address.create(data);
+            res.json({
+                status: 200,
+                mes: 'Thành công',
+            });
+        }
+        catch (err){
+            res.json({
+                status: 404,
+                mes: 'Thất bại',
+            })
+        }
+
+    }
+
+    // [POST] /account/address/default_addr
+    async default_addr(req, res, next)  {
+        var user;
+        try {
+            user = mongooseToObject(res.locals.user);
+        }
+        catch {
+            user = '';
+        }
+        const data = req.body;
+        data.user_id = user._id;
+
+
+        Address.updateMany({user_id: data.user_id}, {$set:{is_default: false}})
+        .then(function()    {
+            Address.updateOne({_id: data.addr_id},{$set:{is_default: true}})
+            .then(function()    {
+                res.json({
+                status: 200,
+                mes: 'Cập nhập địa chỉ giao hàng mặc định thành công',
+                })
+            })
+            .catch(function(err)    {
+    
+            })
+        })
+        .catch(function(err)    {
+
+        })
+
+
+    }
+
+    async del_addr(req, res, next)  {
+        const data = req.body;
+
+        Address.deleteOne({ _id: data.addr_id })
+            .then(() => res.json({
+                status: 200,
+                mes: 'Xóa thành công',
+            }))
+            .catch(next);
+    }
 
     // [GET] /purchase  
     purchase(req, res, next) {

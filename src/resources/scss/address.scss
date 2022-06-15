@@ -90,11 +90,23 @@
     flex-basis: content;
 }
 
+.address_item .addr_item_del_addr   {
+    color: #1A94FF;
+    position: absolute;
+    right: 32px;
+    top: calc(50% - 40px);
+}
+
 .address_item .addr_item_edit_txt   {
     color: #1A94FF;
     position: absolute;
     right: 32px;
     top: calc(50% - 20px);
+}
+
+.addr_item_del_addr:hover   {
+    cursor: pointer;
+    opacity: 0.9;
 }
 
 .addr_item_edit_txt:hover   {
@@ -150,6 +162,7 @@
         }
 
         .content    {
+            margin-top: 10px;
             .input_addr {
                 margin-top: 20px;
                 width: 100%;

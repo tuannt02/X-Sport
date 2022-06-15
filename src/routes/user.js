@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { requireAuth } = require('../app/middleware/UserMiddleware');
+const { requireAuth, checkUser } = require('../app/middleware/UserMiddleware');
 const userController = require('../app/controllers/UserController');
 
 // Routing /sign_in
@@ -30,6 +30,20 @@ router.get('/account/:slug',
             requireAuth,
             userController.account);
 
+router.post('/account/address',
+            requireAuth,
+            checkUser,
+            userController.postAddr);
+
+router.post('/account/address/default_addr',
+            requireAuth,
+            checkUser,
+            userController.default_addr);
+
+router.post('/account/address/del_addr',
+            requireAuth,
+            checkUser,
+            userController.del_addr);         
 
 // Routing /user/purchase
 router.get('/purchase', 
