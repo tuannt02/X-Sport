@@ -35,4 +35,14 @@ router.get('/search-brands/:slug', adminController.brandsSearch);
 
 router.post('/create-brands', adminController.createBrand);
 
+
+//Banner manager
+
+router.get('/banners/:slug', adminController.bannersManager);
+
+router.post('/create-banner', adminController.createBanner);
+
+router.delete('/delete-banner/:id', adminController.destroyBanner);
+
+
 module.exports = router;

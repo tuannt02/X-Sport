@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const Brand = require('../models/Brand');
+const Banner = require('../models/Banner');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 
@@ -179,6 +180,39 @@ class ProductsController {
     createBrand(req, res, next) {
         const brand = new Brand(req.body)
         brand.save()
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+
+    //[GET] /admin/banners/:slug
+    bannersManager(req, res, next) {
+        var slug = req.params.slug;
+        var bigBanner;
+
+        Banner.find({ type: 'big' })
+            .then(banner => {
+                bigBanner = mutipleMongooseToObject(banner);
+
+                Banner.find({ type: 'small' })
+                    .then(banner => {
+                        res.render('partials/admin/banners/banners', { layout: 'admin', smallBanner: mutipleMongooseToObject(banner), bigBanner: bigBanner, val: slug })
+                    })
+                    .catch(next);
+            })
+    }
+
+    //[POST] /admin/create-banner
+    createBanner(req, res, next) {
+        const banner = new Banner(req.body);
+        banner.save({})
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    //[DELETE] /admin/delete-banner
+    destroyBanner(req, res, next) {
+        Banner.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }

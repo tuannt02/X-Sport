@@ -1,0 +1,137 @@
+.container {
+    padding-left: 53px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+
+.header-toggle {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 20px;
+    // width: 100%;
+}
+
+.separate {
+    width: 100%;
+    background-color: rgb(114, 110, 110);
+    height: 1px;
+}
+
+// BANNER MANAGER
+.wrap-body {
+    margin: 40px 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .container-big-banner {
+        width: 65%;
+        height: 500px;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .insert-big-banner-area {
+            width: 90%;
+            aspect-ratio: 3/1;
+            border: 2px solid #ccc;
+            background-color: rgb(241, 240, 240);
+        }
+
+        .label-big-banner{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgb(151, 150, 150);
+            
+            &:hover{
+                cursor: pointer;
+            }
+
+            i{
+                font-size: 80px;
+            }
+        }
+
+        .banner-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+                width: 90%;
+                margin: 20px 0;
+            }
+
+            a {
+                color: #1A94FF;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+    .container-small-banner {
+        width: 33%;
+        height: 500px;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .insert-small-banner-area {
+            width: 85%;
+            aspect-ratio: 2.85/1;
+            border: 2px solid #ccc;
+            background-color: rgb(241, 240, 240);
+
+            .label-small-banner{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: rgb(151, 150, 150);
+
+                &:hover{
+                    cursor: pointer;
+                }
+    
+                i{
+                    font-size: 40px;
+                }
+            }
+        }
+
+        .banner-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+                width: 85%;
+                margin: 20px 0;
+            }
+
+            a {
+                color: #1A94FF;
+                font-weight: 500;
+                flex-shrink: 0;
+            }
+        }
+    }
+
+}

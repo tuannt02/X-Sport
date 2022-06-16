@@ -7,3 +7,4 @@ src/public/css/
 
 # Bỏ đi thư mục node module
 node_modules/
+package-lock.json

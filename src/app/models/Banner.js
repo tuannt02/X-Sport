@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const BannerSchema = new Schema({
     id: {type: Number},
     img: { type: String},
+    type: {type: String},
 });
 
 

@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="header-toggle">
+        <a href="#">Banners Manager</a>
+        <div class="separate"></div>
+    </div>
+    <div class="wrap-body">
+        <div class="container-big-banner">
+            <div class="insert-big-banner-area">
+                <label for="file-big-banner" id="label-big-banner" class="label-big-banner" onchange="AddBigBanner(this)">
+                    <input type="file" id="file-big-banner">
+                    <i class='bx bxs-image-add'></i>
+                    <span>Click to add banner</span>
+                </label>
+            </div>
+            {{#each bigBanner}}
+            <div class="banner-item">
+                <img src="{{this.img}}" alt="">
+                <a href="#" onclick="deleteBanner('{{this._id}}')">Delete</a>
+            </div>
+            <div class="separate"></div>
+            {{/each}}
+        </div>
+        <div class="container-small-banner">
+            <div class="insert-small-banner-area">
+                <label for="file-small-banner" id="label-small-banner" class="label-small-banner" onchange="AddSmallBanner(this)">
+                    <input type="file" id="file-small-banner">
+                    <i class='bx bxs-image-add'></i>
+                    <span>Click to add banner</span>
+                </label>
+            </div>
+            {{#each smallBanner}}
+            <div class="banner-item">
+                <img src="{{this.img}}" alt="">
+                <a href="#" onclick="deleteBanner('{{this._id}}')">Delete</a>
+            </div>
+            <div class="separate"></div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<form id="create-banner-form" action="/admin/create-banner" method="POST">
+    <input id="inputImg" type="hidden" name="img">
+    <input id="inputType" type="hidden" name="type">
+</form>
+<form id="delete-banner-form"  method="POST"></form>
+
+
+<script>
+
+var formAddBanner = document.getElementById('create-banner-form');
+var inputImg = document.getElementById('inputImg');
+var inputType = document.getElementById('inputType');  
+function createBaner(img, type){
+    inputImg.value = img;
+    inputType.value = type;
+    alert('Thêm banner thành công!');
+    formAddBanner.submit();
+}
+
+
+function AddBigBanner(label) {
+    var fileSelected = label.getElementsByTagName('input')[0].files;
+    if (fileSelected.length > 0) {
+        var fileToLoad = fileSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoaderEvent) {
+            var srcData = fileLoaderEvent.target.result;
+            createBaner(srcData, 'big');
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}    
+
+function AddSmallBanner(label) {
+    var fileSelected = label.getElementsByTagName('input')[0].files;
+    if (fileSelected.length > 0) {
+        var fileToLoad = fileSelected[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoaderEvent) {
+            var srcData = fileLoaderEvent.target.result;
+            createBaner(srcData, 'small');
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}  
+
+
+//DELETE BANNER
+var formDeleteBanner = document.getElementById('delete-banner-form');
+
+function deleteBanner(bannerID){
+    var result = confirm("Do you want to delete this banner?");
+    if(result){
+        formDeleteBanner.action = '/admin/delete-banner/' + bannerID + '?_method=DELETE';
+        formDeleteBanner.submit();
+    }
+}
+
+</script>
