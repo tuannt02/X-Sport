@@ -19,19 +19,19 @@ class SiteController    {
             user = '';
         }
 
-        var banner1;
-        var banner2;
+        var smallBanner;
+        var bigBanner;
         var trendingProd;
         var listCategories;
-        Banner.find({id: {$lt: 9} })
+        Banner.find({type: 'big' })
         .then(banners => {
-            banner1 = mutipleMongooseToObject(banners);
+            bigBanner = mutipleMongooseToObject(banners);
         })
         .catch(next);
 
-        Banner.find({id: {$gt: 8} })
+        Banner.find({type: 'small' })
         .then(banners => {
-            banner2 = mutipleMongooseToObject(banners);
+            smallBanner = mutipleMongooseToObject(banners);
         })
         .catch(next);
 
@@ -46,8 +46,8 @@ class SiteController    {
                 res.render('home',
                     {
                         categories: listCategories,
-                        banners1: banner1,
-                        banners2: banner2,
+                        bigBanner: bigBanner,
+                        smallBanner: smallBanner,
                         trendingProd: mutipleMongooseToObject(products),
                         user: user,
                     })
