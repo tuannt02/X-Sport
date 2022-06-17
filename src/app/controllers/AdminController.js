@@ -15,20 +15,17 @@ class ProductsController {
         Brand.find({})
             .then(brands => {
                 brand = mutipleMongooseToObject(brands);
+                Category.find({})
+                    .then(categories => {
+                        res.render('partials/admin/products/createProduct',
+                            {
+                                layout: 'admin',
+                                listCategories: mutipleMongooseToObject(categories),
+                                brands: brand,
+                            });
+                    })
+                    .catch(next);
             })
-
-
-        Category.find({})
-            .then(categories => {
-                res.render('partials/admin/products/createProduct',
-                    {
-                        layout: 'admin',
-                        listCategories: mutipleMongooseToObject(categories),
-                        brands: brand,
-                    });
-            })
-            .catch(next);
-
     }
 
 
@@ -90,14 +87,30 @@ class ProductsController {
 
     //[GET] /admin/edit-view-product/:id
     editView(req, res, next) {
-        Product.findOne({
-            _id: req.params.id
-        })
-            .then((product => {
-                res.render('partials/admin/products/createProduct',
-                    { layout: 'admin', product: mongooseToObject(product), check: true })
-            }))
-            .catch(next);
+        var listBrand;
+        var listCategory;
+
+        Brand.find({})
+            .then(brands => {
+                listBrand = mutipleMongooseToObject(brands);
+                Category.find({})
+                    .then(categories => {
+                        listCategory = mutipleMongooseToObject(categories);
+                        Product.findOne({ _id: req.params.id })
+                            .then((product => {
+                                res.render('partials/admin/products/createProduct',
+                                    {
+                                        layout: 'admin',
+                                        product: mongooseToObject(product),
+                                        listCategories: listCategory,
+                                        brands: listBrand,
+                                        check: true
+                                    })
+                            }))
+                            .catch(next);
+
+                    })
+            })
     }
 
     //[PUT] /admin/edit-product/:id
@@ -145,6 +158,21 @@ class ProductsController {
             .catch(next);
     }
 
+    //[DELETE] /admin/delete-category
+    destroyCategory(req, res, next) {
+        Category.findOne({ _id: req.params.id })
+            .then(category => {
+                Product.updateMany({ category: category.name }, { $set: { category: 'Khác' } })
+                    .then(next)
+                    .catch(next);
+            })
+            .catch(next);
+
+        Category.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
 
     //Brand manager
     //[GET] /admin/brands/:slug
@@ -157,7 +185,7 @@ class ProductsController {
             .catch(next);
     }
 
-    //[GET] /admin/search-categories
+    //[GET] /admin/search-brands
     brandsSearch(req, res, next) {
         var slug = req.params.slug;
         if (req.query.value) {
@@ -176,7 +204,7 @@ class ProductsController {
         }
     }
 
-    //[POST] /admin/create-category
+    //[POST] /admin/create-brand
     createBrand(req, res, next) {
         const brand = new Brand(req.body)
         brand.save()
@@ -200,6 +228,21 @@ class ProductsController {
                     })
                     .catch(next);
             })
+    }
+
+    //[DELETE] /admin/delete-brand
+    destroyBrand(req, res, next) {
+        Brand.findOne({ _id: req.params.id })
+            .then(brand => {
+                Product.updateMany({ brand: brand.name }, { $set: { brand: 'Khác' } })
+                    .then(next)
+                    .catch(next);
+            })
+            .catch(next);
+
+        Brand.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
     }
 
     //[POST] /admin/create-banner

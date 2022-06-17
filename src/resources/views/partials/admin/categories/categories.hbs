@@ -15,8 +15,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Number</th>
                             <th>Name</th>
-                            <th>Quantity</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,9 +24,13 @@
                     <tbody>
                         {{#each category}}
                         <tr>
+                            <td>{{sum @index 1}}</td>
                             <td>{{this.name}}</td>
-                            <td>40</td>
-                            <td><a href="#">Delete</a></td>
+                            {{#if (string_equal this.name 'Khác')}}
+                            <td><a href="#"> </a></td>
+                            {{else}}
+                            <td><a href="#" onclick="deleteCategory('{{this._id}}')">Delete</a></td>
+                            {{/if}}
                         </tr>
                         {{/each}}
                     </tbody>
@@ -49,6 +53,7 @@
     </div>
 
 </div>
+<form id="delete-category-form" method="POST"></form>
 
 <script>
 
@@ -66,12 +71,22 @@
 
     var addCategoryForm = document.getElementById('add-category-form');
     var inputCategory = document.getElementById('category-name-input');
-    addCategoryForm.addEventListener('submit', function(e){
-        if(inputCategory.value == "")
-        {
+    addCategoryForm.addEventListener('submit', function (e) {
+        if (inputCategory.value == "") {
             e.preventDefault();
-            alert('vui lòng nhập tên brand muốn thêm');
+            alert('vui lòng nhập tên category muốn thêm');
         }
     })
+
+    //DELETE CATEGORY
+    var formDeleteCategory = document.getElementById('delete-category-form');
+
+    function deleteCategory(CategoryID) {
+        var result = confirm("Do you want to delete this Category?");
+        if (result) {
+            formDeleteCategory.action = '/admin/delete-category/' + CategoryID + '?_method=DELETE';
+            formDeleteCategory.submit();
+        }
+    }
 
 </script>

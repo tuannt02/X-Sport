@@ -27,6 +27,8 @@ router.get('/search-categories/:slug', adminController.categoriesSearch);
 
 router.post('/create-category', adminController.createCategory);
 
+router.delete('/delete-category/:id', adminController.destroyCategory);
+
 //Brand manager
 
 router.get('/brands/:slug', adminController.brandsManager);
@@ -35,6 +37,7 @@ router.get('/search-brands/:slug', adminController.brandsSearch);
 
 router.post('/create-brands', adminController.createBrand);
 
+router.delete('/delete-brand/:id', adminController.destroyBrand);
 
 //Banner manager
 

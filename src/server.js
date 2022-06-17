@@ -79,6 +79,12 @@ app.engine(
       },
       sum_price_product: function(price, quatity){
         return price * quatity;
+      },
+      sum: function(num1, num2){
+        return num1 + num2;
+      },
+      string_equal: function(str1, str2){
+        return str1 == str2;
       }
   }
 }));

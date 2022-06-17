@@ -15,8 +15,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Number</th>
                             <th>Name</th>
-                            <th>Quantity</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,9 +24,13 @@
                     <tbody>
                         {{#each brand}}
                         <tr>
+                            <td>{{sum @index 1}}</td>
                             <td>{{this.name}}</td>
-                            <td>40</td>
-                            <td><a href="#">Delete</a></td>
+                            {{#if (string_equal this.name 'Khác')}}
+                            <td><a href="#"> </a></td>
+                            {{else}}
+                            <td><a href="#" onclick="deleteBrand('{{this._id}}')">Delete</a></td>
+                            {{/if}}
                         </tr>
                         {{/each}}
                     </tbody>
@@ -49,6 +53,7 @@
     </div>
 
 </div>
+<form id="delete-brand-form" method="POST"></form>
 
 <script>
 
@@ -65,12 +70,22 @@
 
     var addBrandForm = document.getElementById('add-brand-form');
     var inputBrand = document.getElementById('brand-name-input');
-    addBrandForm.addEventListener('submit', function(e){
-        if(inputBrand.value == "")
-        {
+    addBrandForm.addEventListener('submit', function (e) {
+        if (inputBrand.value == "") {
             e.preventDefault();
             alert('vui lòng nhập tên brand muốn thêm');
         }
     })
+
+    //DELETE BRAND
+    var formDeleteBrand = document.getElementById('delete-brand-form');
+
+    function deleteBrand(BrandID) {
+        var result = confirm("Do you want to delete this Brand?");
+        if (result) {
+            formDeleteBrand.action = '/admin/delete-brand/' + BrandID + '?_method=DELETE';
+            formDeleteBrand.submit();
+        }
+    }
 
 </script>
