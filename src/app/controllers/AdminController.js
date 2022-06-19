@@ -259,6 +259,19 @@ class ProductsController {
             .then(() => res.redirect('back'))
             .catch(next);
     }
+
+    // [GET] /admin/transaction
+    transaction(req, res, next) {
+        var slug = req.params.slug;
+        res.render('partials/admin/transactions/transaction', 
+                    { 
+                        layout: 'admin', 
+                        smallBanner: mutipleMongooseToObject(banner), 
+                        bigBanner: bigBanner, 
+                        val: slug 
+                    });
+
+    }
 }
 
 module.exports = new ProductsController;
