@@ -74,6 +74,11 @@ app.engine(
       price_down: function(price,discount) {
         return(price*(100-discount)*0.01);
       },
+      print_date: function(date){
+        var temp = new Date();
+        temp = date; 
+        return date.toLocaleDateString();
+      },
       remaining_product: function(total, sold)  {
         return total - sold;
       },
@@ -84,7 +89,7 @@ app.engine(
         return num1 + num2;
       },
       string_equal: function(str1, str2){
-        return str1 == str2;
+        return str1.toString() == str2.toString();
       }
   }
 }));

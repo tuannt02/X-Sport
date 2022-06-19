@@ -4,18 +4,17 @@
         <div class="container-address">
             <div class="payment-contact">
                 <p>Địa chỉ nhận hàng</p>
-                <p class="name">Hoàng Văn Phúc</p>
-                <p class="phone">0852 106 299</p>
+                <p class="name">{{address.name}}</p>
+                <p class="phone">{{address.phone}}</p>
             </div>
             <div class="payment-address">
-                <p>Ktx khu A ĐHQG, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh TP. Hồ Chí Minh TP. Hồ Chí Minh
-                    TP. Hồ Chí Minh</p>
+                <p id="address">{{address.full_addr}}</p>
             </div>
             <div class="payment-change-address">
                 <div class="address-default">
                     <span>Mặc định</span>
                 </div>
-                <a href="#">THAY ĐỔI</a>
+                <a href="/user/account/address">THAY ĐỔI</a>
             </div>
         </div>
 
@@ -32,6 +31,7 @@
 
         <div class="container-list-item-payment">
             {{#each cart}}
+            <input type="hidden" id="cartID" name="cartID" value="{{this._id}}">
             <div class="item-payment">
                 <div class="item-left">
                     <img src="{{this.productID.img.[0]}}" alt="">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="item-message">
                         <span>Lời nhắn: </span>
-                        <input type="text" placeholder="Lưu ý cho người bán ...">
+                        <input type="text" id="note" placeholder="Lưu ý cho người bán ...">
                     </div>
                 </div>
             </div>
@@ -92,7 +92,10 @@
                 </div>
             </div>
             <div class="bottom-payment-right">
-                <button class="button-checkout">Đặt Hàng</button>
+                <form id="checkout-form" method="POST">
+                    <input type="hidden" id="userID" name="userID" value="{{user._id}}">
+                    <button class="button-checkout">Đặt Hàng</button>
+                </form>
             </div>
         </div>
     </div>
@@ -111,11 +114,10 @@
             sum += parseInt(price.firstChild.textContent.split('.').join(''));
         })
 
-        if (totalMerchandise && priceShip && totalPrice){
+        if (totalMerchandise && priceShip && totalPrice) {
             totalMerchandise.lastChild.textContent = print_price(sum) + ' đ';
             total = parseInt(priceShip.textContent.split('.').join('')) + sum;
             totalPrice.textContent = print_price(total) + ' đ';
-            console.log(totalPrice);        
         }
     }
     PricePayment();
@@ -151,5 +153,57 @@
             normalDelivery.classList.toggle('show');
         })
     }
+
+    //ORDER
+    var formOrder = document.getElementById('checkout-form');
+    formOrder.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        //Get data
+        //var listCartID_Element = document.querySelectorAll('#cartID');
+        var listCartID = document.querySelectorAll('#cartID');
+        var listNote = document.querySelectorAll('#note');
+        var userID = document.getElementById('userID').value;
+        var address = document.getElementById('address').innerText;
+        var phone = document.querySelector('.phone').innerText;
+        var customerName = document.querySelector('.name').innerText;
+        var cartID = [];
+        var Node = [];
+        var datePurChase = new Date();
+        var DeliverStatus = 0;
+        var DeliverMethod =  document.querySelector('.delivery-choosed').innerText;
+        var TotalPrice = document.querySelector('.Total-checkout-price').innerText.split(' ')[0].split('.').join('');
+
+        //Get cartID, node content
+        for(let i = 0; i < listCartID.length; i++){
+            cartID.push(Object(listCartID[i].value));    
+        }
+        
+        for(let i = 0; i < listNote.length; i++){
+            Node.push(listNote[i].value);    
+        }
+
+        fetch("/user/order", {
+            method: 'POST',
+            body: JSON.stringify({
+                userID: userID,
+                address: address,
+                phone: phone,
+                customerName: customerName,
+                cartID: cartID,
+                note: Node,
+                datePurChase: datePurChase,
+                DeliverStatus: DeliverStatus,
+                DeliverMethod: DeliverMethod,
+                TotalPrice: TotalPrice
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(function(response){
+            alert('Đặt hàng thành công!')
+            window.location.href = '/user/cart';
+        })
+    })
 
 </script>

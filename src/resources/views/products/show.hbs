@@ -290,7 +290,22 @@
                         })
                 }
                 else if (e.submitter.name == "buy-btn") {
-                    //Not processed yet
+                    fetch("/user/add-to-cart", {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            userID: user,
+                            size: sizeOption.innerText,
+                            color: colorOption.innerText,
+                            quantity: quantity,
+                            productID: Object(productID)
+                        }),
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    })
+                        .then(function (response) {
+                            window.location.href = '/user/cart';
+                        })
                 }
             }
             else {

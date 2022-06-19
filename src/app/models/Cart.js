@@ -11,7 +11,8 @@ const CartSchema = new Schema({
     productID:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product',
-    }
+    },
+    isComplete: {type: Boolean, default: false}
 });
 
 const CartModel = mongoose.model('cart',CartSchema);

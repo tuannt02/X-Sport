@@ -3,6 +3,7 @@ const User = require('../models/User');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const Address = require('../models/Address');
+const Order = require('../models/Order');
 const { mongooseToObject } = require('../../util/mongoose');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 
@@ -205,16 +206,16 @@ class UserController {
 
             try {
                 const list_addr = await Address.find({ user_id: user._id }).exec();
-                
+
                 res.render('partials/user/account/address',
-                {
-                    layout: 'user_info',
-                    val: slug,
-                    user: user,
-                    list_addr: mutipleMongooseToObject(list_addr),
-                });
+                    {
+                        layout: 'user_info',
+                        val: slug,
+                        user: user,
+                        list_addr: mutipleMongooseToObject(list_addr),
+                    });
             }
-            catch(err)  {
+            catch (err) {
 
             }
 
@@ -235,7 +236,7 @@ class UserController {
 
 
     // [POST] /account/address  
-    async postAddr(req, res, next)    {
+    async postAddr(req, res, next) {
         var user;
         try {
             user = mongooseToObject(res.locals.user);
@@ -254,7 +255,7 @@ class UserController {
                 mes: 'Thành công',
             });
         }
-        catch (err){
+        catch (err) {
             res.json({
                 status: 404,
                 mes: 'Thất bại',
@@ -264,7 +265,7 @@ class UserController {
     }
 
     // [POST] /account/address/default_addr
-    async default_addr(req, res, next)  {
+    async default_addr(req, res, next) {
         var user;
         try {
             user = mongooseToObject(res.locals.user);
@@ -276,27 +277,27 @@ class UserController {
         data.user_id = user._id;
 
 
-        Address.updateMany({user_id: data.user_id}, {$set:{is_default: false}})
-        .then(function()    {
-            Address.updateOne({_id: data.addr_id},{$set:{is_default: true}})
-            .then(function()    {
-                res.json({
-                status: 200,
-                mes: 'Cập nhập địa chỉ giao hàng mặc định thành công',
-                })
-            })
-            .catch(function(err)    {
-    
-            })
-        })
-        .catch(function(err)    {
+        Address.updateMany({ user_id: data.user_id }, { $set: { is_default: false } })
+            .then(function () {
+                Address.updateOne({ _id: data.addr_id }, { $set: { is_default: true } })
+                    .then(function () {
+                        res.json({
+                            status: 200,
+                            mes: 'Cập nhập địa chỉ giao hàng mặc định thành công',
+                        })
+                    })
+                    .catch(function (err) {
 
-        })
+                    })
+            })
+            .catch(function (err) {
+
+            })
 
 
     }
 
-    async del_addr(req, res, next)  {
+    async del_addr(req, res, next) {
         const data = req.body;
 
         Address.deleteOne({ _id: data.addr_id })
@@ -318,13 +319,27 @@ class UserController {
             user = '';
         }
 
-        res.render('partials/user/purchase/purchase',
-            {
-                layout: 'user_info',
-                val: 'purchase',
-                user: user,
-            });
+        var cartComplete;
+        Cart.find({ userID: user._id, isComplete: true }).populate('productID')
+            .then(cart => {
+                cartComplete = mutipleMongooseToObject(cart);
+                Order.find({ userID: user._id }).populate('cartID').sort({datePurChase: -1})
+                    .then(order => {
+                        res.render('partials/user/purchase/purchase',
+                            {
+                                layout: 'user_info',
+                                order: mutipleMongooseToObject(order),
+                                cartComplete: cartComplete,
+                                val: 'purchase',
+                                user: user,
+                            });
+                    })
+                    .catch(next);
+            })
+            .catch(next);
     }
+
+
 
     // [GET] /notifications
     notifications(req, res, next) {
@@ -355,16 +370,16 @@ class UserController {
         catch {
             user = '';
         }
-        
-        Cart.find({ userID: user._id }).populate('productID')
+
+        Cart.find({ userID: user._id, isComplete: false }).populate('productID')
             .then(cart => {
-                res.render('user/cart',{cart: mutipleMongooseToObject(cart) ,user: user,});
+                res.render('user/cart', { cart: mutipleMongooseToObject(cart), user: user, });
             })
             .catch(next);
     }
 
     // [POST] /user/add-to-cart
-    addToCart(req, res, next){
+    addToCart(req, res, next) {
         const cart = new Cart(req.body);
         cart.save()
             .then(() => res.json(req.body))
@@ -372,23 +387,25 @@ class UserController {
     }
 
     //[DELETE] /user/cart/:id
-    removeCart(req, res, next){
+    removeCart(req, res, next) {
         Cart.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }
 
     //[PUT] /user/edit-quantity
-    updateQuantityProduct(req, res, next){
-        Cart.updateOne({_id: req.body.id},{$set:{quantity: req.body.quantity}})
-        .then(()=>res.send('success'))
-        .catch(next);
-    } 
+    updateQuantityProduct(req, res, next) {
+        Cart.updateOne({ _id: req.body.id }, { $set: { quantity: req.body.quantity } })
+            .then(() => res.send('success'))
+            .catch(next);
+    }
 
 
     //[GET] /user/checkout
-    checkout(req, res, next){
+    checkout(req, res, next) {
         var user;
+        var address;
+
         try {
             user = mongooseToObject(res.locals.user);
         }
@@ -396,11 +413,31 @@ class UserController {
             user = '';
         }
         var list = req.query.listID.split(",")
-        Cart.find({_id: {$in: list}}).populate('productID')
-        .then((cart)=>{
-            res.render('user/checkout', {layout: 'checkout', cart: mutipleMongooseToObject(cart) ,user: user,})
-        })
-        .catch(next);
+        Address.findOne({ user_id: user._id, is_default: true })
+            .then(Address => {
+                address = mongooseToObject(Address);
+                Cart.find({ _id: { $in: list } }).populate('productID')
+                    .then((cart) => {
+                        res.render('user/checkout', { layout: 'checkout', cart: mutipleMongooseToObject(cart), address: address, user: user, })
+                    })
+                    .catch(next);
+            })
+
+    }
+
+
+    //[POST] /user/order
+    storeOrder(req, res, next) {
+        const listCart = req.body.cartID;
+        const order = new Order(req.body);
+
+        Cart.updateMany({ _id: { $in: listCart } }, { $set: { isComplete: true } })
+            .then(() => {
+                order.save()
+                    .then(() => res.send('success'))
+                    .catch(next);
+            })
+            .catch(next);
     }
 
 
