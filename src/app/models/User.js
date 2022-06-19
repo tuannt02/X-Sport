@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
         require: [true, "Vui lòng nhập password"],
         minlength: [8, "Mật khẩu tối thiểu là 8 ký tự"],
     },
+    name:   {
+        type: String,
+    },
+    type: {
+        type: Number,
+    }
 })
 
 // fire a function after doc saved to db
