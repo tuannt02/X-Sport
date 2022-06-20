@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="header-toggle">
+        <a href="#">Brands Manager</a>
+        <div class="separate"></div>
+    </div>
+    <div class="wrap-body">
+        <form id="search-form" action="/admin/search-brands/admin-brands" method="GET">
+            <div class="search-box">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="text" name="value" id="search-input" placeholder="Search for Brands...">
+            </div>
+        </form>
+        <div class="container-manager">
+            <div class="table-list-brand">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each brand}}
+                        <tr>
+                            <td>{{sum @index 1}}</td>
+                            <td>{{this.name}}</td>
+                            {{#if (string_equal this.name 'Khác')}}
+                            <td><a href="#"> </a></td>
+                            {{else}}
+                            <td><a href="#" onclick="deleteBrand('{{this._id}}')">Delete</a></td>
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="wrap-add-brand">
+                <form id="add-brand-form" action="/admin/create-brands" method="POST">
+                    <div class="table-add-brand">
+                        <div class="table-head">
+                            <p class="table-head-title">Add Brands</p>
+                        </div>
+                        <input id="brand-name-input" type="text" name="name" placeholder="Add new brand...">
+                    </div>
+                    <div class="wrap-button">
+                        <button>Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<form id="delete-brand-form" method="POST"></form>
+
+<script>
+
+    var searchBrand = document.getElementById('search-input');
+    var searchForm = document.getElementById('search-form');
+
+    if (searchBrand) {
+        searchBrand.addEventListener('keydown', function (e) {
+            if (e.key == 'Enter') {
+                searchForm.submit;
+            }
+        })
+    }
+
+    var addBrandForm = document.getElementById('add-brand-form');
+    var inputBrand = document.getElementById('brand-name-input');
+    addBrandForm.addEventListener('submit', function (e) {
+        if (inputBrand.value == "") {
+            e.preventDefault();
+            alert('vui lòng nhập tên brand muốn thêm');
+        }
+    })
+
+    //DELETE BRAND
+    var formDeleteBrand = document.getElementById('delete-brand-form');
+
+    function deleteBrand(BrandID) {
+        var result = confirm("Do you want to delete this Brand?");
+        if (result) {
+            formDeleteBrand.action = '/admin/delete-brand/' + BrandID + '?_method=DELETE';
+            formDeleteBrand.submit();
+        }
+    }
+
+</script>

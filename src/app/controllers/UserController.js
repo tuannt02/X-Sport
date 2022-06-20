@@ -69,7 +69,12 @@ class UserController {
             const user = await User.login(email, password);
             const token = createToken(user._id);
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-            res.redirect('/');
+            if(user.type == 1)  {
+                res.redirect('/');
+            }
+            else    {
+                res.redirect('/admin/create-product');
+            }
         }
         catch (err) {
             const errors = handleErrors(err);
@@ -146,6 +151,8 @@ class UserController {
             const user = await User.create({
                 email,
                 password,
+                name: 'username',
+                type: 1,
             });
             res.render('user/sign_up',
                 {
