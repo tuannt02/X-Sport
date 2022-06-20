@@ -90,6 +90,11 @@ app.engine(
       },
       string_equal: function(str1, str2){
         return str1.toString() == str2.toString();
+      },
+      getDate: function(date, days){
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
       }
   }
 }));

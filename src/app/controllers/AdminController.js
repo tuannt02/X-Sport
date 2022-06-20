@@ -3,8 +3,10 @@ const Category = require('../models/Category');
 const Brand = require('../models/Brand');
 const Banner = require('../models/Banner');
 const Order = require('../models/Order');
+const Cart = require('../models/Cart');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
+const { cart } = require('./UserController');
 
 class ProductsController {
 
@@ -292,7 +294,16 @@ class ProductsController {
     //[GET] /admin/order-detail
     detailOrder(req, res, next){
         var slug = 'admin-detail-order';
-        res.render('partials/admin/orders/detail-order', {layout: 'admin', val: slug});
+        Order.findOne({_id: req.params.id})
+        .then(order => {
+            var list = order.cartID;
+            var order = mongooseToObject(order);
+            Cart.find({ _id: { $in: list } }).populate('productID')
+            .then( cart => {
+                res.render('partials/admin/orders/detail-order', {layout: 'admin', order: order, cart: mutipleMongooseToObject(cart) ,val: slug});
+            })
+        })
+        .catch(next);
     }
 
     //[PUT] /admin/orders/move-Inprogress

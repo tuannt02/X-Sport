@@ -1,8 +1,8 @@
 <div class="container">
     <div class="header-toggle">
-        <a href="#">Finished</a>
-        <a href="#">In progress</a>
-        <a href="#">Canceled</a>
+        <a href="/admin/orders/preparing">Preparing</a>
+        <a href="/admin/orders/inProgress">In progress</a>
+        <a href="/admin/orders/complete">Complete</a>
         <div class="separate"></div>
     </div>
     <div class="wrap-body">
@@ -11,122 +11,77 @@
             <div class="info_user">
                 <div class="info_user_item">
                     <span class="label id">Transaction ID</span>
-                    <p class="value">Hoàng Văn Phúc</p>
+                    <p class="value">{{order._id}}</p>
                 </div>
                 <div class="divider"></div>
                 <div class="info_user_item">
                     <span class="label">Customer</span>
-                    <p class="value">Hoàng Văn Phúc</p>
+                    <p class="value">{{order.customerName}}</p>
                 </div>
                 <div class="divider"></div>
                 <div class="info_user_item">
                     <span class="label">Order date</span>
-                    <p class="value">Hoàng Văn Phúc</p>
+                    <p class="value">{{print_date order.datePurChase}}</p>
                 </div>
                 <div class="divider"></div>
                 <div class="info_user_item">
                     <span class="label">Address</span>
-                    <p class="value addr">TP. Hồ Chí Minh, Quận Thủ Đức, Khu Phố 6, Phường Linh Trung, KTX Khu A TP. Hồ Chí Minh, Quận Thủ Đức, Khu Phố 6, Phường Linh Trung, KTX Khu A</p>
+                    <p class="value addr">{{order.address}}</p>
                 </div>
                 <div class="divider"></div>
             </div>
             <h2 class="title bill">Bill</h2>
             <div class="group_bill">
+                {{#each cart}}
                 <div class="product_item">
-                    <img src="/img/1.jpg" alt="" class="img_item">
+                    <img src="{{this.productID.img.[0]}}" alt="" class="img_item">
                     <div class="info_item">
-                        <p class="name">Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên</p>
+                        <p class="name">{{this.productID.name}}</p>
                         <div class="field field_color">
                             <p class="field_name">Màu:</p>
-                            <p class="field_val">Xanh</p>
+                            <p class="field_val">{{this.color}}</p>
                             <p class="field_name" style="margin-left: 20px;">Size:</p>
-                            <p class="field_val">39</p>
+                            <p class="field_val">{{this.size}}</p>
                         </div>
                         <div class="field field_quantity">
                             <p class="field_name">Số lượng mua:</p>
-                            <p class="field_val">3</p>
+                            <p class="field_val quantity">{{this.quantity}}</p>
                         </div>
                     </div>
                     <div class="info_another_item">
                         <div class="price">
-                            <p class="regular_price">100.000 đ</p>
-                            <p class="discount_price">200.000 đ</p>
+                            <p class="regular_price">{{print_price this.productID.price}} đ</p>
+                            <p class="discount_price">{{print_price_down this.productID.price this.productID.discount}}
+                                đ</p>
                         </div>
                     </div>
                     <div class="divider2"></div>
                 </div>
-                <div class="product_item">
-                    <img src="/img/1.jpg" alt="" class="img_item">
-                    <div class="info_item">
-                        <p class="name">Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên</p>
-                        <div class="field field_color">
-                            <p class="field_name">Màu:</p>
-                            <p class="field_val">Xanh</p>
-                            <p class="field_name" style="margin-left: 20px;">Size:</p>
-                            <p class="field_val">39</p>
-                        </div>
-                        <div class="field field_quantity">
-                            <p class="field_name">Số lượng mua:</p>
-                            <p class="field_val">3</p>
-                        </div>
-                    </div>
-                    <div class="info_another_item">
-                        <div class="price">
-                            <p class="regular_price">100.000 đ</p>
-                            <p class="discount_price">200.000 đ</p>
-                        </div>
-                    </div>
-                    <div class="divider2"></div>
-                </div>
-                <div class="product_item">
-                    <img src="/img/1.jpg" alt="" class="img_item">
-                    <div class="info_item">
-                        <p class="name">Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên Sản phẩm a có màu xanh và tên</p>
-                        <div class="field field_color">
-                            <p class="field_name">Màu:</p>
-                            <p class="field_val">Xanh</p>
-                            <p class="field_name" style="margin-left: 20px;">Size:</p>
-                            <p class="field_val">39</p>
-                        </div>
-                        <div class="field field_quantity">
-                            <p class="field_name">Số lượng mua:</p>
-                            <p class="field_val">3</p>
-                        </div>
-                    </div>
-                    <div class="info_another_item">
-                        <div class="price">
-                            <p class="regular_price">100.000 đ</p>
-                            <p class="discount_price">200.000 đ</p>
-                        </div>
-                    </div>
-                    <div class="divider2"></div>
-                </div>
-
-                
+                {{/each}}
             </div>
             <div class="group_check_out">
                 <div class="info">
                     <div class="info_item">
                         <p class="field">Quantity</p>
-                        <p class="value">7</p>
+                        <p class="value total-quantity">7</p>
                     </div>
-                    <div class="info_item">
+                    {{!-- <div class="info_item">
                         <p class="field">Subtotal</p>
                         <p class="value">149.000 đ</p>
-                    </div>
-                    <div class="info_item">
+                    </div> --}}
+                    {{!-- <div class="info_item">
                         <p class="field">Discount</p>
                         <p class="value">5%</p>
-                    </div>
+                    </div> --}}
                     <div class="info_item">
-                        <p class="field">Delivery fee</p>
-                        <p class="value">23.000 đ</p>
+                        <p class="field">Delivery method</p>
+                        <p class="value">{{order.DeliverMethod}}</p>
                     </div>
                 </div>
                 <div class="divider2"></div>
                 <div class="billed">
                     <p class="field">Total</p>
-                    <p class="value">164.000 đ</p>
+                    <p class="value">{{print_price order.TotalPrice}} đ</p>
                 </div>
             </div>
 
@@ -134,17 +89,40 @@
         <div class="contain-right">
             <div class="group_status">
                 {{!-- Nhớ có 3 thg modify là: inprogress, finished, prepare --}}
-                <div class="header_status inprogress finished">Finished</div>
+                {{#if (string_equal order.DeliverStatus 0)}}
+                <div class="header_status prepare">Preparing</div>
+                {{/if}}
+                {{#if (string_equal order.DeliverStatus 1)}}
+                <div class="header_status inprogress ">In Progress</div>
+                {{/if}}
+                {{#if (string_equal order.DeliverStatus 2)}}
+                <div class="header_status  finished">Completed</div>
+                {{/if}}
                 {{!-- End --}}
                 <div class="contain">
-                    <p class="method_delivery">Phương thức giao hàng: Tiêu chuẩn</p>
-                    <p class="date_delivery">Giao hàng vào ngày: 19/05</p>
+                    <p class="method_delivery">Phương thức giao hàng: {{order.DeliverMethod}}</p>
+                    <p class="date_delivery">Giao hàng vào ngày: {{print_date (getDate order.datePurChase 4)}}</p>
                 </div>
             </div>
-            <button class="btn_rm_transaction">
+            {{!-- <button class="btn_rm_transaction">
                 Remove this transaction
-            </button>
+            </button> --}}
         </div>
     </div>
 
 </div>
+
+<script>
+    var quantity = document.querySelectorAll('.quantity');
+    var totalQuantity = document.querySelector('.total-quantity');
+
+    function TotalQuantity(){
+        var sumQuantity = 0;
+        quantity.forEach(item => {
+            sumQuantity += parseInt(item.innerText);
+        })
+        totalQuantity.innerText = sumQuantity;
+    }
+    TotalQuantity();
+
+</script>
