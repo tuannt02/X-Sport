@@ -21,5 +21,243 @@
 }
 
 .wrap-body {
-    margin: 40px 80px;
+    margin: 40px 40px;
+    display: flex;
+
+    .contain-left {
+        flex: 7;
+
+        .title  {
+            font-size: 18px;
+            color: #1A94FF;
+            margin-bottom: 20px;    
+        }
+
+        .info_user  {
+            width: 100%;
+
+            .info_user_item {
+                margin-top: 15px;
+
+                .label  {
+                    font-size: 14px;
+                    width: 120px;
+                    text-align: end;
+                    color: #A39494;
+                    display: inline-block;
+                }
+                .value  {
+                    font-size: 14px;
+                    display: inline;
+                    margin-left: 20px;
+                }
+                // .value.addr {
+                //     display: -webkit-inline-box;
+                //     -webkit-line-clamp: 1;
+                //     -webkit-box-orient: vertical;
+                //     overflow: hidden;
+                //     text-overflow: ellipsis;
+                // }
+            }
+
+            .divider    {
+                margin-top: 4px;
+                width: 100%;
+                height: 1px;
+                background-color: #A39494;
+            }
+        }
+
+        .title.bill {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .group_bill {
+
+            .divider2 {
+                height: 0.6px;
+                width: 100%;
+                background-color: #A39494;
+                position: absolute;
+                bottom: 0;
+            }
+            .product_item   {
+                display: flex;
+                padding: 14px 0;
+                position: relative;
+
+                .img_item   {
+                    width: 80px;
+                    height: 80px;
+                    border: 1px solid #000;
+                }
+                .info_item  {
+                    margin-left: 32px;
+                    flex-basis: 55%;
+                    position: relative;
+
+                    .name   {
+                        font-size: 13.5px;
+                        line-height: 16px;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .field_color    {
+                        position: absolute;
+                        top: 50%;
+                    }
+
+                    .field_quantity {
+                        position: absolute;
+                        bottom: 0;
+                    }
+
+                    .field   {
+                        font-size: 12px;
+                        color: #A39494;
+
+                        .field_name  {
+                            display: inline;
+                        }
+
+                        .field_val   {
+                            margin-left: 5px;
+                            display: inline;
+                        }
+                    }
+                }
+                .info_another_item    {
+                    margin-left: 20px;
+                    flex: 1;
+                    position: relative;
+
+                    .price  {
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        display: flex;
+
+                        .regular_price   {
+                            margin-right: 40px;
+                            text-decoration: line-through;
+                        }
+                        .discount_price  {
+                            color: #1A94FF;
+                        }
+                    }
+                }
+                .divider2 {
+                    height: 0.6px;
+                    width: 100%;
+                    background-color: #A39494;
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+        }
+        .group_check_out    {
+            margin-top: 20px;
+            width: 300px;
+            float: right;
+
+            .info   {
+                .info_item  {
+                    margin-top: 5px;
+                    .field  {
+                        width: 120px;
+                        display: inline-block;
+                        color: #A39494;
+                        font-size: 13px;
+                        text-align: right;
+                    }
+                    .value  {
+                        display: inline;
+                        color: #000;
+                        font-size: 13px;
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+        .divider2 {
+            margin-top: 10px;
+            width: 100%;
+            height: 0.6px;
+            background-color: #A39494;
+        }
+        .billed {
+            margin-top: 10px;
+            .field  {
+                width: 120px;
+                display: inline-block;
+                color: #1A94FF;
+                font-size: 20px;
+                font-weight: 600;
+                text-align: right;
+            }
+            .value  {
+                display: inline;
+                color: #000;
+                font-size: 20px;
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .contain-right    {
+        flex: 3;
+        margin-left: 40px;
+
+        .group_status   {
+            background-color: white;
+            box-shadow: 2px 2px 30px grey;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .header_status  {
+                color: white;
+                background-color: #46BE7D;
+                padding: 6px 10px;
+                font-weight: 600;
+                text-align: center;
+            }
+            .contain    {
+                padding: 10px;
+                font-size: 13px;
+
+                margin-bottom: 10px;
+            }
+
+            .header_status.finished  {
+                background-color: #46BE7D;
+            }
+            .header_status.inprogress  {
+                background-color: #FBC02D;
+            }
+            .header_status.prepare  {
+                background-color: #46BE7D;
+            }
+        }
+
+        .btn_rm_transaction {
+            margin-top: 50px;
+            border: none;
+            outline: none;
+            width: 100%;
+            border-radius: 4px;
+            background-color: #1A94FF;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn_rm_transaction:hover   {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+
 }
