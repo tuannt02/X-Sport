@@ -49,8 +49,16 @@ router.delete('/delete-banner/:id', adminController.destroyBanner);
 
 //Order manager
 
-router.get('/orders/:slug', adminController.showOrder);
+router.get('/orders/preparing', adminController.preparingOrder);
+
+router.get('/orders/inProgress', adminController.inProgressOrder);
+
+router.get('/orders/complete', adminController.completeOrder);
 
 router.get('/order-detail/:id', adminController.detailOrder);
+
+router.put('/orders/move-Inprogress/:id', adminController.moveProgress)
+
+router.put('/orders/move-Complete/:id', adminController.moveComplete)
 
 module.exports = router;

@@ -64,15 +64,26 @@
     border: solid 1px #ccc;
     border-radius: 8px;
     overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
+
+    //hide crollbar
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     table {
         width: 100%;
         border-spacing: 0;
 
-        thead{
+        thead {
             background-color: #ccc;
+            position: sticky;
+            top: 0;
 
-            th{
+            th {
                 text-align: start;
                 height: 38px;
                 color: rgb(129, 124, 124);
@@ -80,22 +91,62 @@
             }
         }
 
-        tbody{
+        tbody {
 
-            td{
+            td {
                 height: 38px;
                 padding: 0 10px;
                 border-bottom: 1px solid #ccc;
             }
 
-            .name,.total{
+            .name,
+            .total {
                 font-weight: 600;
             }
 
-            .option{
+            .fast-deliver {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+                background-color: #46BE7D;
+                color: #fff;
+                width: 120px;
+                height: 30px;
+                font-weight: 600;
+            }
+
+            .normal-deliver {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+                background-color: #FBC02D;
+                color: #fff;
+                width: 120px;
+                height: 30px;
+                font-weight: 600;
+            }
+
+            .button-move{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+                background-color: #1A94FF;
+                width: 180px;
+                height: 30px;
+                font-weight: 600;
+
+                a{
+                    color: #fff;   
+                    text-decoration: none; 
+                }
+            }
+
+            a {
+                color: #1A94FF;
+                font-weight: 600;
             }
         }
     }
