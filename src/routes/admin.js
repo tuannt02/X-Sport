@@ -47,5 +47,10 @@ router.post('/create-banner', adminController.createBanner);
 
 router.delete('/delete-banner/:id', adminController.destroyBanner);
 
+//Order manager
+
+router.get('/orders/:slug', adminController.showOrder);
+
+router.get('/order-detail/:id', adminController.detailOrder);
 
 module.exports = router;

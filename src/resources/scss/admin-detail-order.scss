@@ -1,0 +1,25 @@
+.container {
+    padding-left: 53px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+
+.header-toggle {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 20px;
+    // width: 100%;
+}
+
+.separate {
+    width: 100%;
+    background-color: rgb(114, 110, 110);
+    height: 1px;
+}
+
+.wrap-body {
+    margin: 40px 80px;
+}

@@ -259,6 +259,19 @@ class ProductsController {
             .then(() => res.redirect('back'))
             .catch(next);
     }
+
+
+    //[GET] /admin/order
+    showOrder(req, res, next){
+        var slug = req.params.slug;
+        res.render('partials/admin/orders/orders', {layout: 'admin', val: slug});
+    }
+
+    //[GET] /admin/order-detail
+    detailOrder(req, res, next){
+        var slug = 'admin-detail-order';
+        res.render('partials/admin/orders/detail-order', {layout: 'admin', val: slug});
+    }
 }
 
 module.exports = new ProductsController;
