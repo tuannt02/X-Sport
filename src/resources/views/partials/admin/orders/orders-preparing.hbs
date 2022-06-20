@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="header-toggle">
+        <a href="#" style="color: #1A94FF">Preparing</a>
+        <a href="/admin/orders/inProgress">In progress</a>
+        <a href="/admin/orders/complete">Complete</a>
+        <div class="separate"></div>
+    </div>
+    <div class="wrap-body">
+        <form id="search-form" action="/admin/search-orders/admin-orders" method="GET">
+            <div class="search-box">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="text" name="value" id="search-input" placeholder="Search here...">
+            </div>
+        </form>
+        <div class="container-manager">
+            <p class="guide-text">Click on item to view detail transaction...</p>
+            <div class="table-order">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Created</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Delivery method</th>
+                            <th>Detail</th>
+                            <th>Next</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each order}}
+                        <tr>
+                            <td>{{sum @index 1}}</td>
+                            <td>{{print_date this.datePurChase}}</td>
+                            <td class="name">{{this.customerName}}</td>
+                            <td class="total">{{print_price TotalPrice}} đ</td>
+                            <td>
+                                {{#if (string_equal this.DeliverMethod 'bình thường ')}}
+                                    <div class="normal-deliver">
+                                        <span>Bình thường</span>
+                                    </div>
+                                {{else}}
+                                    <div class="fast-deliver">
+                                        <span>Cấp tốc</span>
+                                    </div>
+                                {{/if}}
+                            </td>
+                            <td><a href="/admin/order-detail/{{this._id}}">View Detail</a></td>
+                            <td>
+                                <div class="button-move">
+                                    <a href="#" onclick="moveOrder('{{this._id}}')">Move to inProgress</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="move-order-form" method="POST"></form>
+
+<script>
+    var formMoveOrder = document.getElementById('move-order-form');
+
+    function moveOrder(OrderID) {
+            formMoveOrder.action = '/admin/orders/move-Inprogress/' + OrderID + '?_method=PUT';
+            formMoveOrder.submit();
+    }
+</script>

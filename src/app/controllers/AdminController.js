@@ -2,6 +2,7 @@ const Product = require('../models/Product');
 const Category = require('../models/Category');
 const Brand = require('../models/Brand');
 const Banner = require('../models/Banner');
+const Order = require('../models/Order');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 
@@ -260,17 +261,52 @@ class ProductsController {
             .catch(next);
     }
 
-    // [GET] /admin/transaction
-    transaction(req, res, next) {
-        var slug = req.params.slug;
-        res.render('partials/admin/transactions/transaction', 
-                    { 
-                        layout: 'admin', 
-                        smallBanner: mutipleMongooseToObject(banner), 
-                        bigBanner: bigBanner, 
-                        val: slug 
-                    });
 
+    //[GET] /admin/order/prearing
+    preparingOrder(req, res, next){
+        var slug = 'admin-orders';
+        Order.find({DeliverStatus: 0}).sort({datePurChase: 1})
+        .then(order =>{
+            res.render('partials/admin/orders/orders-preparing', {layout: 'admin', order: mutipleMongooseToObject(order) ,val: slug});
+        })
+    }
+
+    //[GET] /admin/order/inProgress
+    inProgressOrder(req, res, next){
+        var slug = 'admin-orders';
+        Order.find({DeliverStatus: 1}).sort({datePurChase: 1})
+        .then(order =>{
+            res.render('partials/admin/orders/orders-inProgress', {layout: 'admin', order: mutipleMongooseToObject(order) ,val: slug});
+        })
+    }
+
+    //[GET] /admin/order
+    completeOrder(req, res, next){
+        var slug = 'admin-orders';
+        Order.find({DeliverStatus: 2}).sort({datePurChase: 1})
+        .then(order =>{
+            res.render('partials/admin/orders/orders-complete', {layout: 'admin', order: mutipleMongooseToObject(order) ,val: slug});
+        })
+    }
+
+    //[GET] /admin/order-detail
+    detailOrder(req, res, next){
+        var slug = 'admin-detail-order';
+        res.render('partials/admin/orders/detail-order', {layout: 'admin', val: slug});
+    }
+
+    //[PUT] /admin/orders/move-Inprogress
+    moveProgress(req, res, next){
+        Order.updateOne({_id: req.params.id}, {$set: {DeliverStatus: 1}})
+        .then(() => res.redirect('back'))
+        .catch(next);
+    }
+
+    //[PUT] /admin/orders/move-Complete
+    moveComplete(req, res, next){
+        Order.updateOne({_id: req.params.id}, {$set: {DeliverStatus: 2}})
+        .then(() => res.redirect('back'))
+        .catch(next);
     }
 }
 
